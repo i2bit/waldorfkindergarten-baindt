@@ -16,6 +16,8 @@ Sprache der Website: Deutsch, Ansprache durchgehend „Sie“.
   `keystatic.config.ts` definiert. Inhalte immer per
   `createReader` aus `@keystatic/core/reader` lesen, nie hart codieren.
 - Fotos: `src/assets/fotos/` (über `astro:assets` einbinden).
+- **Keine Fotos mit erkennbaren Personen** (Wunsch des Kindergartens): zeitlose Motive wie
+  Filzfiguren, Räume, Garten. Startseite: ein Foto zum Willkommenstext + Bilderreihe (3 Fotos).
 - Inhaltsseiten (Über uns, Gruppen, Für Eltern, Stellen, Kontakt, Anmeldung, Impressum,
   Datenschutz) bestehen aus „Abschnitten“ (`src/content/seiten/*.yaml`, Typ in
   `keystatic.config.ts` → `abschnitte`): Überschrift, Text (Markdoc), Foto, Hintergrund
@@ -39,9 +41,9 @@ direkt verwendbar (eigenes Vorlagenformat mit `<x-dc>`-Wrapper).
   ist nur privat frei und darum nicht verwendet.
 - Logo: gemaltes Logo der bisherigen Website (`src/assets/logo.png`)
 - Überschriften in Großbuchstaben (wie bei anderen Waldorfseiten).
-- Startseite bewusst ruhig („weniger Bausteine“): Logo + Spruch aus der alten Seite
-  („In jedem Kind träumt Gott …“, in Keystatic pflegbar), dann Text/Foto im Wechsel,
-  Gruppen, Jahreskreis, Aktuelles, Anmeldehinweis. Keine Wachsmalblöcke, kein Slogan.
+- Startseite bewusst schlicht wie bei Wurzelwerk: Logo + Spruch der alten Seite, Willkommen
+  mit Foto, Bilderreihe, Gruppen als Text, die 3 letzten Berichte als Liste, Kennenlernen.
+  Der Jahreskreis steht auf „Über uns“ (Baustein „Jahreskreis“).
 - Besonderheiten: schlichte Textnavigation (Handy unter 760 px: Menü-Knopf „Menü“ mit
   <details>, ohne JS), interaktiver Jahreskreis (4 Viertelkreis-Buttons), Pinnwand,
   „Gesucht!“-Schild auf /stellen

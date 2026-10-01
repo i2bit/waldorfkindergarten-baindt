@@ -11,5 +11,14 @@ willkommen: |
   Kinder brauchen Geborgenheit, liebevolle Hülle und einen geschützten Freiraum, in dem sie ihrem individuellen Lebensentwurf entsprechend heranreifen, wachsen und gedeihen können.
 
   Wir begleiten jedes einzelne Kind während seiner Zeit bei uns mit Liebe, Freude und Bejahung und helfen ihm dabei, seinen Platz in unserer Welt finden zu können.
+heroBild: ../../assets/startseite/willkommen.jpg
+heroBildAlt: Gefilzte Schnecken und ein Fuchs zwischen Holztannen auf grüner Wolle
+bilder:
+- bild: ../../assets/startseite/bild-1.jpg
+  alt: Gefilzte Waldlandschaft mit Tannen, Baumstamm, Schnecken und einem Fuchs
+- bild: ../../assets/startseite/bild-2.jpg
+  alt: Kleine Filzwichtel und ein Windlicht auf Moos
+- bild: ../../assets/startseite/bild-3.jpg
+  alt: Gefilzter Ritter mit Schild vor einer Höhle mit Amethyst und einem grünen Drachen
 platzTitel: Interesse an einem Platz?
 platzText: Gerne bieten wir interessierten Eltern nach vorheriger Terminvereinbarung einen Besuch an, um sich vor Ort umzusehen und sich einen Eindruck von uns zu verschaffen.

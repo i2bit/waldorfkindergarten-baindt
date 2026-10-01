@@ -1,24 +1,21 @@
 ---
-// Startseite: ruhig aufgebaut wie bei anderen Waldorfkindergärten –
-// Logo und Spruch oben, darunter Text und Foto im Wechsel.
+// Startseite, bewusst schlicht (Vorbild: waldorfkindergarten-wurzelwerk.de):
+// Logo und Spruch, Willkommenstext mit Foto, eine Reihe Fotos, die beiden Gruppen,
+// die letzten Berichte und ein Hinweis zum Kennenlernen. Alles in Keystatic pflegbar.
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
-import Jahreskreis from '../components/Jahreskreis.astro';
-import Zettel from '../components/Zettel.astro';
-import { reader, getAktuelles, bild, renderMarkdoc, nurText, ankerVon } from '../lib/content';
+import { reader, getAktuelles, bild, renderMarkdoc, nurText, ankerVon, datumLang } from '../lib/content';
 import logo from '../assets/logo.png';
 
 const start = await reader.singletons.startseite.readOrThrow();
 const gruppenSeite = await reader.singletons.gruppen.readOrThrow();
 const gruppen = gruppenSeite.abschnitte.filter((a) => a.aufStartseite);
-const willkommen = renderMarkdoc(start.willkommen.node);
-const beschreibung = nurText(start.willkommen.node).slice(0, 160);
 const posts = (await getAktuelles()).slice(0, 3);
 
-const einleitungsBild = bild(start.heroBild, 'sand.jpg');
-const einleitungsAlt = start.heroBild ? 'Foto aus dem Kindergarten' : 'Zwei Kinder spielen im Sandkasten';
+const willkommen = renderMarkdoc(start.willkommen.node);
+const beschreibung = nurText(start.willkommen.node).slice(0, 160);
 const zitatZeilen = start.zitat.split('\n').map((z) => z.trim()).filter(Boolean);
-
+const bilder = start.bilder.filter((b) => b.bild);
 ---
 <Base title="Startseite" description={beschreibung}>
   <div slot="kopf" class="wrap hero">
@@ -39,53 +36,60 @@ const zitatZeilen = start.zitat.split('\n').map((z) => z.trim()).filter(Boolean)
       <div class="stack">
         <h2 class="h2" id="willkommen">{start.willkommenTitel || 'Willkommen'}</h2>
         <div class="prosa" set:html={willkommen} />
-        <a href="/ueber-uns" class="linkpfeil">Mehr über uns und unsere Pädagogik →</a>
+        <a href="/ueber-uns" class="linkpfeil">Mehr über uns →</a>
       </div>
-      <Image src={einleitungsBild} alt={einleitungsAlt} class="foto" widths={[600, 1200]} sizes="(min-width: 1000px) 600px, 92vw" loading="eager" />
+      {start.heroBild && (
+        <Image src={bild(start.heroBild)} alt={start.heroBildAlt ?? ''} class="foto" style="--h:460px" widths={[600, 1200]} sizes="(min-width: 1000px) 600px, 92vw" loading="eager" />
+      )}
     </div>
   </section>
 
-  <section class="bg-pfirsich welle-oben welle-unten" aria-labelledby="gruppen-titel">
-    <div class="wrap section">
-      <h2 class="h2" id="gruppen-titel">Unsere Gruppen</h2>
-      {gruppen.map((g, i) => (
-        <div class="split gruppe" class:list={{ 'bild-rechts': i % 2 === 1 }}>
-          {g.bild && <Image src={bild(g.bild)} alt={g.bildAlt ?? ''} class="foto" style="--h:340px" widths={[600, 1200]} sizes="(min-width: 1000px) 600px, 92vw" />}
-          <div class="stack">
-            <h3 class="h3">{g.titel}</h3>
-            {g.kurz && <p class="p">{g.kurz}</p>}
-            <a href={`/gruppen#${ankerVon(g)}`} class="linkpfeil">Mehr über {g.titel} →</a>
-          </div>
-        </div>
+  {bilder.length > 0 && (
+    <section class="wrap bilderreihe" aria-label="Eindrücke">
+      {bilder.map((b) => (
+        <Image src={bild(b.bild)} alt={b.alt ?? ''} widths={[400, 800]} sizes="(min-width: 1000px) 400px, 92vw" />
       ))}
-      <p class="p">Außerdem: <a href="/gruppen#ganztag">Ganztag im Zwergenstübchen</a> · <a href="/gruppen#vorschule">Vorschuljahr</a> · <a href="/fuer-eltern#zeiten">Öffnungszeiten und Beiträge</a></p>
-    </div>
-  </section>
+    </section>
+  )}
 
-  <section class="wrap section" id="jahreskreis">
-    <Jahreskreis>
-      <a href="/fuer-eltern#jahresplan" class="linkpfeil">Zum Jahresplan mit allen Terminen →</a>
-    </Jahreskreis>
-  </section>
-
-  <section class="bg-hell-honig" aria-labelledby="aktuelles-titel">
-    <div class="wrap section">
-      <h2 class="h2" id="aktuelles-titel">Aktuelles</h2>
-      <div class="pinnwand" style="gap:32px">
-        {posts.map((p, i) => (
-          <Zettel slug={p.slug} titel={p.entry.titel} datum={p.entry.datum} jahreszeit={p.entry.jahreszeit} teaser={p.entry.teaser} index={i} />
-        ))}
+  {gruppen.length > 0 && (
+    <section class="bg-pfirsich welle-oben welle-unten" aria-labelledby="gruppen-titel">
+      <div class="wrap section">
+        <h2 class="h2" id="gruppen-titel">Unsere Gruppen</h2>
+        <div class="grid" style="--min:300px;gap:28px">
+          {gruppen.map((g) => (
+            <div class="gruppe stack">
+              <h3 class="h3">{g.titel}</h3>
+              {g.kurz && <p class="p">{g.kurz}</p>}
+              <a href={`/gruppen#${ankerVon(g)}`} class="linkpfeil">Mehr über {g.titel} →</a>
+            </div>
+          ))}
+        </div>
       </div>
-      <a href="/aktuelles" class="linkpfeil">Alle Berichte →</a>
-    </div>
+    </section>
+  )}
+
+  <section class="wrap section" aria-labelledby="aktuelles-titel">
+    <h2 class="h2" id="aktuelles-titel">Aktuelles</h2>
+    <ul class="neues">
+      {posts.map((p) => (
+        <li>
+          <span class="p-leise">{datumLang(p.entry.datum)}</span>
+          <a href={`/aktuelles/${p.slug}`}>{p.entry.titel}</a>
+        </li>
+      ))}
+    </ul>
+    <a href="/aktuelles" class="linkpfeil">Alle Berichte →</a>
   </section>
 
-  <section class="wrap section platz" aria-labelledby="platz-titel">
-    <h2 class="h2" id="platz-titel">{start.platzTitel}</h2>
-    <p class="p">{start.platzText}</p>
-    <div class="knoepfe">
-      <a href="/anmeldung" class="btn">Zum Aufnahmeantrag</a>
-      <a href="/kontakt" class="btn btn-rahmen">Besuch vereinbaren</a>
+  <section class="bg-hell-honig" aria-labelledby="platz-titel">
+    <div class="wrap section platz">
+      <h2 class="h2" id="platz-titel">{start.platzTitel}</h2>
+      <p class="p">{start.platzText}</p>
+      <div class="knoepfe">
+        <a href="/kontakt" class="btn">Besuch vereinbaren</a>
+        <a href="/anmeldung" class="btn btn-rahmen">Zum Aufnahmeantrag</a>
+      </div>
     </div>
   </section>
 </Base>
@@ -106,15 +110,18 @@ const zitatZeilen = start.zitat.split('\n').map((z) => z.trim()).filter(Boolean)
   }
   .zitat figcaption { margin-top: 16px; font-size: 18px; color: var(--text-leise); }
 
-  .gruppe { padding-top: 8px; }
-  .gruppe .h3 { font-size: 34px; color: var(--akzent); text-transform: uppercase; letter-spacing: 0.03em; }
-  .gruppe-alter { font-size: 17px; font-weight: 600; margin-top: -8px; }
-  @media (min-width: 900px) {
-    .bild-rechts > :first-child { order: 2; }
-  }
+  .bilderreihe { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 20px; padding-bottom: 96px; }
+  .bilderreihe img { width: 100%; aspect-ratio: 4 / 5; height: auto; object-fit: cover; border-radius: 24px; }
+
+  .gruppe { background: var(--grund); border-radius: 24px; padding: 30px; }
+  .gruppe .h3 { font-size: 32px; color: var(--akzent); text-transform: uppercase; letter-spacing: 0.03em; }
+
+  .neues { margin: 0; padding: 0; list-style: none; max-width: 760px; }
+  .neues li { display: flex; flex-direction: column; gap: 2px; padding: 16px 0; border-bottom: 1px solid var(--linie); }
+  .neues a { font-family: var(--font-titel); font-size: 24px; text-decoration: none; }
+  .neues a:hover { text-decoration: underline; }
 
   .bg-hell-honig { background: var(--hell-honig); }
-
   .platz { align-items: center; text-align: center; }
   .platz .p { max-width: 640px; }
   .knoepfe { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }

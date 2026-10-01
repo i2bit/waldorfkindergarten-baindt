@@ -32,6 +32,7 @@ const abschnitte = fields.array(
         { label: 'Offene Stellen', value: 'stellen' },
         { label: 'Kontaktdaten & Sprechzeiten', value: 'kontakt' },
         { label: 'Knopf zum Aufnahmeantrag', value: 'anmeldung' },
+        { label: 'Jahreskreis (zum Antippen)', value: 'jahreskreis' },
       ],
       defaultValue: 'nichts',
     }),
@@ -137,7 +138,15 @@ export default config({
         zitatQuelle: fields.text({ label: 'Quelle des Spruchs', description: 'Optional, z. B. der Name der Autorin' }),
         willkommenTitel: fields.text({ label: 'Überschrift Willkommen' }),
         willkommen: fields.markdoc.inline({ label: 'Willkommenstext' }),
-        heroBild: fields.image({ label: 'Foto neben dem Willkommenstext', description: 'Ohne Upload wird das Sandkasten-Foto verwendet.', directory: 'src/assets/startseite', publicPath: '../../assets/startseite/' }),
+        heroBild: fields.image({ label: 'Foto neben dem Willkommenstext', directory: 'src/assets/startseite', publicPath: '../../assets/startseite/' }),
+        heroBildAlt: fields.text({ label: 'Was ist auf dem Foto zu sehen?' }),
+        bilder: fields.array(
+          fields.object({
+            bild: fields.image({ label: 'Foto', directory: 'src/assets/startseite', publicPath: '../../assets/startseite/' }),
+            alt: fields.text({ label: 'Was ist auf dem Foto zu sehen?' }),
+          }),
+          { label: 'Bilderreihe (am besten 3 Fotos, ohne erkennbare Personen)', itemLabel: (p) => p.fields.alt.value || 'Foto' }
+        ),
         platzTitel: fields.text({ label: 'Überschrift unten (Platz-Anfrage)' }),
         platzText: fields.text({ label: 'Text unten', multiline: true }),
       },

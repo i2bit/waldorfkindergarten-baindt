@@ -21,8 +21,8 @@ abschnitte:
     Um den sich aufgrund ihres Alters und Entwicklungsstandes stark voneinander unterscheidenden Bedürfnissen der Kinder gerecht werden zu können, arbeiten wir in festen Gruppen mit klarer Raum-, Material- und Personenzuordnung.
 
     Eine enge Zusammenarbeit zwischen den beiden Gruppen findet aber dennoch statt. So begegnen wir uns täglich im Gartenfreispiel. Kleine „Boten“ überbringen – mal schüchtern, mal stolz – Nachrichten. Wir laden uns gegenseitig zu Puppen- und Rollenspielen ein, beschenken uns zu festlichen Angelegenheiten, feiern gemeinsam, helfen einander und pflegen eine familiäre Atmosphäre, in der die Kinder sich geborgen fühlen.
-  bild: ../../assets/seiten/alltag-tisch.jpg
-  bildAlt: Eine Erzieherin sitzt mit Kindern am Tisch und spielt mit ihnen
+  bild: ../../assets/seiten/filz-waldlandschaft.jpg
+  bildAlt: Gefilzte Waldlandschaft mit Tannen, Baumstamm, Schnecken und einem Fuchs
   hintergrund: pfirsich
   baustein: nichts
   aufStartseite: false
@@ -97,8 +97,8 @@ abschnitte:
     * Vollkornbrot mit Gemüse und Obst
     * Gemüse schneiden, Brote streichen; jahreszeitlich orientierte Angebote
     {% /table %}
-  bild: ../../assets/seiten/rosenrot.jpg
-  bildAlt: Zwei Mädchen schauen gemeinsam in eine Schachtel mit bunten Perlen
+  bild: ../../assets/seiten/filz-fuchs.jpg
+  bildAlt: Ein gefilzter Fuchs sitzt auf grüner Wolle
   hintergrund: hell
   baustein: nichts
   aufStartseite: true
@@ -168,8 +168,8 @@ abschnitte:
     * Vollkornbrot mit Gemüse und Obst
     * Gemüse schneiden, Brote streichen; Gruppenpflege; Wald-/Naturtag
     {% /table %}
-  bild: ../../assets/seiten/schneeweisschen.jpg
-  bildAlt: Kinder kneten am Tisch Teig aus einer großen Schüssel
+  bild: ../../assets/seiten/filz-ritter-drache.jpg
+  bildAlt: Gefilzter Ritter mit Schild vor einer Höhle mit Amethyst und einem grünen Drachen
   hintergrund: pfirsich
   baustein: nichts
   aufStartseite: true
@@ -265,8 +265,7 @@ abschnitte:
     - die Großen beschenken die Kleinen mit dem, was sie gemeinsam für sie hergestellt haben
     - Anekdoten aus der Kindergartenzeit jedes einzelnen Kindes werden erzählt und die Schulkinderkronen verliehen
     - Auszug der Schulkinder mit all ihren Schätzen durch den Rosenbogen
-  bild: ../../assets/seiten/vorschule.jpg
-  bildAlt: Vorschulkinder arbeiten konzentriert am Tisch, ein Mädchen meldet sich
+  bildAlt: ''
   hintergrund: honig
   baustein: nichts
   aufStartseite: false

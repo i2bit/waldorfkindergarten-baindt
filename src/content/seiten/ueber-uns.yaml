@@ -31,8 +31,8 @@ abschnitte:
     Für eine gesunde, ganzheitliche Entwicklung braucht das Kind kompetente Vorbilder, liebevolle und stabile Beziehungsverhältnisse, durchschaubare und sich verlässlich wiederholende Abläufe sowie sinnhaft tätige Erwachsene in seiner Umgebung.
 
     Das Kind selbst trägt in sich einen Quell unerschöpflicher Aktivität, es bildet und entwickelt sich aus eigenem Antrieb heraus. Die innere Haltung und das äußere Tun des Erwachsenen aber bilden dabei die erste elementare Lernumgebung.
-  bild: ../../assets/seiten/bauen.jpg
-  bildAlt: Drei Kinder bauen einen hohen Turm aus Holzplättchen
+  bild: ../../assets/seiten/filz-fuchs-schnecken.jpg
+  bildAlt: Gefilzte Schnecken und ein Fuchs zwischen Holztannen auf grüner Wolle
   hintergrund: pfirsich
   baustein: nichts
   aufStartseite: false
@@ -63,6 +63,14 @@ abschnitte:
   bildAlt: Gruppenraum mit Holzmöbeln, Spielständer und rosa Tüchern
   hintergrund: hell
   baustein: nichts
+  aufStartseite: false
+  kurz: ''
+- titel: ''
+  anker: jahreskreis
+  text: ''
+  bildAlt: ''
+  hintergrund: honig
+  baustein: jahreskreis
   aufStartseite: false
   kurz: ''
 - titel: Team
@@ -104,8 +112,7 @@ abschnitte:
     - Die **Bastelgruppe** trifft sich regelmäßig, um all die schönen Dinge herzustellen, die beim Verkauf auf Basaren freudige Abnehmer finden.
     - Der **„Geschenkedienst“** kümmert sich um kleine Aufmerksamkeiten zu verschiedenen Anlässen.
     - Der **Vorstand** ist die Gruppe aus Eltern, die, von der Mitgliederversammlung des Vereins gewählt, unsere Einrichtung rechtlich nach innen und außen vertritt und in großem Maße die Geschicke unseres Kindergartens lenkt.
-  bild: ../../assets/seiten/fest.jpg
-  bildAlt: Eltern und Kinder beim Fest im Garten
+  bildAlt: ''
   hintergrund: honig
   baustein: nichts
   aufStartseite: false

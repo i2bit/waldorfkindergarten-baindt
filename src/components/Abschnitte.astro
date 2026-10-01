@@ -9,6 +9,7 @@ import Downloads from './bausteine/Downloads.astro';
 import Stellen from './bausteine/Stellen.astro';
 import Kontakt from './bausteine/Kontakt.astro';
 import Anmeldung from './bausteine/Anmeldung.astro';
+import Jahreskreis from './Jahreskreis.astro';
 
 interface Props {
   abschnitte: readonly Abschnitt[];
@@ -31,7 +32,7 @@ const liste = abschnitte.map((a) => {
 {liste.map((a) => (
   <section id={a.id || undefined} class:list={['abschnitt', `hg-${a.hintergrund}`]}>
     <div class="wrap section">
-      <div class:list={[a.bild && !a.lang ? 'split' : 'einspaltig', { 'bild-rechts': a.bildRechts }]}>
+      {(a.bild || a.titel || a.html.trim()) && <div class:list={[a.bild && !a.lang ? 'split' : 'einspaltig', { 'bild-rechts': a.bildRechts }]}>
         {a.bild && (
           <Image src={bild(a.bild)} alt={a.bildAlt ?? ''} class:list={['foto', { 'foto-oben': a.lang }]} widths={[600, 1200]} sizes={a.lang ? '(min-width: 900px) 860px, 92vw' : '(min-width: 1000px) 600px, 92vw'} />
         )}
@@ -39,13 +40,14 @@ const liste = abschnitte.map((a) => {
           {a.titel && <h2 class="h2">{a.titel}</h2>}
           {a.html.trim() && <div class="prosa" set:html={a.html} />}
         </div>
-      </div>
+      </div>}
       {a.baustein === 'module' && <Module />}
       {a.baustein === 'zeiten' && <Zeiten />}
       {a.baustein === 'downloads' && <Downloads />}
       {a.baustein === 'stellen' && <Stellen />}
       {a.baustein === 'kontakt' && <Kontakt />}
       {a.baustein === 'anmeldung' && <Anmeldung />}
+      {a.baustein === 'jahreskreis' && <Jahreskreis />}
     </div>
   </section>
 ))}
