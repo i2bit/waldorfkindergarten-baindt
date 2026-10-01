@@ -1,21 +1,19 @@
 ---
-// Startseite, bewusst schlicht (Vorbild: waldorfkindergarten-wurzelwerk.de):
-// Logo und Spruch, Willkommenstext mit Foto, eine Reihe Fotos, die beiden Gruppen,
-// die letzten Berichte und ein Hinweis zum Kennenlernen. Alles in Keystatic pflegbar.
+// Startseite nach dem Vorbild waldorfkindergarten-wurzelwerk.de: farbiges Band mit
+// Logo, Spruch und Knopf, dann schmale Textspalte (Willkommen, Hinweis auf Plätze,
+// offene Stellen, Neues) und ein breites Foto. Alles in Keystatic pflegbar.
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
-import { reader, getAktuelles, bild, renderMarkdoc, nurText, ankerVon, datumLang } from '../lib/content';
+import { reader, getAktuelles, bild, renderMarkdoc, nurText, datumLang } from '../lib/content';
 import logo from '../assets/logo.png';
 
 const start = await reader.singletons.startseite.readOrThrow();
-const gruppenSeite = await reader.singletons.gruppen.readOrThrow();
-const gruppen = gruppenSeite.abschnitte.filter((a) => a.aufStartseite);
 const posts = (await getAktuelles()).slice(0, 3);
+const stellen = (await reader.collections.stellen.all()).filter((s) => s.entry.aktiv);
 
 const willkommen = renderMarkdoc(start.willkommen.node);
 const beschreibung = nurText(start.willkommen.node).slice(0, 160);
 const zitatZeilen = start.zitat.split('\n').map((z) => z.trim()).filter(Boolean);
-const bilder = start.bilder.filter((b) => b.bild);
 ---
 <Base title="Startseite" description={beschreibung}>
   <div slot="kopf" class="wrap hero">
@@ -29,101 +27,103 @@ const bilder = start.bilder.filter((b) => b.bild);
         {start.zitatQuelle && <figcaption>{start.zitatQuelle}</figcaption>}
       </figure>
     )}
+    <a href="/anmeldung" class="knopf-rahmen">Aufnahmeantrag</a>
   </div>
 
-  <section class="wrap section" aria-labelledby="willkommen">
-    <div class="split">
-      <div class="stack">
-        <h2 class="h2" id="willkommen">{start.willkommenTitel || 'Willkommen'}</h2>
-        <div class="prosa" set:html={willkommen} />
-        <a href="/ueber-uns" class="linkpfeil">Mehr über uns →</a>
-      </div>
-      {start.heroBild && (
-        <Image src={bild(start.heroBild)} alt={start.heroBildAlt ?? ''} class="foto" style="--h:460px" widths={[600, 1200]} sizes="(min-width: 1000px) 600px, 92vw" loading="eager" />
-      )}
-    </div>
+  <section class="spalte" aria-labelledby="willkommen">
+    <h2 class="h2 mitte" id="willkommen">{start.willkommenTitel || 'Willkommen'}</h2>
+    <div class="prosa" set:html={willkommen} />
+    <a href="/ueber-uns" class="linkpfeil">Mehr über unseren Kindergarten erfahren …</a>
   </section>
 
-  {bilder.length > 0 && (
-    <section class="wrap bilderreihe" aria-label="Eindrücke">
-      {bilder.map((b) => (
-        <Image src={bild(b.bild)} alt={b.alt ?? ''} widths={[400, 800]} sizes="(min-width: 1000px) 400px, 92vw" />
-      ))}
-    </section>
-  )}
-
-  {gruppen.length > 0 && (
-    <section class="bg-pfirsich welle-oben welle-unten" aria-labelledby="gruppen-titel">
-      <div class="wrap section">
-        <h2 class="h2" id="gruppen-titel">Unsere Gruppen</h2>
-        <div class="grid" style="--min:300px;gap:28px">
-          {gruppen.map((g) => (
-            <div class="gruppe stack">
-              <h3 class="h3">{g.titel}</h3>
-              {g.kurz && <p class="p">{g.kurz}</p>}
-              <a href={`/gruppen#${ankerVon(g)}`} class="linkpfeil">Mehr über {g.titel} →</a>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )}
-
-  <section class="wrap section" aria-labelledby="aktuelles-titel">
-    <h2 class="h2" id="aktuelles-titel">Aktuelles</h2>
-    <ul class="neues">
-      {posts.map((p) => (
-        <li>
-          <span class="p-leise">{datumLang(p.entry.datum)}</span>
-          <a href={`/aktuelles/${p.slug}`}>{p.entry.titel}</a>
-        </li>
-      ))}
-    </ul>
-    <a href="/aktuelles" class="linkpfeil">Alle Berichte →</a>
-  </section>
-
-  <section class="bg-hell-honig" aria-labelledby="platz-titel">
-    <div class="wrap section platz">
-      <h2 class="h2" id="platz-titel">{start.platzTitel}</h2>
+  <section class="kasten" aria-labelledby="platz-titel">
+    <div class="spalte">
+      <h2 class="kasten-titel" id="platz-titel">{start.platzTitel}</h2>
       <p class="p">{start.platzText}</p>
       <div class="knoepfe">
-        <a href="/kontakt" class="btn">Besuch vereinbaren</a>
-        <a href="/anmeldung" class="btn btn-rahmen">Zum Aufnahmeantrag</a>
+        <a href="/anmeldung" class="knopf-rahmen">Aufnahmeantrag</a>
+        <a href="/kontakt" class="linkpfeil">Besuch vereinbaren …</a>
       </div>
     </div>
   </section>
+
+  {stellen.length > 0 && (
+    <section class="spalte" aria-labelledby="stellen-titel">
+      <h2 class="klein-titel" id="stellen-titel">Wir suchen Verstärkung</h2>
+      <p class="p">
+        Zurzeit sind folgende Stellen offen:{' '}
+        {stellen.map((s, i) => <>{i > 0 && (i === stellen.length - 1 ? ' und ' : ', ')}<strong>{s.entry.titel}</strong></>)}.
+      </p>
+      <a href="/stellen" class="linkpfeil">Weitere Informationen finden Sie hier …</a>
+    </section>
+  )}
+
+  {posts.length > 0 && (
+    <section class="spalte" aria-labelledby="aktuelles-titel">
+      <h2 class="klein-titel" id="aktuelles-titel">Aktuelles</h2>
+      <ul class="neues">
+        {posts.map((p) => (
+          <li><a href={`/aktuelles/${p.slug}`}>{p.entry.titel}</a> <span class="p-leise">{datumLang(p.entry.datum)}</span></li>
+        ))}
+      </ul>
+      <a href="/aktuelles" class="linkpfeil">Alle Berichte …</a>
+    </section>
+  )}
+
+  {start.heroBild && (
+    <div class="breitbild welle-oben">
+      <Image src={bild(start.heroBild)} alt={start.heroBildAlt ?? ''} widths={[800, 1440, 2000]} sizes="100vw" />
+    </div>
+  )}
 </Base>
 
 <style>
-  .hero { padding-top: 40px; padding-bottom: 72px; display: flex; flex-direction: column; align-items: center; gap: 32px; text-align: center; }
-  .hero-logo { height: 150px; width: auto; }
-  .zitat { margin: 0; max-width: 1060px; }
+  .hero { padding-top: 56px; padding-bottom: 64px; display: flex; flex-direction: column; align-items: center; gap: 28px; text-align: center; }
+  .hero-logo { height: 140px; width: auto; }
+  .zitat { margin: 0; max-width: 1080px; }
   .zitat blockquote { margin: 0; }
   .zitat p {
     margin: 0;
     font-family: var(--font-titel);
-    font-size: clamp(19px, 2.5vw, 32px);
-    line-height: 1.35;
+    font-size: clamp(22px, 2.6vw, 36px);
+    line-height: 1.3;
     text-transform: uppercase;
     letter-spacing: 0.03em;
     text-wrap: balance;
   }
-  .zitat figcaption { margin-top: 16px; font-size: 18px; color: var(--text-leise); }
+  .zitat figcaption { margin-top: 14px; font-size: 17px; }
 
-  .bilderreihe { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 20px; padding-bottom: 96px; }
-  .bilderreihe img { width: 100%; aspect-ratio: 4 / 5; height: auto; object-fit: cover; border-radius: 24px; }
+  .knopf-rahmen {
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--text);
+    border: 1.5px solid var(--text);
+    border-radius: 6px;
+    padding: 16px 30px;
+  }
+  .knopf-rahmen:hover { background: var(--text); color: #fff; }
 
-  .gruppe { background: var(--grund); border-radius: 24px; padding: 30px; }
-  .gruppe .h3 { font-size: 32px; color: var(--akzent); text-transform: uppercase; letter-spacing: 0.03em; }
+  /* Schmale Textspalte wie bei Wurzelwerk */
+  .spalte { max-width: 640px; margin: 0 auto; padding: 56px 24px; display: flex; flex-direction: column; gap: 18px; }
+  .mitte { text-align: center; font-size: clamp(30px, 4vw, 42px); }
+  .klein-titel { margin: 0; font-family: var(--font-titel); font-weight: normal; font-size: 26px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .linkpfeil { color: var(--text); }
+  .linkpfeil:hover { color: var(--akzent); }
 
-  .neues { margin: 0; padding: 0; list-style: none; max-width: 760px; }
-  .neues li { display: flex; flex-direction: column; gap: 2px; padding: 16px 0; border-bottom: 1px solid var(--linie); }
-  .neues a { font-family: var(--font-titel); font-size: 24px; text-decoration: none; }
-  .neues a:hover { text-decoration: underline; }
+  .kasten { background: var(--hell-rosa); }
+  .kasten-titel { margin: 0; font-family: var(--font-text); font-weight: 700; font-size: 22px; }
+  .knoepfe { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; }
 
-  .bg-hell-honig { background: var(--hell-honig); }
-  .platz { align-items: center; text-align: center; }
-  .platz .p { max-width: 640px; }
-  .knoepfe { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
-  .knoepfe .btn { align-self: auto; }
+  .neues { margin: 0; padding: 0; list-style: none; }
+  .neues li { padding: 10px 0; border-bottom: 1px solid var(--linie); font-size: 18px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; }
+  .neues a { font-weight: 600; }
+  .neues .p-leise { font-size: 15px; }
+
+  .breitbild { margin-top: 24px; }
+  .breitbild img { width: 100%; height: clamp(260px, 38vw, 560px); object-fit: cover; }
+  .breitbild.welle-oben::before { z-index: 1; }
 </style>

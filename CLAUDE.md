@@ -17,7 +17,7 @@ Sprache der Website: Deutsch, Ansprache durchgehend „Sie“.
   `createReader` aus `@keystatic/core/reader` lesen, nie hart codieren.
 - Fotos: `src/assets/fotos/` (über `astro:assets` einbinden).
 - **Keine Fotos mit erkennbaren Personen** (Wunsch des Kindergartens): zeitlose Motive wie
-  Filzfiguren, Räume, Garten. Startseite: ein Foto zum Willkommenstext + Bilderreihe (3 Fotos).
+  Filzfiguren, Räume, Garten.
 - Inhaltsseiten (Über uns, Gruppen, Für Eltern, Stellen, Kontakt, Anmeldung, Impressum,
   Datenschutz) bestehen aus „Abschnitten“ (`src/content/seiten/*.yaml`, Typ in
   `keystatic.config.ts` → `abschnitte`): Überschrift, Text (Markdoc), Foto, Hintergrund
@@ -42,9 +42,11 @@ direkt verwendbar (eigenes Vorlagenformat mit `<x-dc>`-Wrapper).
   ist nur privat frei und darum nicht verwendet.
 - Logo: gemaltes Logo der bisherigen Website (`src/assets/logo.png`)
 - Überschriften in Großbuchstaben (wie bei anderen Waldorfseiten).
-- Startseite bewusst schlicht wie bei Wurzelwerk: Logo + Spruch der alten Seite, Willkommen
-  mit Foto, Bilderreihe, Gruppen als Text, die 3 letzten Berichte als Liste, Kennenlernen.
-  Der Jahreskreis steht auf „Über uns“ (Baustein „Jahreskreis“).
+- Aufbau wie waldorfkindergarten-wurzelwerk.de: weißer Kopf (Name links, Textnavigation
+  rechts, Handy: „Menü“), darunter ein farbiges Band mit Wellenkante (Startseite: Logo,
+  Spruch, Knopf; Unterseiten: zentrierter Titel). Startseite als schmale Textspalte:
+  Willkommen, farbiger Hinweis „Platz“, offene Stellen, 3 Berichte, ein breites Foto.
+  Schlichte Fußzeile. Jahreskreis steht auf „Über uns“ (Baustein „Jahreskreis“).
 - Besonderheiten: schlichte Textnavigation (Handy unter 760 px: Menü-Knopf „Menü“ mit
   <details>, ohne JS), interaktiver Jahreskreis (4 Viertelkreis-Buttons), Pinnwand,
   „Gesucht!“-Schild auf /stellen
