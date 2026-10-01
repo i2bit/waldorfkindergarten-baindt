@@ -30,8 +30,8 @@ const zitatZeilen = start.zitat.split('\n').map((z) => z.trim()).filter(Boolean)
     <a href="/anmeldung" class="knopf-rahmen">Aufnahmeantrag</a>
   </div>
 
-  <section class="spalte" aria-labelledby="willkommen">
-    <h2 class="h2 mitte" id="willkommen">{start.willkommenTitel || 'Willkommen'}</h2>
+  <section class="spalte" aria-labelledby={start.willkommenTitel ? 'willkommen' : undefined} aria-label={start.willkommenTitel ? undefined : 'Willkommen'}>
+    {start.willkommenTitel && <h2 class="h2 mitte" id="willkommen">{start.willkommenTitel}</h2>}
     <div class="prosa" set:html={willkommen} />
     <a href="/ueber-uns" class="linkpfeil">Geschichte, Pädagogik und Team →</a>
   </section>
@@ -49,12 +49,11 @@ const zitatZeilen = start.zitat.split('\n').map((z) => z.trim()).filter(Boolean)
 
   {stellen.length > 0 && (
     <section class="spalte" aria-labelledby="stellen-titel">
-      <h2 class="klein-titel" id="stellen-titel">Wir suchen Verstärkung</h2>
-      <p class="p">
-        Zurzeit sind folgende Stellen offen:{' '}
-        {stellen.map((s, i) => <>{i > 0 && (i === stellen.length - 1 ? ' und ' : ', ')}<strong>{s.entry.titel}</strong></>)}.
-      </p>
-      <a href="/stellen" class="linkpfeil">Zu den Stellenangeboten →</a>
+      <h2 class="klein-titel" id="stellen-titel">Stellen/Mitarbeit</h2>
+      <ul class="neues">
+        {stellen.map((s) => <li><a href={`/stellen#${s.slug}`}>{s.entry.titel}</a></li>)}
+      </ul>
+      <a href="/stellen" class="linkpfeil">Alle Stellen →</a>
     </section>
   )}
 

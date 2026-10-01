@@ -335,6 +335,7 @@ legend.h2 { text-transform: none; letter-spacing: 0; }
 .prosa p { margin: 0 0 1em; }
 .prosa > :last-child { margin-bottom: 0; }
 .prosa h3 { font-size: 24px; margin: 1.6em 0 0.5em; text-transform: uppercase; letter-spacing: 0.03em; }
+.prosa h4 { font-family: var(--font-text); font-size: 18px; font-weight: 700; margin: 1.4em 0 0.4em; }
 .prosa ul { margin: 0 0 1em; padding-left: 1.3em; }
 .prosa li { margin-bottom: 0.45em; }
 .prosa li::marker { color: var(--akzent); }
@@ -342,6 +343,7 @@ legend.h2 { text-transform: none; letter-spacing: 0; }
 .prosa table { width: 100%; border-collapse: collapse; margin: 0.5em 0 1.5em; font-size: 16px; background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 0 0 1px var(--linie); }
 .prosa th, .prosa td { text-align: left; vertical-align: top; padding: 10px 14px; border-top: 1px solid var(--linie); }
 .prosa thead th { background: var(--pfirsich); border-top: none; font-size: 15px; }
+.prosa thead:empty + tbody tr:first-child td { border-top: none; }
 .prosa td:first-child { white-space: nowrap; font-weight: 600; }
 @media (max-width: 599px) {
   .prosa table, .prosa tbody, .prosa tr, .prosa td { display: block; width: 100%; }

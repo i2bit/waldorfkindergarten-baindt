@@ -1,26 +1,34 @@
 titel: Für Eltern
-einleitung: Öffnungszeiten, Module und Beiträge, Anmeldung und alle Formulare an einem Ort.
+einleitung: ''
 abschnitte:
-- titel: Öffnungszeiten
+- titel: Öffnungszeiten/Module
   anker: zeiten
   text: |
     - Während der Eingewöhnungsphasen vereinbaren wir die Bring-, Verweil- und Abholzeiten immer individuell und orientiert am Stand der Eingewöhnung mit den jeweiligen Eltern.
-    - Abweichende Bring-/Abholzeiten sind aus triftigen Gründen (z. B. Arzt-/Therapietermine) möglich, bedürfen aber der vorherigen Absprache.
+    - Abweichende Bring-/Abholzeiten sind aus triftigen Gründen (z.B. Arzt-/Therapietermine) möglich, bedürfen aber der vorherigen Absprache
     - Bei Krankheit, Urlaub oder Pausentagen bitten wir um Benachrichtigung.
   bildAlt: ''
   hintergrund: hell
   baustein: zeiten
   aufStartseite: false
   kurz: ''
-- titel: Module & Beiträge
+- titel: Beiträge
   anker: beitraege
   text: |
+    [**Folgende Beiträge gelten für das Kindergartenjahr 26/27**](/downloads/gebuehrentabelle-2026-27.pdf)
+
+    [**Formular Buchungs-/Umbuchungsantrag eines Moduls**](/downloads/buchungsantrag-module.pdf)
+
     - Die Buchung des benötigten Betreuungsumfangs erfolgt in Form von Modulen.
     - Der Beitrag wird 11-monatig (der August ist beitragsfrei) immer zu Beginn des Monats per SEPA-Lastschriftmandat eingezogen.
     - Modulumbuchungen sind immer zum September, Januar und März möglich. Darüber hinaus ist eine Umbuchung nur aus besonders wichtigem Grund möglich.
     - Das Modul 1 A mit einer Betreuungszeit von 30 Stunden/Woche setzt den garantierten Rechtsanspruch um und steht allen Kindern/Familien zur Verfügung.
-    - Für die Betreuungsmodule 1 B / 3 A / 3 B gilt: buchbar ab vollendetem 3. Lebensjahr; Mindestanmeldezahl von 5 Kindern; bei mehr Anmeldungen als Plätzen werden die Vergabekriterien angewendet; der notwendige Mindestpersonalschlüssel steht zur Verfügung.
-    - Es muss Mittagessen bestellt werden. Die Kosten hierfür werden zusätzlich berechnet. Der Betrag pro Mittagessen beträgt aktuell 5,80 €. Für rechtzeitig abbestellte Essen (z. B. wegen Krankheit) erfolgt die Rückerstattung vierteljährlich.
+    - Für die Betreuungsmodule 1 B / 3 A / 3 B gilt:
+      - Buchbar ab vollendetem 3. Lebensjahr
+      - Mindestanmeldezahl von 5 Kindern
+      - Bei mehr Anmeldungen als Plätzen werden die Vergabekriterien angewendet
+      - Notwendiger Mindestpersonalschlüssel steht zur Verfügung
+    - Es muss Mittagessen bestellt werden. Die Kosten hierfür werden zusätzlich berechnet. Der Betrag pro Mittagessen beträgt aktuell: 5,80 €. Für rechtzeitig abbestellte Essen (z.B. wegen Krankheit) erfolgt die Rückerstattung vierteljährlich.
   bildAlt: ''
   hintergrund: pfirsich
   baustein: module
@@ -29,27 +37,29 @@ abschnitte:
 - titel: Anmeldung
   anker: anmeldung
   text: |
-    **Zentrales Vormerkeverfahren & Vergabekriterien**
+    **Zentrales Vormerkeverfahren & Vergabekriterien:**
 
     Die Anmeldung für einen Kindergartenplatz erfolgt immer über das Zentrale Vormerkeverfahren der Gemeinde Baindt. Bei der Platzvergabe finden die für alle Kindergärten der Gemeinde festgelegten Vergabekriterien Anwendung.
 
-    [Vormerkung und Vergabekriterien der Gemeinde Baindt](https://www.baindt.de/leben-wohnen/kindertageseinrichtungen/vormerkung-und-vergabekriterien-kindertageseinrichtungen)
+    - [**Vormerkung und Vergabekriterien der Gemeinde Baindt**](https://www.baindt.de/leben-wohnen/kindertageseinrichtungen/vormerkung-und-vergabekriterien-kindertageseinrichtungen)
 
-    **Aufnahmeantrag Waldorfkindergarten Baindt**
+    **Aufnahmeantrag Waldorfkindergarten Baindt:**
 
     Da unser Kindergarten von der Zusammenarbeit zwischen Eltern und Erziehern lebt und sich als ein Ort der Begegnung auch vor und nach der aktiven Kindergartenzeit versteht, erbitten wir bei Interesse an einem Platz bei uns zusätzlich die Zusendung unseres internen Aufnahmeantrags.
 
-    Dies eröffnet uns die Möglichkeit, mit Ihnen frühzeitig in Kontakt zu treten und Sie auch schon vorab über Veranstaltungen zu informieren bzw. Sie daran teilhaben zu lassen.
+    Dies eröffnet uns die Möglichkeit mit Ihnen frühzeitig in Kontakt zu treten und Sie auch schon vorab über Veranstaltungen zu informieren bzw. Sie daran teilhaben zu lassen.
 
-    **Kennenlernen & Information**
+    - [**Formular Aufnahmeantrag**](/downloads/aufnahmeantrag-kindergarten.pdf)
+
+    **Kennenlernen & Information:**
 
     Gerne bieten wir interessierten Eltern nach vorheriger Terminvereinbarung einen Termin als Möglichkeit an, um sich vor Ort umzusehen und sich einen Eindruck von uns zu verschaffen. In dieser Zeit steht ein Mitarbeiter als Ansprechpartner für Fragen und Auskünfte zur Verfügung.
 
     Auf Anfrage oder bei einem persönlichen Besuch können interessierte Eltern zudem gerne unsere umfangreiche Kiga-Mappe bekommen, die neben vielen Informationen auch alle notwendigen Formulare, die bei einer Aufnahme in unseren Kindergarten benötigt werden, enthält.
 
-    **Aufnahme**
+    **Aufnahme:**
 
-    Wenn wir interessierten Eltern einen Platz zur Verfügung stellen können, folgt der Platzzusage das Aufnahmegespräch. Neben Vertragsabschluss sowie organisatorischen Infos und Vereinbarungen kommt hierbei dem pädagogischen Aufnahmegespräch, in dem wir uns der bisherigen Biografie der Kinder widmen, eine besondere Bedeutung zu.
+    Wenn wir interessierten Eltern einen Platz zur Verfügung stellen können, folgt der Platzzusage das Aufnahmegespräch. Neben Vertragsabschluss sowie organisatorischen Infos und Vereinbarungen kommt hierbei dem Pädagogischen Aufnahmegespräch, in dem wir uns der bisherigen Biografie der Kinder widmen, eine besondere Bedeutung zu.
   bildAlt: ''
   hintergrund: hell
   baustein: anmeldung
@@ -60,7 +70,7 @@ abschnitte:
   text: |
     Unsere Einrichtung ist ein Kindergarten in sogenannter freier Trägerschaft mit einer vom KVJS (Kommunalverband für Jugend und Soziales Baden-Württemberg) erteilten Betriebserlaubnis, in der die Rahmenbedingungen wie räumliche und personelle Mindestausstattungen sowie mögliche Gruppengrößen und -zusammensetzungen festgelegt sind.
 
-    In der Organisationsform der Selbstverwaltung teilen sich der Vorstand des „Fördervereins Waldorfpädagogik e.V.“, Kindergartenleitung und pädagogisches Team alle Arbeiten, die für den Betrieb einer Kindertagesstätte nötig sind und anfallen (über die Betreuung der Kinder während der Öffnungszeiten hinausgehend).
+    In der Organisationsform der Selbstverwaltung teilen sich der Vorstand des „Fördervereins Waldorfpädagogik e.V.“, Kindergartenleitung und Pädagogisches Team alle Arbeiten, die für den Betrieb einer Kindertagesstätte nötig sind und anfallen (über die Betreuung der Kinder während der Öffnungszeiten hinausgehend).
   bildAlt: ''
   hintergrund: honig
   baustein: nichts
@@ -73,9 +83,9 @@ abschnitte:
 
     Nach Beendigung der Kindergartenzeit kann die Mitgliedschaft aufrechterhalten oder gekündigt werden. Eine Kündigung bedarf der Schriftform.
 
-    Man kann dem Verein als förderndes, d. h. nicht stimmberechtigtes Mitglied, oder als ordentliches, d. h. stimm- und wahlberechtigtes Mitglied beitreten.
+    Man kann dem Verein als förderndes, d.h. nicht stimmberechtigtes Mitglied, oder als ordentliches, d.h. stimm- und wahlberechtigtes Mitglied beitreten.
 
-    [Aufnahmeantrag des Fördervereins (PDF)](/downloads/aufnahmeantrag-foerderverein.pdf)
+    **[Hier](/downloads/aufnahmeantrag-foerderverein.pdf)** können Sie den Aufnahmeantrag des Fördervereins downloaden.
   bildAlt: ''
   hintergrund: hell
   baustein: nichts
@@ -84,25 +94,44 @@ abschnitte:
 - titel: Jahresplan
   anker: jahresplan
   text: |
-    Unser Jahresplan gibt einen Überblick über nahezu alle Termine des gesamten Kindergartenjahres. Während die fettgedruckten Einträge sowohl für Eltern als auch das pädagogische Team relevant sind, betreffen die in Normaldruck hinterlegten Einträge in erster Linie die Mitarbeiter der Einrichtung.
+    Unser Jahresplan gibt einen Überblick über nahezu alle Termine des gesamten Kindergartenjahres.
 
-    Folgende Kürzel werden im Wesentlichen verwendet: RR = Rosenrot, SW = Schneeweißchen, NM = Nachmittag, EA = Elternabend, VS = Vorstand, EB = Elternbeirat.
+    Während die fettgedruckten Einträge sowohl für Eltern als auch Pädagogisches Team relevant sind, betreffen die in Normaldruck hinterlegten Einträge in erster Linie die Mitarbeiter der Einrichtung.
 
-    [Aktueller Jahresplan 2026/27 (PDF)](/downloads/jahresplan-2026-27.pdf)
+    Folgende Kürzel werden im Wesentlichen verwendet:\
+    RR = Rosenrot\
+    SW = Schneeweißchen\
+    NM = Nachmittag\
+    EA = Elternabend\
+    VS = Vorstand\
+    EB = Elternbeirat
+
+    [Aktueller Jahresplan 26/27](/downloads/jahresplan-2026-27.pdf)
   bildAlt: ''
   hintergrund: pfirsich
   baustein: nichts
   aufStartseite: false
   kurz: ''
-- titel: Eltern-ABC & Kindergartenordnung
+- titel: Eltern-ABC
   anker: eltern-abc
   text: |
-    Unser **Eltern-ABC** enthält weitere Informationen, die für Eltern interessant und/oder von Bedeutung sind. Mit Aufnahme in den Kindergarten erhalten übrigens auch alle Eltern ein gedrucktes Exemplar.
+    Unser Eltern-ABC enthält weitere Informationen, die für Eltern interessant und/oder von Bedeutung sind. Mit Aufnahme in den Kindergarten erhalten übrigens auch alle Eltern ein gedrucktes Exemplar.
 
-    Unsere **Kindergartenordnung** ist verbindlicher Bestandteil des geschlossenen Kindergartenvertrags zwischen dem Förderverein Waldorfpädagogik e.V. und den Eltern bzw. Personensorgeberechtigten.
+    [Aktuelles Eltern-ABC](/downloads/eltern-abc.pdf)
   bild: ../../assets/seiten/kerze-rose.jpg
   bildAlt: Eine brennende Kerze und eine Rose auf einem roten Tuch
   hintergrund: hell
+  baustein: nichts
+  aufStartseite: false
+  kurz: ''
+- titel: Kindergartenordnung
+  anker: kindergartenordnung
+  text: |
+    Unsere Kindergartenordnung ist verbindlicher Bestandteil des geschlossenen Kindergartenvertrags zwischen dem Förderverein Waldorfpädagogik e.V. und den Eltern bzw. Personensorgeberechtigten.
+
+    [Aktuelle Kindergartenordnung](/downloads/kindergartenordnung.pdf)
+  bildAlt: ''
+  hintergrund: pfirsich
   baustein: nichts
   aufStartseite: false
   kurz: ''

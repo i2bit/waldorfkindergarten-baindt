@@ -1,24 +1,24 @@
 titel: Gruppen & Angebote
 einleitung: Unser Kindergarten befindet sich in einem eingeschossigen Gebäude in der Erlenstraße 9 der Gemeinde Baindt, nahe der Ortsgrenze zu Baienfurt. Der zur Südseite ausgerichtete, wunderschön angelegte Garten grenzt an eine große Wiese, hinter der sich dann wiederum das Naturschutzgebiet Kiesgrube befindet.
 abschnitte:
-- titel: Unser Kindergarten
+- titel: ''
   anker: kindergarten
   text: |
-    Wir sind eine zweigruppige Einrichtung mit einer altersgemischten Gruppe (Rosenrot), die Kinder ab dem zweiten Lebensjahr aufnimmt, und einer Regelgruppe (Schneeweißchen), in der Kinder vom dritten Lebensjahr bis zum Schuleintritt betreut werden können. Für alle Kinder ab drei Jahren besteht die Möglichkeit, die Grundbetreuungszeit von 30 Std./Woche über eine entsprechende Modulbuchung zu erweitern.
+    Wir sind eine zweigruppige Einrichtung mit einer altersgemischten Gruppe (Rosenrot), die Kinder ab dem zweiten Lebensjahr aufnimmt und einer Regelgruppe (Schneeweißchen), in der Kinder vom dritten Lebensjahr bis zum Schuleintritt betreut werden können. Für alle Kinder ab drei Jahren besteht die Möglichkeit, die Grundbetreuungszeit von 30 Std/Woche über eine entsprechende Modulbuchung zu erweitern.
 
     Unser Alltag ist geprägt von sich wiederholenden Tages-, Wochen- und Jahresläufen, ausgeprägten Phasen des freien Spiels sowohl drinnen als auch draußen, intensiver Beziehungsgestaltung, vielfältigen Angeboten zur Entwicklung der Kinder in unterschiedlichen Kompetenzbereichen, nachvollziehbaren, sinnhaften Tätigkeiten der Erwachsenen, einem intensiven Bezug zur Natur und der Gestaltung zahlreicher Jahresfeste.
 
-    Wir frühstücken täglich gemeinsam. Auch die Zubereitung der Mahlzeit ist in den Tageslauf eingebunden. Dabei verwenden wir hochwertige Bioland-Produkte, die uns wöchentlich vom [Ährenhof](https://aehrenhof.de/) geliefert werden.
+    Wir frühstücken täglich gemeinsam. Auch die Zubereitung der Mahlzeit ist in den Tageslauf eingebunden. Dabei verwenden wir hochwertige Bioland-Produkte, die uns wöchentlich vom Ährenhof ([Link](https://aehrenhof.de/)) geliefert werden.
   bild: ../../assets/seiten/garten-beet.jpg
   bildAlt: Blühendes Kräuterbeet im Garten des Kindergartens
   hintergrund: hell
   baustein: nichts
   aufStartseite: false
   kurz: ''
-- titel: Zwei Gruppen, eine Gemeinschaft
+- titel: ''
   anker: gemeinschaft
   text: |
-    Um den sich aufgrund ihres Alters und Entwicklungsstandes stark voneinander unterscheidenden Bedürfnissen der Kinder gerecht werden zu können, arbeiten wir in festen Gruppen mit klarer Raum-, Material- und Personenzuordnung.
+    Um den, sich aufgrund ihres Alters und Entwicklungsstandes stark voneinander unterscheidenden Bedürfnissen der Kinder, gerecht werden zu können, arbeiten wir in festen Gruppen mit klarer Raum-, Material und Personenzuordnung.
 
     Eine enge Zusammenarbeit zwischen den beiden Gruppen findet aber dennoch statt. So begegnen wir uns täglich im Gartenfreispiel. Kleine „Boten“ überbringen – mal schüchtern, mal stolz – Nachrichten. Wir laden uns gegenseitig zu Puppen- und Rollenspielen ein, beschenken uns zu festlichen Angelegenheiten, feiern gemeinsam, helfen einander und pflegen eine familiäre Atmosphäre, in der die Kinder sich geborgen fühlen.
   bild: ../../assets/seiten/filz-waldlandschaft.jpg
@@ -37,16 +37,14 @@ abschnitte:
     - **Aufnahmen** erfolgen über das ganze Jahr verteilt, um Eingewöhnungen bedürfnisgerecht gestalten zu können. Aufgenommen werden Kinder im Alter von zwei bis drei Jahren.
     - **Eingewöhnungen** werden angelehnt an das „Berliner Modell“ und orientiert am Entwicklungsstand des Kindes gestaltet. Die sensible Zeit der Eingewöhnung und der Aufbau von vertrauensvoller Bindung erfordert von Eltern und Erziehern die Bereitschaft zur intensiven Zusammenarbeit und ist so individuell wie jedes Kind.
     - **Pädagogischer Schwerpunkt** ist, neben dem Aufbau verlässlicher Bindung, eine behutsame Gestaltung von Umgebung und Abläufen, um den Kindern Hülle, Geborgenheit und Sicherheit zu geben. Angebotene Tätigkeiten haben einen freilassenden Charakter. Dem freien Spiel, der individuellen Zuwendung, achtsamer Pflege sowie Angeboten zur Sinnespflege und Bewegungsentwicklung wird ein hoher Stellenwert eingeräumt.
-    - Der **Tages- & Wochenlauf** ist geprägt vom rhythmischen Wechsel zwischen freiem Spiel und gemeinsamer Tätigkeit. Die ErzieherInnen erledigen während der Freispielphasen Arbeiten, die in unmittelbarem Zusammenhang zum Gruppengeschehen stehen und an denen die Kinder sich jederzeit beteiligen dürfen. Darüber hinaus werden noch Tätigkeiten angeboten, die z. B. der Sinnespflege oder dem künstlerischen Ausdruck dienen.
+    - Der **Tages- & Wochenlauf** ist geprägt vom rhythmischen Wechsel zwischen freiem Spiel und gemeinsamer Tätigkeit. Die ErzieherInnen erledigen während der Freispielphasen Arbeiten, die in unmittelbarem Zusammenhang zum Gruppengeschehen stehen und an denen die Kinder sich jederzeit beteiligen dürfen. Darüber hinaus werden noch Tätigkeiten angeboten, die z.B. der Sinnespflege oder dem künstlerischen Ausdruck dienen.
 
-    ### Der Tageslauf
+    ### Der Tageslauf:
 
     {% table %}
-    * Uhrzeit
-    * Was wir tun
     ---
     * ab 07.15 Uhr
-    * Ankommen; freies Spiel; Frühstückszubereitung und Tisch decken; praktische und künstlerische Tätigkeiten
+    * Ankommen; Freies Spiel; Frühstückszubereitung und Tisch decken; Praktische und künstlerische Tätigkeiten
     ---
     * ab 09.00 Uhr
     * Kleiner Snack mit Apfelschnitzen und Knäckebrot
@@ -67,15 +65,15 @@ abschnitte:
     * Gemeinsamer Abschluss mit Geschichte, Puppen-, Tanz- oder Singspielen
     ---
     * ab 12.30 Uhr
-    * Abholzeit mit freiem Spiel oder Kreisspielen
+    * Abholzeit mit Freiem Spiel oder Kreisspielen
     {% /table %}
 
-    ### Der Wochenlauf
+    ### Der Wochenlauf:
 
     {% table %}
-    * Tag
+    *
     * Frühstück
-    * Tätigkeiten und Angebote
+    * Tätigkeiten/Angebote
     ---
     * Montag
     * Milchreis mit Apfelmus und Zimt/Zucker
@@ -87,7 +85,7 @@ abschnitte:
     ---
     * Mittwoch
     * Müsli mit Obst, Rosinen und Nüssen
-    * Obst schneiden fürs Müsli & Möhren für Suppe; Aquarellmalen (Nass-in-Nass-Technik)
+    * Obst schneiden fürs Müsli & Möhren für Suppe; Aquarellmalen (Nass in Nass-Technik)
     ---
     * Donnerstag
     * Nudelsuppe mit Möhren
@@ -109,18 +107,16 @@ abschnitte:
     Unsere Schneeweißchen-Gruppe ist eine Regelgruppe mit 25 Plätzen, die Kinder ab drei Jahren aufnehmen kann.
 
     - **Aufnahmen** erfolgen schwerpunktmäßig zu Beginn des Kindergartenjahres im September/Oktober und zu Beginn des Kalenderjahres. Die Anzahl freier Plätze für Neuaufnahmen ist abhängig von der Anzahl aufzunehmender Wechselkinder aus Rosenrot.
-    - **Eingewöhnungen** werden je nach Entwicklungsstand, vorhandenen Erfahrungen und in enger Absprache mit den Eltern gestaltet. Die Aufnahmen der Wechselkinder unterscheiden sich grundsätzlich von denen der Kinder, die neu zu uns kommen. Während Erstere bereits durch zahlreiche Kontakte und Besuche auf ihren Gruppenwechsel vorbereitet werden, bedürfen Kinder, die ganz neu zu uns kommen, zunächst der Begleitung durch die Eltern, um Sicherheit zu gewinnen und eine tragfähige Beziehung zu den ErzieherInnen aufbauen zu können.
-    - **Pädagogischer Schwerpunkt** der Gruppe ist neben der Pflege verlässlicher Bindungen der Ausbau und die Weiterentwicklung eines erfüllten Spielverhaltens, die Förderung von Fähigkeiten und Fertigkeiten in den unterschiedlichen Kompetenzbereichen sowie die Begleitung der Entwicklung hin zum angehenden Schulkind.
+    - **Eingewöhnungen** werden je nach Entwicklungsstand, vorhandenen Erfahrungen und in enger Absprache mit den Eltern gestaltet. Die Aufnahmen der Wechselkinder unterscheiden sich grundsätzlich von denen der Kinder, die neu zu uns kommen. Während letztere bereits durch zahlreiche Kontakte und Besuche auf ihren Gruppenwechsel vorbereitet werden, bedürfen Kinder, die ganz neu zu uns kommen, zunächst der Begleitung durch die Eltern, um Sicherheit zu gewinnen und eine tragfähige Beziehung zu den ErzieherInnen aufbauen zu können.
+    - **Pädagogischer Schwerpunkt** der Gruppe ist neben der Pflege verlässlicher Bindungen, der Ausbau und die Weiterentwicklung eines erfüllten Spielverhaltens, die Förderung von Fähigkeiten und Fertigkeiten in den unterschiedlichen Kompetenzbereichen, sowie die Begleitung der Entwicklung hin zum angehenden Schulkind.
     - Der **Tages- & Wochenlauf** ist geprägt von Rhythmus und Wiederholung, vom Wechsel zwischen freiem Spiel bzw. auch frei gewählter Betätigung und gemeinsamen Aktivitäten oder auch an das Kind herangetragenen Anforderungen.
 
     ### Der Tageslauf
 
     {% table %}
-    * Uhrzeit
-    * Was wir tun
     ---
     * ab 07.15 Uhr
-    * Freies Spiel; Frühstückszubereitung; praktische und künstlerische Tätigkeit
+    * Freies Spiel; Frühstückszubereitung; Praktische u. künstlerische Tätigkeit
     ---
     * ab 09.30 Uhr
     * Gemeinsames Aufräumen; Toilettengänge und Selbstversorgung; Tisch decken
@@ -144,9 +140,9 @@ abschnitte:
     ### Der Wochenlauf
 
     {% table %}
-    * Tag
+    *
     * Frühstück
-    * Tätigkeiten und Angebote
+    * Tätigkeiten/Angebote
     ---
     * Montag
     * Milchreis mit Apfelmus und Zimt/Zucker
@@ -158,7 +154,7 @@ abschnitte:
     ---
     * Mittwoch
     * Müsli mit Obst, Rosinen und Nüssen
-    * Obst schneiden fürs Müsli & Möhren für Suppe; Aquarellmalen (Nass-in-Nass-Technik); „Zauberstunde“: ein Angebot für die Großen
+    * Obst schneiden für‘s Müsli & Möhren für Suppe; Aquarellmalen (Nass in Nass-Technik); „Zauberstunde“: ein Angebot für die Großen
     ---
     * Donnerstag
     * Nudelsuppe mit Möhren
@@ -177,22 +173,20 @@ abschnitte:
 - titel: Ganztagesangebot
   anker: ganztag
   text: |
-    Für Kinder ab drei Jahren besteht über die entsprechende Modulwahl die Möglichkeit, die Grundbetreuungszeit von 30 Std./Woche auf unterschiedliche Art zu erweitern.
+    Für Kinder ab drei Jahren besteht über die entsprechende Modulwahl die Möglichkeit die Grundbetreuungszeit von 30 Std/Woche auf unterschiedliche Art zu erweitern.
 
-    Im Rahmen der verlängerten Öffnungszeit (= VÖ lang) und der Ganztagesbetreuung (= GT) erhalten die Kinder dann ein Mittagessen und werden, je nach gewähltem Modul, bis 14.15 Uhr bzw. 16.15 Uhr betreut.
+    Im Rahmen der Verlängerten Öffnungszeit (= VÖ lang) und der Ganztagesbetreuung (=GT) erhalten die Kinder dann ein Mittagessen und werden, je nach gewähltem Modul, bis 14.15 Uhr bzw. 16.15 Uhr betreut.
 
-    Für die Nutzung der verlängerten Öffnungszeit stehen derzeit max. 20 Plätze zur Verfügung, für das darüber hinausgehende Ganztagesangebot 10 Plätze.
+    Für die Nutzung der Verlängerten Öffnungszeit stehen derzeit max. 20 Plätze zur Verfügung, für das darüber hinaus gehende Ganztagesangebot 10 Plätze.
 
     - Dem **Übergang** vom Vor- zum Nachmittag geht ein Austausch der ErzieherInnen voraus, um wichtige Informationen weiterzugeben und das einzelne Kind bewusst wahrzunehmen.
     - Das **Mittagessen** beziehen wir von einem externen Anbieter, der täglich frisch kocht, bio-zertifiziert ist, Zutaten vorzugsweise aus unserer Region verwendet und sich sozial im Rahmen der Integrationsbeschäftigung engagiert. Der aktuelle Speiseplan hängt jeweils in den Gruppengarderoben zur Einsicht aus.
-    - Eine **Mittagsruhe** hilft den jüngeren Kindern, nach einem ereignisreichen Vormittag zur Ruhe zu kommen, Eindrücke zu verarbeiten und wieder neue Kraft für den Tag zu schöpfen.
+    - Eine **Mittagsruhe** hilft den jüngeren Kindern nach einem ereignisreichen Vormittag zur Ruhe zu kommen, Eindrücke zu verarbeiten und wieder neue Kraft für den Tag zu schöpfen.
     - **Pädagogischer Schwerpunkt am Nachmittag** ist es, sowohl dem Bedürfnis der Kinder nach Ruhe und Geborgenheit als auch dem Verlangen nach Spiel und Bewegung nachzukommen. Alle Tätigkeiten und Angebote haben daher in dieser Zeit einen freilassenden Charakter.
 
     ### Überblick über den Nachmittagsverlauf
 
     {% table %}
-    * Uhrzeit
-    * Was wir tun
     ---
     * ab 12.50 Uhr
     * Übernahme der Kinder; Selbstversorgung/Toilettengang
@@ -204,7 +198,7 @@ abschnitte:
     * Mittagsruhe der jüngeren Kinder & Freispielzeit
     ---
     * 14.00–14.15 Uhr
-    * Abholzeit der VÖ-Kinder; Hauswirtschaft/Küche
+    * Abholzeit der zur VÖ-Kinder; Hauswirtschaft/Küche
     ---
     * ab 15.30 Uhr
     * Nachmittagssnack
@@ -227,42 +221,44 @@ abschnitte:
 
     Neben der Zusammenarbeit mit der örtlichen Klosterwiesenschule kooperieren wir aktiv mit der Waldorfschule Ravensburg sowie in unterschiedlicher Ausgestaltung auch mit allen weiteren umliegenden Grundschulen.
 
-    ### Vorschulelternabend
+    ### Unser Vorschulprogramm im Überblick
+
+    #### Vorschulelternabend
 
     - findet immer zu Beginn des Kindergartenjahres im Sept./Okt. statt
     - richtet sich an die Eltern aller schulpflichtig werdenden Kinder
-    - wird durchgeführt vom Kindergarten in Kooperation mit der Baindter Grundschule, der Waldorfschule Ravensburg und ggf. weiteren interessierten Schulen
+    - wird durchgeführt vom Kindergarten in Kooperation mit Baindter Grundschule, Waldorfschule Ravensburg und ggf. weiteren interessierten Schulen
 
-    ### Grundschulkooperation & Sprach-Fit
+    #### Grundschulkooperation & Sprach-Fit
 
     - Eine Lehrkraft der örtlichen Grundschule besucht „die Großen“ zweimal im Jahr und bietet zum Ende des Kiga-Jahres auch den Besuch einer Schnupperschulstunde an.
     - Im Programm „Sprach-Fit“ erhalten Kinder mit festgestelltem Sprachförderbedarf darüber hinaus eine besondere Begleitung im Umfang von 4 Schulstunden pro Woche.
 
-    ### Elterngespräche
+    #### Elterngespräche
 
-    - finden mit den Eltern schulpflichtig werdender Kinder im Dezember statt
-    - der Entwicklungsstand bzgl. der Hauptbereiche der Schulfähigkeit (emotional, sozial, motorisch, kognitiv) wird erörtert
+    - finden mit den Eltern schulpflichtig werdenden Kindern im Dezember statt
+    - Entwicklungsstand bzgl. der Hauptbereiche der Schulfähigkeit (emotional, sozial, motorisch, kognitiv) wird erörtert
     - Eltern erhalten die Empfehlung zur Einschulung oder Rückstellung
 
-    ### Vorschulnachmittage
+    #### Vorschulnachmittage
 
     - finden von Januar bis Juli 1 x monatlich am Nachmittag im Kindergarten statt
-    - Kinder arbeiten an verschiedenen Dingen für sich selber, die unterschiedliche Anforderungen stellen (z. B. Patchworkkissen, Holzschiff), sowie gemeinsam an einem Geschenk für die Restgruppe
-    - Vorschüler wachsen dabei als Gruppe zusammen, übernehmen Verantwortung, lernen Absprachen zu treffen und erleben Selbstwirksamkeit
+    - Kinder arbeiten an verschiedenen Dingen für sich selber, die unterschiedliche Anforderungen stellen (z.B. Patchworkkissen, Holzschiff) sowie gemeinsam an einem Geschenk für die Restgruppe
+    - Vorschüler wachsen dabei als Gruppe zusammen, übernehmen Verantwortung; lernen Absprachen zu treffen und erleben Selbstwirksamkeit
 
-    ### Schulkinderausflug
+    #### Schulkinderausflug
 
     - findet im Juli statt und führt jedes Jahr, je nach den Interessen der Kinder, an einen anderen Ort und zu einem anderen Angebot
     - ist eine Herausforderung für die Eltern, da das Ziel geheim bleibt
 
-    ### Märchenspiel
+    #### Märchenspiel
 
     - üben die Vorschüler in den letzten beiden Wochen des Kindergartenjahres ein und führen es dann den Kleinen der Nachbargruppe Rosenrot und ggf. auch den Senioren des Altenzentrums vor
 
-    ### Schulkinderabschied
+    #### Schulkinderabschied
 
     - Vorführung des Märchenspiels vor Eltern und Angehörigen
-    - die Großen beschenken die Kleinen mit dem, was sie gemeinsam für sie hergestellt haben
+    - die Großen beschenken die Kleinen mit dem was sie gemeinsam für sie hergestellt haben
     - Anekdoten aus der Kindergartenzeit jedes einzelnen Kindes werden erzählt und die Schulkinderkronen verliehen
     - Auszug der Schulkinder mit all ihren Schätzen durch den Rosenbogen
   bildAlt: ''
@@ -273,12 +269,13 @@ abschnitte:
 - titel: Kooperationen
   anker: kooperationen
   text: |
-    Wir kooperieren mit verschiedensten Einrichtungen, sozialen Diensten, Schulen und Institutionen. Einige Beispiele:
+    Wir kooperieren mit verschiedensten Einrichtungen, Sozialen Diensten, Schulen und Institutionen.
+    Einige Beispiele:
 
     - Mit den **Waldorfkindertagesstätten** der Teilregion Ravensburg und der Region Bodensee-Oberschwaben treffen wir uns regelmäßig zur fachlichen Weiterbildung und kollegialen Beratung.
     - Mit der **Fachberatung** erarbeiten wir in Inhouse-Fortbildungen pädagogische Themen, reflektieren unser eigenes Handeln im Alltag durch Hospitationen und finden Lösungen für Fragestellungen zur Teamentwicklung.
     - Mit dem [**Heilpädagogischen Dienst**](https://www.diakonie-ravensburg.de/kitas/heilpaedagogischer-fachdienst/), der von der Gemeinde Baindt zur Verfügung gestellt wird, arbeiten wir bei der Begleitung von Kindern mit besonderen Bedürfnissen im Rahmen von Hospitationen und Gesprächen zusammen.
-    - Mit der [**Frühförderstelle Mobile**](http://www.fruehfoerderung-rv.de/) arbeiten wir bei der Entwicklungsbegleitung, im Austausch und an gemeinsamen runden Tischen zusammen.
+    - Mit der [**Frühförderstelle Mobile**](http://www.fruehfoerderung-rv.de/) arbeiten wir bei der Entwicklungsbegleitung, im Austausch und an gemeinsamen Runden Tischen zusammen.
     - Mit der **Baindter Grundschule** arbeiten wir im Rahmen der allgemeinen Grundschulkooperation sowie über die Durchführung des Programms „Sprach-Fit“ zusammen und stehen seit vielen Jahren in engem Austausch.
     - Mit der [**Waldorfschule Ravensburg**](http://www.waldorfschule-ravensburg.de/) findet ein regelmäßiger Austausch statt. Kinder, die diese Schule zukünftig besuchen, nehmen bereits am angebotenen Vorschulprogramm teil. Auf Anfrage gestalten Waldorflehrer Elternabende bei uns.
     - Mit der **anthroposophischen Ärztin** arbeiten wir in erster Linie bei der Durchführung der ESU zusammen, können uns aber auch bei besonderen Fragestellungen zu einzelnen Kindern Hilfe durch Hospitationen und Gespräche holen.

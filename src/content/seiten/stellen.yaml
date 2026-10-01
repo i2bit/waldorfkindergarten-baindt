@@ -1,7 +1,7 @@
 titel: Stellen & Mitarbeit
-einleitung: Unser Kindergarten bietet vielfältige Möglichkeiten des Kennenlernens und der Mitarbeit. Wir begleiten unterschiedliche Praktika, stellen 1 FSJ-Stelle pro Kindergartenjahr zur Verfügung und stehen Auszubildenden und Studierenden als kompetente Praxisanleitung zur Seite.
+einleitung: Unser Kindergarten bietet vielfältige Möglichkeiten des Kennenlernens und der Mitarbeit. Wir begleiten unterschiedliche Praktikas, stellen 1 FSJ-Stelle pro Kindergartenjahr zur Verfügung und stehen Auszubildenden und Studierenden als kompetente Praxisanleitung zur Seite.
 abschnitte:
-- titel: Bewerbung
+- titel: ''
   anker: bewerbung
   text: |
     Bewerbungen nehmen wir bevorzugt per Mail entgegen und laden dann zeitnah zu einem Kennenlerngespräch ein. Anschließend ermöglichen wir gern zunächst eine Hospitation bei uns im Alltag, damit jede(r) wirklich die Grundlage für eine gute Entscheidung hat.
@@ -11,7 +11,7 @@ abschnitte:
   baustein: nichts
   aufStartseite: false
   kurz: ''
-- titel: Unsere offenen Stellen
+- titel: Unsere offenen Stellen findest du hier
   anker: offene-stellen
   text: |2+
 
