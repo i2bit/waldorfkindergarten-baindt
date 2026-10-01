@@ -18,8 +18,8 @@ const formulare = dateien.filter((d) => /gebühr|buchung/i.test(d.titel));
 const schritte = [
   { farbe: 'var(--honig)', fg: 'var(--text)', titel: 'Vormerken bei der Gemeinde', text: 'Alle Kindergartenplätze in Baindt laufen über das zentrale Vormerkeverfahren der Gemeinde. Dort gelten auch die Vergabekriterien.', link: { href: 'https://www.baindt.de/leben-wohnen/kindertageseinrichtungen/vormerkung-und-vergabekriterien-kindertageseinrichtungen', label: 'Zur Vormerkung der Gemeinde →' } },
   { farbe: 'var(--kuerbis)', fg: 'var(--text)', titel: 'Unseren Aufnahmeantrag schicken', text: 'So können wir früh mit Ihnen in Kontakt treten und Sie schon zu Veranstaltungen einladen.', link: { href: dateien.find((d) => /aufnahmeantrag$/i.test(d.titel))?.href ?? '#downloads', label: 'Zum Aufnahmeantrag →' } },
-  { farbe: 'var(--blatt)', fg: '#fff', titel: 'Kennenlernen vor Ort', text: 'Nach Terminabsprache zeigen wir Ihnen den Kindergarten und beantworten Ihre Fragen. Auf Wunsch gibt es unsere Kiga-Mappe mit allen Infos und Formularen.', link: { href: '/kontakt', label: 'Termin vereinbaren →' } },
-  { farbe: 'var(--roetel)', fg: '#fff', titel: 'Platzzusage & Aufnahmegespräch', text: 'Nach der Zusage folgen Vertrag, organisatorische Absprachen und ein pädagogisches Gespräch über Ihr Kind.' },
+  { farbe: 'var(--blatt)', fg: 'var(--text)', titel: 'Kennenlernen vor Ort', text: 'Nach Terminabsprache zeigen wir Ihnen den Kindergarten und beantworten Ihre Fragen. Auf Wunsch gibt es unsere Kiga-Mappe mit allen Infos und Formularen.', link: { href: '/kontakt', label: 'Termin vereinbaren →' } },
+  { farbe: 'var(--rosa)', fg: 'var(--text)', titel: 'Platzzusage & Aufnahmegespräch', text: 'Nach der Zusage folgen Vertrag, organisatorische Absprachen und ein pädagogisches Gespräch über Ihr Kind.' },
 ];
 const extern = (href: string) => /^https?:/.test(href);
 ---
@@ -61,11 +61,11 @@ const extern = (href: string) => /^https?:/.test(href);
     </div>
     {module.fussnoten.length > 0 && <p class="p-leise">{module.fussnoten.join(' ')}</p>}
     <div class="grid" style="--min:300px">
-      <div class="karte" style="background:var(--sand)">
+      <div class="karte" style="background:var(--pfirsich)">
         <h3 class="h3" style="font-size:22px">Bringzeit</h3>
         <span class="gross-zeit">{zeiten.bringzeit}</span>
       </div>
-      <div class="karte" style="background:var(--sand)">
+      <div class="karte" style="background:var(--pfirsich)">
         <h3 class="h3" style="font-size:22px">Abholzeiten</h3>
         <ul class="punkte" style="--punkt:var(--flieder)">
           {zeiten.abholzeiten.map((a) => <li>{a.label}: {a.zeit}</li>)}
@@ -77,7 +77,7 @@ const extern = (href: string) => /^https?:/.test(href);
     </ul>
   </section>
 
-  <section id="beitraege" class="bg-leinen">
+  <section id="beitraege" class="bg-grund">
     <div class="wrap section">
       <div class="split">
         <div class="stack">
@@ -97,7 +97,7 @@ const extern = (href: string) => /^https?:/.test(href);
     </div>
   </section>
 
-  <section id="anmeldung" class="bg-sand">
+  <section id="anmeldung" class="bg-pfirsich">
     <div class="wrap section">
       <h2 class="h2">So klappt die Anmeldung</h2>
       <ol class="grid schritte" style="--min:260px">
@@ -132,8 +132,8 @@ const extern = (href: string) => /^https?:/.test(href);
   tbody th { font-family: var(--font-titel); font-size: 20px; white-space: nowrap; }
   td { font-size: 16px; }
   tbody th, tbody td { border-top: 1px solid var(--linie); }
-  .gross-zeit { font-family: var(--font-titel); font-weight: 800; font-size: 30px; }
+  .gross-zeit { font-family: var(--font-titel); font-size: 34px; }
   .schritte { margin: 0; padding: 0; list-style: none; }
   .schritte li { background: #fffdf6; border-radius: 26px; padding: 28px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 10px 24px rgba(80, 60, 30, 0.08); }
-  .nummer { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-titel); font-weight: 800; font-size: 26px; }
+  .nummer { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-titel); font-size: 30px; }
 </style>

@@ -28,10 +28,10 @@ export type Jahreszeit = 'fruehling' | 'sommer' | 'herbst' | 'winter';
 
 /** Farben pro Jahreszeit: Jahreskreis-Viertel, Textfarbe auf Weiß, Zettel an der Pinnwand. */
 export const jahreszeiten: Record<Jahreszeit, { name: string; bg: string; fg: string; text: string; zettel: string }> = {
-  fruehling: { name: 'Frühling', bg: '#557535', fg: '#FFFFFF', text: '#4A672E', zettel: '#E3EAD3' },
-  sommer: { name: 'Sommer', bg: '#E0B04A', fg: '#3A3226', text: '#7A5A00', zettel: '#F3E6C4' },
-  herbst: { name: 'Herbst', bg: '#D68A50', fg: '#3A3226', text: '#8E4A1E', zettel: '#F5E1D2' },
-  winter: { name: 'Winter', bg: '#45506E', fg: '#FFFFFF', text: '#45506E', zettel: '#FFFDF6' },
+  fruehling: { name: 'Frühling', bg: '#A9C08A', fg: '#373737', text: '#4F6B33', zettel: '#EAF0DF' },
+  sommer: { name: 'Sommer', bg: '#EDCB72', fg: '#373737', text: '#7A5A00', zettel: '#FDF1DD' },
+  herbst: { name: 'Herbst', bg: '#E8A574', fg: '#373737', text: '#9A4E1C', zettel: '#FBE7D9' },
+  winter: { name: 'Winter', bg: '#A9B9D3', fg: '#373737', text: '#44557A', zettel: '#FFFFFF' },
 };
 
 const monate = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];

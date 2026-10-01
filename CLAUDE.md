@@ -21,14 +21,17 @@ Sprache der Website: Deutsch, Ansprache durchgehend „Sie“.
 `design/*.dc.html` ist der freigegebene Entwurf (eine Datei pro Seite).
 Diese Dateien sind nur Referenz für Layout, Farben, Typo und Texte, nicht
 direkt verwendbar (eigenes Vorlagenformat mit `<x-dc>`-Wrapper).
-- Farben (Naturtöne, ersetzen die bunteren Entwurfsfarben nach Feedback):
-  Moos #3F6B45 (Kopf, Knöpfe), Rötel #A4553F (Fuß), Honig #E0B04A,
-  Blattgrün #557535, Flieder #B7A3C9, Kürbis #D68A50, Text #3A3226,
-  Hintergrund Leinen #FAF5EA. Definiert als CSS-Variablen in `src/styles/global.css`,
+- Branch `develop`: neues Farbkonzept nach Feedback des Kindergartens – Farben der
+  bisherigen Website (Pfirsich #FBE7D9, Weiß, Dunkelgrau #373737, Rosé aus dem
+  gemalten Logo, Akzent Krapprosa #A8424D), gestaltet als Mischung mit
+  waldorfkindergarten-wurzelwerk.de (ruhig, Pastell, Wellenkanten). `main` bleibt
+  vorerst beim blauen Entwurf. Farben als CSS-Variablen in `src/styles/global.css`,
   Jahreszeiten-Farben in `src/lib/content.ts`.
-- Schriften: Bricolage Grotesque (Überschriften), Instrument Sans (Text),
-  lokal einbinden (z. B. @fontsource), NICHT über Google Fonts
-- Besonderheiten: Navigation als Pill-Leiste (mobil wischbar), Wachsmalblöcke,
+- Schriften: Überschriften in „Waldorf2“ (Schrift der bisherigen Website,
+  `src/assets/fonts/`, Lizenz noch klären), Text in Instrument Sans (@fontsource).
+  Keine Google Fonts.
+- Logo: gemaltes Logo der bisherigen Website (`src/assets/logo.png`)
+- Besonderheiten: schlichte Textnavigation (mobil wischbar), Wachsmalblöcke,
   Märchen-Gruppenkarten, interaktiver Jahreskreis (4 Viertelkreis-Buttons),
   Pinnwand mit schrägen Zetteln, „Gesucht!“-Schild
 

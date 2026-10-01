@@ -14,16 +14,16 @@ const route = osmHref(adresse);
   <section id="wege" class="wrap section" style="padding-top:72px;padding-bottom:48px">
     <h2 class="visually-hidden">So erreichen Sie uns</h2>
     <div class="grid" style="--min:300px">
-      <a href={k.telHref} class="weg" style="background:var(--honig);color:var(--text)"><span class="weg-label">Anrufen</span><span class="weg-wert">{k.telefon}</span></a>
-      <a href={k.mailHref} class="weg" style="background:var(--roetel);color:#fff"><span class="weg-label">Mail</span><span class="weg-wert">{k.email}</span></a>
-      <a href={route} target="_blank" rel="noopener" class="weg" style="background:var(--blatt);color:#fff"><span class="weg-label">Adresse · Route</span><span class="weg-wert">{adresse}</span><span class="visually-hidden"> (OpenStreetMap, öffnet in neuem Tab)</span></a>
+      <a href={k.telHref} class="weg" style="background:var(--hell-honig);color:var(--text)"><span class="weg-label">Anrufen</span><span class="weg-wert">{k.telefon}</span></a>
+      <a href={k.mailHref} class="weg" style="background:var(--hell-rosa);color:var(--text)"><span class="weg-label">Mail</span><span class="weg-wert">{k.email}</span></a>
+      <a href={route} target="_blank" rel="noopener" class="weg" style="background:var(--hell-blatt);color:var(--text)"><span class="weg-label">Adresse · Route</span><span class="weg-wert">{adresse}</span><span class="visually-hidden"> (OpenStreetMap, öffnet in neuem Tab)</span></a>
     </div>
     <p class="p-klein">Ist niemand erreichbar, sprechen Sie bitte auf den Anrufbeantworter – wir rufen zurück.</p>
   </section>
 
   <section id="leitung" class="wrap section" style="padding-top:48px;padding-bottom:100px">
     <div class="split">
-      <div class="karte" style="background:var(--sand)">
+      <div class="karte" style="background:var(--pfirsich)">
         <h2 class="h3" style="font-size:28px">Ihre Ansprechpartnerin</h2>
         <p class="p">Kindergartenleitung {k.leitung} steht Ihnen für Fragen und Besuchstermine gern zur Verfügung.</p>
         <dl class="zeiten">
@@ -44,7 +44,7 @@ const route = osmHref(adresse);
   .weg { text-decoration: none; border-radius: 28px; padding: 30px; display: flex; flex-direction: column; gap: 8px; }
   .weg:hover { color: inherit; text-decoration: underline; }
   .weg-label { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
-  .weg-wert { font-family: var(--font-titel); font-weight: 800; font-size: clamp(24px, 2.6vw, 32px); letter-spacing: -0.02em; overflow-wrap: anywhere; }
+  .weg-wert { font-family: var(--font-titel); font-size: clamp(26px, 2.8vw, 34px); letter-spacing: 0.01em; overflow-wrap: anywhere; }
   .zeiten { margin: 0; display: flex; flex-direction: column; gap: 10px; }
   .zeiten div { display: flex; justify-content: space-between; gap: 12px; background: #fff; border-radius: 16px; padding: 16px 20px; font-size: 18px; }
   .zeiten dt { font-weight: 700; }

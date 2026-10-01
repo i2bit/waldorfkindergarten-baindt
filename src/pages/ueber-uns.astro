@@ -11,7 +11,7 @@ const geschichte = [
   { jahr: '1979', bg: 'var(--honig)', fg: 'var(--text)', text: 'Eltern aus dem Schussental gründen gemeinsam mit weiteren Interessierten den Arbeitskreis Waldorfpädagogik.' },
   { jahr: '1982', bg: 'var(--kuerbis)', fg: 'var(--text)', text: 'Aus dem Arbeitskreis geht der Förderverein Waldorfpädagogik e.V. hervor.' },
   { jahr: '1984', bg: 'var(--flieder)', fg: 'var(--text)', text: 'Eine Waldorf-Spielgruppe startet in Privaträumen. Der Verein erwirbt ein Grundstück mit einer ehemaligen Arbeiterbaracke und baut sie in Eigenleistung um.' },
-  { jahr: '1985', bg: 'var(--roetel)', fg: '#fff', text: 'Gründungsjahr des Waldorfkindergartens Baindt – seitdem ein Ort, an dem das Kind im Mittelpunkt steht.' },
+  { jahr: '1985', bg: 'var(--rosa)', fg: 'var(--text)', text: 'Gründungsjahr des Waldorfkindergartens Baindt – seitdem ein Ort, an dem das Kind im Mittelpunkt steht.' },
 ];
 ---
 <Base title="Über uns" description="Geschichte, Pädagogik, Team, Elternarbeit und Trägerverein des Waldorfkindergartens Baindt." aktiv="/ueber-uns">
@@ -41,7 +41,7 @@ const geschichte = [
     </ol>
   </section>
 
-  <section id="paedagogik" class="bg-leinen">
+  <section id="paedagogik" class="bg-grund">
     <div class="wrap section">
       <div class="split">
         <div class="stack">
@@ -53,7 +53,7 @@ const geschichte = [
         <Image src={bild('raum.jpg')} alt="Gruppenraum mit Holzmöbeln und bunten Tüchern" class="foto" widths={[600, 1200]} sizes="(min-width: 1000px) 600px, 92vw" />
       </div>
       <div class="grid">
-        <div class="karte" style="background:var(--hell-roetel)">
+        <div class="karte" style="background:var(--hell-rosa)">
           <h3 class="h3">Rhythmus &amp; Wiederholung</h3>
           <p class="p">Tages-, Wochen- und Jahresläufe geben Sicherheit und Orientierung.</p>
         </div>
@@ -110,7 +110,7 @@ const geschichte = [
         <p class="p">Kindergartenleitung, pädagogisches Team und Vorstand teilen sich in Selbstverwaltung alle Aufgaben, die über die Betreuung hinaus anfallen.</p>
         <a href="/fuer-eltern#downloads" class="btn">Mitglied werden</a>
       </div>
-      <div class="karte" style="background:var(--sand)">
+      <div class="karte" style="background:var(--pfirsich)">
         <h3 class="h3">Der Vorstand</h3>
         <p class="p">Drei bis sieben Personen, gewählt von der Mitgliederversammlung für zwei Jahre.</p>
         <ul class="punkte" style="--punkt:var(--flieder)">
@@ -123,5 +123,5 @@ const geschichte = [
 
 <style>
   .zeitleiste { margin: 0; padding: 0; list-style: none; }
-  .jahr { align-self: flex-start; font-family: var(--font-titel); font-weight: 800; font-size: 34px; padding: 8px 18px; border-radius: 14px; }
+  .jahr { align-self: flex-start; font-family: var(--font-titel); font-size: 38px; padding: 8px 18px; border-radius: 14px; }
 </style>

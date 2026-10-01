@@ -2,7 +2,9 @@
 // Gemeinsames Layout: Kopf mit Logo, Anruf-Knopf und Pill-Navigation,
 // darunter der Seitenkopf (Slot "kopf"), Inhalt und roter Fußbereich.
 import '../styles/global.css';
+import { Image } from 'astro:assets';
 import { getKontakt, reader } from '../lib/content';
+import logo from '../assets/logo.png';
 
 interface Props {
   title: string;
@@ -16,12 +18,12 @@ const kontakt = await getKontakt();
 const verein = await reader.singletons.verein.readOrThrow();
 
 const navigation = [
-  { href: '/ueber-uns', label: 'Über uns', farbe: 'var(--honig)' },
-  { href: '/gruppen', label: 'Gruppen', farbe: 'var(--roetel)' },
-  { href: '/fuer-eltern', label: 'Für Eltern', farbe: 'var(--flieder)' },
-  { href: '/aktuelles', label: 'Aktuelles', farbe: 'var(--kuerbis)' },
-  { href: '/stellen', label: 'Stellen', farbe: 'var(--blatt)' },
-  { href: '/kontakt', label: 'Kontakt', farbe: '#FFFFFF' },
+  { href: '/ueber-uns', label: 'Über uns' },
+  { href: '/gruppen', label: 'Gruppen' },
+  { href: '/fuer-eltern', label: 'Für Eltern' },
+  { href: '/aktuelles', label: 'Aktuelles' },
+  { href: '/stellen', label: 'Stellen' },
+  { href: '/kontakt', label: 'Kontakt' },
 ];
 
 const seitentitel = title === 'Startseite' ? 'Waldorfkindergarten Baindt' : `${title} · Waldorfkindergarten Baindt`;
@@ -35,16 +37,16 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <title>{seitentitel}</title>
     {description && <meta name="description" content={description} />}
     <link rel="canonical" href={canonical} />
-    <meta name="theme-color" content="#3F6B45" />
+    <meta name="theme-color" content="#FBE7D9" />
     {import.meta.env.BASE_URL !== '/' && <meta name="robots" content="noindex" />}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   </head>
   <body>
     <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
-    <header class="kopf">
+    <header class="kopf welle-unten">
       <div class="wrap kopf-leiste">
         <a class="logo" href="/" aria-label="Waldorfkindergarten Baindt – zur Startseite">
-          <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="8" fill="#E0B04A"></circle><circle cx="17" cy="5" r="5" fill="#A4553F"></circle><circle cx="28" cy="17" r="5" fill="#D68A50"></circle><circle cx="17" cy="29" r="5" fill="#557535"></circle><circle cx="6" cy="17" r="5" fill="#B7A3C9"></circle></svg>
+          <Image src={logo} alt="" width={41} height={72} densities={[1, 2]} loading="eager" />
           <span>Waldorfkindergarten<br />Baindt</span>
         </a>
         <a class="anrufen" href={kontakt.telHref} aria-label={`Anrufen: ${kontakt.telefon}`}>
@@ -55,7 +57,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       <nav class="wrap nav-pills" aria-label="Hauptnavigation">
         {navigation.map((item) => (
           <a href={item.href} aria-current={aktiv === item.href ? 'page' : undefined}>
-            <span class="dot" style={`background:${item.farbe}`} aria-hidden="true"></span>
             {item.label}
           </a>
         ))}
@@ -67,13 +68,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       <slot />
     </main>
 
-    <footer class="fuss">
+    <footer class="fuss welle-oben">
       <div class="wrap fuss-innen">
         <div class="fuss-oben">
           <h2 class="h2">Besuchen Sie uns!</h2>
           <div class="fuss-wege">
             <a href={kontakt.telHref} style="background:#fff">Anrufen: {kontakt.telefon}</a>
-            <a href={kontakt.mailHref} style="background:var(--honig)">{kontakt.email}</a>
+            <a href={kontakt.mailHref} style="background:var(--hell-honig)">{kontakt.email}</a>
             <span>{kontakt.strasse}, {kontakt.ort}</span>
           </div>
         </div>

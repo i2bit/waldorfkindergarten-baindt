@@ -19,7 +19,7 @@ const fotos = [
 const schritte = [
   { farbe: 'var(--honig)', fg: 'var(--text)', titel: 'Bewerbung per Mail', text: `Am liebsten an ${kontakt.email}.` },
   { farbe: 'var(--kuerbis)', fg: 'var(--text)', titel: 'Kennenlerngespräch', text: 'Wir melden uns zeitnah und laden Sie ein.' },
-  { farbe: 'var(--blatt)', fg: '#fff', titel: 'Hospitation', text: 'Ein Tag bei uns im Alltag – damit Sie gut entscheiden können.' },
+  { farbe: 'var(--blatt)', fg: 'var(--text)', titel: 'Hospitation', text: 'Ein Tag bei uns im Alltag – damit Sie gut entscheiden können.' },
 ];
 ---
 <Base title="Stellen & Mitarbeit" description="Stellen, FSJ, Praktikum und Ausbildung im Waldorfkindergarten Baindt." aktiv="/stellen">
@@ -47,7 +47,7 @@ const schritte = [
     const foto = fotos[i % fotos.length];
     const infos = [s.entry.umfang, s.entry.start].filter(Boolean).join(' · ');
     return (
-      <section id={s.slug} class={i % 2 === 0 ? 'bg-honig' : 'bg-sand'}>
+      <section id={s.slug} class={i % 2 === 0 ? 'bg-honig' : 'bg-pfirsich'}>
         <div class="wrap section">
           <div class="split">
             <Image src={bild(foto.datei)} alt={foto.alt} class="foto" style="--h:400px" widths={[600, 1200]} sizes="(min-width: 1000px) 600px, 92vw" />
@@ -71,11 +71,11 @@ const schritte = [
   <section id="praktikum" class="wrap section">
     <h2 class="h2">Praktikum &amp; Ausbildung</h2>
     <div class="grid" style="--min:320px">
-      <div class="karte" style="background:var(--sand)">
+      <div class="karte" style="background:var(--pfirsich)">
         <h3 class="h3">Praktika</h3>
         <p class="p">Ob Schulpraktikum oder Orientierung – wir begleiten unterschiedliche Praktika.</p>
       </div>
-      <div class="karte" style="background:var(--hell-roetel)">
+      <div class="karte" style="background:var(--hell-rosa)">
         <h3 class="h3">Ausbildung &amp; Studium</h3>
         <p class="p">Auszubildenden und Studierenden stehen wir als kompetente Praxisanleitung zur Seite.</p>
       </div>

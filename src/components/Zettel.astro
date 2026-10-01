@@ -12,8 +12,8 @@ interface Props {
 }
 const { slug, titel, datum, jahreszeit, teaser, index } = Astro.props;
 const js = jahreszeiten[jahreszeit];
-const drehungen = ['-1.5deg', '1deg', '-0.6deg', '1.2deg', '-1deg', '0.6deg', '-1.2deg', '1.4deg', '-0.4deg'];
-const nadeln = ['var(--honig)', 'var(--blatt)', 'var(--roetel)', 'var(--moos)', 'var(--flieder)', 'var(--kuerbis)'];
+const drehungen = ['-0.8deg', '0.5deg', '-0.3deg', '0.6deg', '-0.5deg', '0.3deg', '-0.6deg', '0.7deg', '-0.2deg'];
+const nadeln = ['var(--honig)', 'var(--blatt)', 'var(--rosa)', 'var(--akzent)', 'var(--flieder)', 'var(--kuerbis)'];
 const style = [
   `--zettel:${js.zettel}`,
   `--dreh:${drehungen[index % drehungen.length]}`,
