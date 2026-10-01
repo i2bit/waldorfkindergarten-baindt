@@ -4,6 +4,7 @@
 import '../styles/global.css';
 import { Image } from 'astro:assets';
 import { getKontakt, reader } from '../lib/content';
+import Hinweisbalken from '../components/Hinweisbalken.astro';
 import logo from '../assets/logo.png';
 
 interface Props {
@@ -96,5 +97,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         </div>
       </div>
     </footer>
+    <Hinweisbalken />
   </body>
 </html>

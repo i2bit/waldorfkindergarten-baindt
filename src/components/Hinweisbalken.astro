@@ -1,0 +1,79 @@
+---
+// Hinweisbalken unten auf jeder Seite (Text und Link in Keystatic unter „Hinweisbalken unten“).
+// Schließen merkt sich der Browser nur für diese Sitzung (sessionStorage, kein Cookie).
+import { reader } from '../lib/content';
+const h = await reader.singletons.hinweis.read();
+const zeigen = !!(h?.aktiv && h.text.trim());
+const kennung = h ? `${h.text}|${h.link}`.length + ':' + h.text.slice(0, 40) : '';
+---
+{zeigen && h && (
+  <aside class="hinweisbalken" aria-label="Hinweis" data-kennung={kennung}>
+    <p>
+      {h.text}
+      {h.link && h.linkText && <> <a href={h.link}>{h.linkText}</a></>}
+    </p>
+    <button type="button" class="schliessen" aria-label="Hinweis schließen" hidden>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+    </button>
+  </aside>
+)}
+
+<style>
+  .hinweisbalken {
+    position: sticky;
+    bottom: 0;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    background: #fff;
+    border-top: 1px solid var(--linie);
+    box-shadow: 0 -6px 20px rgba(80, 50, 40, 0.1);
+    padding: 16px 64px 16px 20px;
+    text-align: center;
+  }
+  .hinweisbalken p { margin: 0; font-size: 18px; line-height: 1.5; max-width: 1150px; }
+  .hinweisbalken a { font-weight: 700; color: var(--akzent); text-underline-offset: 3px; white-space: nowrap; }
+  .schliessen {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    background: var(--text);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .schliessen:hover { background: var(--akzent); }
+  @media (max-width: 599px) {
+    .hinweisbalken p { font-size: 16px; }
+    .hinweisbalken { padding: 14px 60px 14px 16px; }
+  }
+</style>
+
+<script>
+  const balken = document.querySelector<HTMLElement>('.hinweisbalken');
+  if (balken) {
+    const schluessel = 'hinweis-zu:' + balken.dataset.kennung;
+    let zu = false;
+    try { zu = sessionStorage.getItem(schluessel) === '1'; } catch {}
+    if (zu) balken.remove();
+    else {
+      const knopf = balken.querySelector<HTMLButtonElement>('.schliessen');
+      if (knopf) {
+        knopf.hidden = false;
+        knopf.addEventListener('click', () => {
+          try { sessionStorage.setItem(schluessel, '1'); } catch {}
+          balken.remove();
+        });
+      }
+    }
+  }
+</script>

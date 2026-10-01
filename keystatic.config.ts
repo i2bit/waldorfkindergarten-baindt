@@ -59,7 +59,7 @@ export default config({
   ui: {
     brand: { name: 'Waldorfkindergarten Baindt' },
     navigation: {
-      'Seiten': ['startseite', 'ueberUns', 'gruppen', 'fuerEltern', 'stellenSeite', 'kontaktSeite', 'anmeldung', 'impressum', 'datenschutz'],
+      'Seiten': ['hinweis', 'startseite', 'ueberUns', 'gruppen', 'fuerEltern', 'stellenSeite', 'kontaktSeite', 'anmeldung', 'impressum', 'datenschutz'],
       'Neuigkeiten': ['aktuelles', 'stellen'],
       'Daten': ['module', 'zeiten', 'downloads', 'jahreskreis', 'kontakt', 'verein'],
     },
@@ -142,6 +142,17 @@ export default config({
         heroBildAlt: fields.text({ label: 'Was ist auf dem Foto zu sehen?' }),
         platzTitel: fields.text({ label: 'Hinweis im farbigen Kasten: Überschrift', description: 'z. B. Wir haben noch freie Plätze' }),
         platzText: fields.text({ label: 'Hinweis im farbigen Kasten: Text', multiline: true }),
+      },
+    }),
+
+    hinweis: singleton({
+      label: 'Hinweisbalken unten',
+      path: 'src/content/einstellungen/hinweis',
+      schema: {
+        aktiv: fields.checkbox({ label: 'Hinweisbalken anzeigen', defaultValue: true }),
+        text: fields.text({ label: 'Text', description: 'z. B. Ab 1. September sind noch Plätze für Kinder ab 3 Jahren frei.', multiline: true }),
+        linkText: fields.text({ label: 'Linktext', description: 'z. B. Zum Aufnahmeantrag' }),
+        link: fields.text({ label: 'Linkziel', description: 'Seite der Website, z. B. /anmeldung oder /stellen' }),
       },
     }),
 

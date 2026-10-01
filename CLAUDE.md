@@ -40,6 +40,8 @@ direkt verwendbar (eigenes Vorlagenformat mit `<x-dc>`-Wrapper).
 - Schriften: Überschriften in Overlock fett (@fontsource/overlock, OFL), Text in
   Instrument Sans (@fontsource). Keine Google Fonts. „Antropos“ (wie bei Wurzelwerk)
   ist nur privat frei und darum nicht verwendet.
+- Hinweisbalken unten auf allen Seiten (Keystatic „Hinweisbalken unten“: an/aus, Text, Link),
+  schließbar per ✕ (merkt sich das nur für die Sitzung, sessionStorage, kein Cookie).
 - Logo: gemaltes Logo der bisherigen Website (`src/assets/logo.png`)
 - Überschriften in Großbuchstaben (wie bei anderen Waldorfseiten).
 - Aufbau wie waldorfkindergarten-wurzelwerk.de: weißer Kopf (Name links, Textnavigation
