@@ -83,9 +83,10 @@ export default config({
       label: 'Startseite',
       path: 'src/content/einstellungen/startseite',
       schema: {
-        heroTitel: fields.text({ label: 'Große Überschrift', description: 'Ein Wort in *Sternchen* wird gelb hervorgehoben.' }),
-        heroText: fields.text({ label: 'Text darunter', multiline: true }),
-        heroBild: fields.image({ label: 'Foto im Kreis', description: 'Ohne Upload wird das Stockbrot-Foto verwendet.', directory: 'src/assets/startseite', publicPath: '../../assets/startseite/' }),
+        zitat: fields.text({ label: 'Spruch oben', description: 'Eine Zeile pro Zeile des Spruchs', multiline: true }),
+        zitatQuelle: fields.text({ label: 'Quelle des Spruchs', description: 'Optional, z. B. der Name der Autorin' }),
+        heroText: fields.text({ label: 'Einleitung', multiline: true }),
+        heroBild: fields.image({ label: 'Foto neben der Einleitung', description: 'Ohne Upload wird das Foto vom Haus verwendet.', directory: 'src/assets/startseite', publicPath: '../../assets/startseite/' }),
       },
     }),
 

@@ -96,6 +96,9 @@ a:hover { color: var(--rosa); }
 .grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--min, 280px)), 1fr)); }
 
 .h1, .h2, .h3 { margin: 0; font-family: var(--font-titel); }
+/* Überschriften in Großbuchstaben wie bei anderen Waldorfseiten */
+.h1, .h2, .seitenkopf h1, .fuss h2 { text-transform: uppercase; letter-spacing: 0.03em; overflow-wrap: break-word; hyphens: auto; }
+legend.h2 { text-transform: none; letter-spacing: 0; }
 .h2 { font-weight: normal; font-size: clamp(32px, 4.4vw, 54px); line-height: 1.05; letter-spacing: 0.01em; }
 .h3 { font-weight: normal; font-size: 26px; line-height: 1.1; letter-spacing: 0.01em; }
 
@@ -167,6 +170,8 @@ a:hover { color: var(--rosa); }
 .logo {
   color: var(--text);
   text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
   font-family: var(--font-titel);
   font-size: clamp(20px, 5vw, 26px);
   line-height: 1;
@@ -393,11 +398,13 @@ a:hover { color: var(--rosa); }
   .nav-pills { display: none; }
   .kopf-leiste { padding-bottom: 8px; }
   .kopf-leiste .anrufen { display: none; }
-  .logo { font-size: 19px; gap: 10px; }
-  .logo img { height: 52px; }
+  .logo { font-size: 14px; letter-spacing: 0.01em; gap: 8px; min-width: 0; }
+  .logo img { height: 48px; }
+  .menue summary { padding: 10px 13px; font-size: 16px; gap: 6px; }
+  .menue { flex-shrink: 0; }
 }
 @media (max-width: 359px) {
-  .logo { font-size: 16px; gap: 8px; }
+  .logo { font-size: 12px; gap: 6px; }
   .logo img { height: 44px; }
   .menue summary { padding: 10px 12px; font-size: 16px; }
 }

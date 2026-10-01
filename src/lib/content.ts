@@ -59,10 +59,6 @@ export function renderMarkdoc(node: Node) {
   return Markdoc.renderers.html(Markdoc.transform(node));
 }
 
-/** Teilt "Hier wird noch *richtig* gespielt." in Teile; markierte Teile werden hervorgehoben. */
-export function hervorheben(text: string) {
-  return text.split(/\*([^*]+)\*/).map((teil, i) => ({ teil, hervor: i % 2 === 1 }));
-}
 
 // Alle Bilder unter src/assets, damit Keystatic-Pfade über astro:assets optimiert werden.
 const bilder = import.meta.glob<{ default: ImageMetadata }>('/src/assets/**/*.{jpg,jpeg,png,webp,avif}', { eager: true });

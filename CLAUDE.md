@@ -30,9 +30,13 @@ direkt verwendbar (eigenes Vorlagenformat mit `<x-dc>`-Wrapper).
   Instrument Sans (@fontsource). Keine Google Fonts. „Antropos“ (wie bei Wurzelwerk)
   ist nur privat frei und darum nicht verwendet.
 - Logo: gemaltes Logo der bisherigen Website (`src/assets/logo.png`)
-- Besonderheiten: schlichte Textnavigation (Handy unter 760 px: Menü-Knopf „Menü“ mit <details>, ohne JS), Wachsmalblöcke,
-  Märchen-Gruppenkarten, interaktiver Jahreskreis (4 Viertelkreis-Buttons),
-  Pinnwand mit schrägen Zetteln, „Gesucht!“-Schild
+- Überschriften in Großbuchstaben (wie bei anderen Waldorfseiten).
+- Startseite bewusst ruhig („weniger Bausteine“): Logo + Spruch aus der alten Seite
+  („In jedem Kind träumt Gott …“, in Keystatic pflegbar), dann Text/Foto im Wechsel,
+  Gruppen, Jahreskreis, Aktuelles, Anmeldehinweis. Keine Wachsmalblöcke, kein Slogan.
+- Besonderheiten: schlichte Textnavigation (Handy unter 760 px: Menü-Knopf „Menü“ mit
+  <details>, ohne JS), interaktiver Jahreskreis (4 Viertelkreis-Buttons), Pinnwand,
+  „Gesucht!“-Schild auf /stellen
 
 ## Aufgaben (in dieser Reihenfolge)
 1. Gemeinsames Layout (`src/layouts/Base.astro`) mit Kopf, Navigation, Fußbereich
