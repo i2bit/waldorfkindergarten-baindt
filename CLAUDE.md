@@ -21,11 +21,10 @@ Sprache der Website: Deutsch, Ansprache durchgehend „Sie“.
 `design/*.dc.html` ist der freigegebene Entwurf (eine Datei pro Seite).
 Diese Dateien sind nur Referenz für Layout, Farben, Typo und Texte, nicht
 direkt verwendbar (eigenes Vorlagenformat mit `<x-dc>`-Wrapper).
-- Branch `develop`: neues Farbkonzept nach Feedback des Kindergartens – Farben der
+- Aktuelles Design (nach Feedback des Kindergartens, ersetzt die Entwurfsfarben): Farben der
   bisherigen Website (Pfirsich #FBE7D9, Weiß, Dunkelgrau #373737, Rosé aus dem
   gemalten Logo, Akzent Krapprosa #A8424D), gestaltet als Mischung mit
-  waldorfkindergarten-wurzelwerk.de (ruhig, Pastell, Wellenkanten). `main` bleibt
-  vorerst beim blauen Entwurf. Farben als CSS-Variablen in `src/styles/global.css`,
+  waldorfkindergarten-wurzelwerk.de (ruhig, Pastell, Wellenkanten). Farben als CSS-Variablen in `src/styles/global.css`,
   Jahreszeiten-Farben in `src/lib/content.ts`.
 - Schriften: Überschriften in „Waldorf2“ (Schrift der bisherigen Website,
   `src/assets/fonts/`, Lizenz noch klären), Text in Instrument Sans (@fontsource).
