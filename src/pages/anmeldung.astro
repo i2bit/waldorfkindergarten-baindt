@@ -1,0 +1,258 @@
+---
+// Online-Aufnahmeantrag. Felder nach dem bisherigen PDF-Aufnahmeantrag des Kindergartens.
+// Es wird nichts an einen Server geschickt: Beim Absenden öffnet sich das Mailprogramm
+// der Eltern mit einer fertig ausgefüllten E-Mail an den Kindergarten.
+import Base from '../layouts/Base.astro';
+import Seitenkopf from '../components/Seitenkopf.astro';
+import { reader, getKontakt } from '../lib/content';
+
+const kontakt = await getKontakt();
+const module = await reader.singletons.module.readOrThrow();
+// Module ohne Sternchen, doppelte (z. B. 1A für zwei Altersstufen) nur einmal
+const modulNamen = [...new Set(module.module.map((m) => m.modul.replace(/\*/g, '')))];
+const vormerkung = 'https://www.baindt.de/leben-wohnen/kindertageseinrichtungen/vormerkung-und-vergabekriterien-kindertageseinrichtungen';
+
+const personen = [
+  { nr: 1, titel: 'Erziehungsberechtigte Person 1', pflicht: true },
+  { nr: 2, titel: 'Erziehungsberechtigte Person 2', pflicht: false },
+];
+---
+<Base title="Anmeldung" description="Aufnahmeantrag für den Waldorfkindergarten Baindt online ausfüllen." aktiv="/anmeldung">
+  <Seitenkopf slot="kopf" titel="Anmeldung" farbe="var(--akzent)" lead="Hier können Sie unseren Aufnahmeantrag ausfüllen. So lernen wir Sie früh kennen und laden Sie zu Veranstaltungen ein." />
+
+  <section class="wrap section" style="padding-top:56px;padding-bottom:40px">
+    <div class="hinweis">
+      <h2 class="h3">Wichtig: zuerst bei der Gemeinde vormerken</h2>
+      <p class="p">Alle Kindergartenplätze in Baindt werden über das zentrale Vormerkeverfahren der Gemeinde vergeben. Unser Aufnahmeantrag ersetzt diese Vormerkung nicht, er kommt zusätzlich dazu.</p>
+      <a href={vormerkung} target="_blank" rel="noopener" class="linkpfeil">Zur Vormerkung der Gemeinde Baindt →<span class="visually-hidden"> (öffnet in neuem Tab)</span></a>
+    </div>
+    <p class="p">Felder mit dem Zusatz <strong>(Pflicht)</strong> müssen ausgefüllt werden. Alles andere ist freiwillig.</p>
+  </section>
+
+  <section class="wrap section" style="padding-top:0">
+    <noscript>
+      <p class="hinweis p">Das Formular braucht JavaScript. Sie können uns Ihre Angaben auch einfach per E-Mail an <a href={kontakt.mailHref}>{kontakt.email}</a> schicken oder uns anrufen: <a href={kontakt.telHref}>{kontakt.telefon}</a>.</p>
+    </noscript>
+
+    <form id="anmeldung" class="formular" data-an={kontakt.email} novalidate>
+      <fieldset>
+        <legend class="h2">1. Ihr Kind</legend>
+        <div class="felder">
+          <label>Vorname (Pflicht)<input name="Kind Vorname" required autocomplete="off" /></label>
+          <label>Nachname (Pflicht)<input name="Kind Nachname" required autocomplete="off" /></label>
+          <label>Geburtsdatum (Pflicht)<input name="Kind Geburtsdatum" type="date" required /></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend class="h2">2. Gewünschter Beginn</legend>
+        <div class="felder">
+          <label>Ab Monat (Pflicht)<input name="Beginn ab" type="month" required /></label>
+          <label>Oder alternativ ab<input name="Alternativ ab" type="month" /></label>
+          <label>Gewünschtes Modul
+            <select name="Gewünschtes Modul">
+              <option value="">Weiß ich noch nicht</option>
+              {modulNamen.map((m) => <option>{`Modul ${m}`}</option>)}
+            </select>
+          </label>
+        </div>
+        <p class="p-leise">Die Module und Zeiten finden Sie unter <a href="/fuer-eltern#zeiten">Für Eltern</a>.</p>
+      </fieldset>
+
+      {personen.map((p) => (
+        <fieldset>
+          <legend class="h2">{2 + p.nr}. {p.titel}{!p.pflicht && <span class="leise"> (falls vorhanden)</span>}</legend>
+          {p.nr === 2 && (
+            <label class="haken"><input type="checkbox" name="P2 gleiche Adresse" data-gleiche-adresse /> Gleiche Adresse wie Person 1</label>
+          )}
+          <div class="felder">
+            <label>Vorname{p.pflicht && ' (Pflicht)'}<input name={`P${p.nr} Vorname`} required={p.pflicht} autocomplete={p.nr === 1 ? 'given-name' : 'off'} /></label>
+            <label>Nachname{p.pflicht && ' (Pflicht)'}<input name={`P${p.nr} Nachname`} required={p.pflicht} autocomplete={p.nr === 1 ? 'family-name' : 'off'} /></label>
+            <label data-adresse>Straße und Hausnummer{p.pflicht && ' (Pflicht)'}<input name={`P${p.nr} Straße`} required={p.pflicht} autocomplete={p.nr === 1 ? 'street-address' : 'off'} /></label>
+            <label data-adresse>PLZ und Wohnort{p.pflicht && ' (Pflicht)'}<input name={`P${p.nr} PLZ/Ort`} required={p.pflicht} autocomplete="off" /></label>
+            <label>Telefon (Festnetz)<input name={`P${p.nr} Telefon`} type="tel" autocomplete={p.nr === 1 ? 'tel' : 'off'} /></label>
+            <label>Telefon (Mobil){p.pflicht && ' (Pflicht)'}<input name={`P${p.nr} Mobil`} type="tel" required={p.pflicht} autocomplete="off" /></label>
+            <label>E-Mail{p.pflicht && ' (Pflicht)'}<input name={`P${p.nr} E-Mail`} type="email" required={p.pflicht} autocomplete={p.nr === 1 ? 'email' : 'off'} /></label>
+          </div>
+          <details class="freiwillig">
+            <summary>Weitere freiwillige Angaben</summary>
+            <div class="felder">
+              <label>Geburtsdatum<input name={`P${p.nr} Geburtsdatum`} type="date" /></label>
+              <label>Beruf<input name={`P${p.nr} Beruf`} /></label>
+              <label>Staatsangehörigkeit<input name={`P${p.nr} Staatsangehörigkeit`} /></label>
+              <label>Konfession<input name={`P${p.nr} Konfession`} /></label>
+            </div>
+          </details>
+        </fieldset>
+      ))}
+
+      <fieldset>
+        <legend class="h2">5. Familie und bisherige Betreuung</legend>
+        <label>Weitere Kinder im Haushalt (Name und Geburtsdatum)<textarea name="Weitere Kinder im Haushalt" rows="3"></textarea></label>
+        <div class="frage">
+          <span>Hat Ihr Kind schon eine andere Kita besucht?</span>
+          <label class="haken"><input type="radio" name="Andere Kita besucht" value="Ja" /> Ja</label>
+          <label class="haken"><input type="radio" name="Andere Kita besucht" value="Nein" /> Nein</label>
+        </div>
+        <div class="felder">
+          <label>Wenn ja: welche?<input name="Bisherige Kita" /></label>
+          <label>Von wann bis wann?<input name="Bisherige Kita Zeitraum" /></label>
+        </div>
+        <label>Gibt es Beeinträchtigungen, auf die wir achten sollten (z. B. Allergien, chronische Krankheiten)?
+          <textarea name="Beeinträchtigungen" rows="3"></textarea>
+          <span class="p-leise">Das können wir auch gern im persönlichen Gespräch besprechen.</span>
+        </label>
+        <label>Möchten Sie uns noch etwas mitteilen?<textarea name="Nachricht" rows="3"></textarea></label>
+      </fieldset>
+
+      <fieldset>
+        <legend class="h2">6. Bestätigung und Datenschutz</legend>
+        <label class="haken"><input type="checkbox" name="Kenntnisnahme Aufnahme" value="Ja" required /> <span>Ich habe zur Kenntnis genommen, dass über eine Aufnahme erst nach Abschluss der Belegungsplanung mit der Gemeinde Baindt entschieden wird. Der Platz ist erst mit unserer Zusage und der Einladung zum Aufnahmegespräch verbindlich reserviert. (Pflicht)</span></label>
+        <label class="haken"><input type="checkbox" name="Kenntnisnahme Vormerkung" value="Ja" required /> <span>Ich weiß, dass zusätzlich die Vormerkung bei der Gemeinde Baindt nötig ist. (Pflicht)</span></label>
+        <label class="haken"><input type="checkbox" name="Einwilligung Datenschutz" value="Ja" required /> <span>Ich bin einverstanden, dass der Förderverein Waldorfpädagogik e.V. meine Angaben zur Bearbeitung der Anmeldung speichert. Ich kann jederzeit Auskunft, Berichtigung oder Löschung verlangen. Mehr in der <a href="/datenschutz">Datenschutzerklärung</a>. (Pflicht)</span></label>
+        <div class="frage">
+          <span>Falls mein Kind aufgenommen wird, dürfen meine Kontaktdaten in die Elternliste aufgenommen werden, die an die anderen Eltern geht.</span>
+          <label class="haken"><input type="radio" name="Elternliste" value="Ja" /> Ja</label>
+          <label class="haken"><input type="radio" name="Elternliste" value="Nein" /> Nein</label>
+        </div>
+      </fieldset>
+
+      <div class="fehler" role="alert" hidden></div>
+
+      <div class="absenden">
+        <button type="submit" class="btn">Anmeldung per E-Mail senden</button>
+        <p class="p-leise">Beim Tippen auf den Knopf öffnet sich Ihr E-Mail-Programm mit einer fertig ausgefüllten Nachricht an {kontakt.email}. Bitte schicken Sie diese E-Mail dann ab. Erst dann erhalten wir Ihre Anmeldung.</p>
+      </div>
+    </form>
+
+    <div class="ersatz" hidden tabindex="-1">
+      <h2 class="h3">Hat sich Ihr E-Mail-Programm nicht geöffnet?</h2>
+      <p class="p">Kein Problem: Kopieren Sie den Text unten und schicken Sie ihn per E-Mail an <a href={kontakt.mailHref}>{kontakt.email}</a>. Oder rufen Sie uns an: <a href={kontakt.telHref}>{kontakt.telefon}</a>.</p>
+      <textarea class="ersatz-text" rows="12" readonly aria-label="Text Ihrer Anmeldung"></textarea>
+      <button type="button" class="btn btn-hell" data-kopieren>Text kopieren</button>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hinweis { background: var(--hell-honig); border-radius: 24px; padding: 26px 28px; display: flex; flex-direction: column; gap: 12px; }
+  .formular { display: flex; flex-direction: column; gap: 28px; max-width: 900px; }
+  fieldset { margin: 0; border: 1px solid var(--linie); background: #fff; border-radius: 24px; padding: 26px 24px 28px; display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+  legend { float: left; width: 100%; padding: 0; font-size: clamp(26px, 4vw, 34px); margin-bottom: 4px; }
+  legend + * { clear: both; }
+  .leise { font-family: var(--font-text); font-size: 17px; color: var(--text-leise); }
+  .felder { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 16px 20px; }
+  label { display: flex; flex-direction: column; gap: 6px; font-size: 17px; font-weight: 600; }
+  input:not([type='checkbox']):not([type='radio']), select, textarea {
+    font: inherit;
+    font-weight: 400;
+    font-size: 18px;
+    color: var(--text);
+    background: var(--grund);
+    border: 2px solid var(--rahmen);
+    border-radius: 12px;
+    padding: 12px 14px;
+    min-height: 52px;
+    width: 100%;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--akzent); outline: 3px solid var(--hell-rosa); outline-offset: 0; box-shadow: none; }
+  input[aria-invalid='true'], textarea[aria-invalid='true'] { border-color: var(--akzent); background: var(--hell-rosa); }
+  .haken input[aria-invalid='true'] { outline: 3px solid var(--akzent); outline-offset: 2px; }
+  textarea { resize: vertical; }
+  .haken { flex-direction: row; align-items: flex-start; gap: 12px; font-weight: 400; line-height: 1.5; }
+  .haken input { flex-shrink: 0; width: 24px; height: 24px; margin: 1px 0 0; accent-color: var(--akzent); }
+  .frage { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 24px; font-size: 17px; }
+  .frage > span { flex-basis: 100%; font-weight: 600; }
+  .freiwillig summary { cursor: pointer; font-weight: 600; color: var(--akzent); padding: 6px 0; }
+  .freiwillig[open] summary { margin-bottom: 12px; }
+  .fehler { background: var(--hell-rosa); color: var(--text); border-left: 6px solid var(--akzent); border-radius: 12px; padding: 16px 20px; font-size: 17px; font-weight: 600; }
+  .absenden { display: flex; flex-direction: column; gap: 12px; }
+  .absenden .btn { font-size: 19px; padding: 18px 28px; border: none; cursor: pointer; font-family: inherit; }
+  .ersatz { margin-top: 32px; max-width: 900px; background: var(--hell-blatt); border-radius: 24px; padding: 26px 24px; display: flex; flex-direction: column; gap: 14px; }
+  .ersatz-text { font: 15px/1.5 ui-monospace, monospace; background: #fff; border: 1px solid var(--rahmen); border-radius: 12px; padding: 12px; width: 100%; }
+  .ersatz .btn { border-width: 2px; cursor: pointer; font-family: inherit; }
+</style>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('#anmeldung');
+  const fehler = document.querySelector<HTMLElement>('.fehler');
+  const ersatz = document.querySelector<HTMLElement>('.ersatz');
+  const ersatzText = document.querySelector<HTMLTextAreaElement>('.ersatz-text');
+
+  if (form && fehler && ersatz && ersatzText) {
+    // Person 2: Adressfelder bei „gleiche Adresse“ ausblenden
+    const gleich = form.querySelector<HTMLInputElement>('[data-gleiche-adresse]');
+    gleich?.addEventListener('change', () => {
+      gleich.closest('fieldset')?.querySelectorAll<HTMLElement>('[data-adresse]').forEach((el) => (el.hidden = gleich.checked));
+    });
+
+    const formatiere = (name: string, wert: string, typ: string) => {
+      if (typ === 'date' && /^\d{4}-\d{2}-\d{2}$/.test(wert)) {
+        const [j, m, t] = wert.split('-');
+        return `${t}.${m}.${j}`;
+      }
+      if (typ === 'month' && /^\d{4}-\d{2}$/.test(wert)) {
+        const [j, m] = wert.split('-');
+        return `${m}/${j}`;
+      }
+      return wert;
+    };
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      form.querySelectorAll('[aria-invalid]').forEach((el) => el.removeAttribute('aria-invalid'));
+
+      const ungueltig = [...form.elements].filter(
+        (el): el is HTMLInputElement => el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement ? !el.checkValidity() : false,
+      ) as HTMLInputElement[];
+      if (ungueltig.length) {
+        ungueltig.forEach((el) => el.setAttribute('aria-invalid', 'true'));
+        fehler.textContent = `Bitte prüfen Sie ${ungueltig.length === 1 ? 'das markierte Feld' : `die ${ungueltig.length} markierten Felder`}. Pflichtfelder müssen ausgefüllt und Häkchen gesetzt sein.`;
+        fehler.hidden = false;
+        ungueltig[0].focus();
+        return;
+      }
+      fehler.hidden = true;
+
+      // Text der E-Mail zusammenbauen
+      const zeilen: string[] = ['Aufnahmeantrag Waldorfkindergarten Baindt'];
+      let abschnitt = '';
+      for (const el of form.elements) {
+        if (!(el instanceof HTMLInputElement || el instanceof HTMLSelectElement || el instanceof HTMLTextAreaElement) || !el.name) continue;
+        if ((el instanceof HTMLInputElement) && (el.type === 'checkbox' || el.type === 'radio') && !el.checked) continue;
+        if (el.closest('[hidden]')) continue;
+        const wert = el.value.trim();
+        if (!wert) continue;
+        const legend = el.closest('fieldset')?.querySelector('legend')?.textContent?.trim() ?? '';
+        if (legend !== abschnitt) {
+          zeilen.push('', `— ${legend} —`);
+          abschnitt = legend;
+        }
+        if (el.hasAttribute('data-gleiche-adresse')) {
+          zeilen.push('Adresse: wie Person 1');
+          continue;
+        }
+        const name = el.name.replace(/^(P[12]|Kind) /, '');
+        zeilen.push(`${name}: ${formatiere(el.name, wert, el.type)}`);
+      }
+      const text = zeilen.join('\n');
+      const kind = `${(form.elements.namedItem('Kind Vorname') as HTMLInputElement).value} ${(form.elements.namedItem('Kind Nachname') as HTMLInputElement).value}`.trim();
+      const betreff = `Aufnahmeantrag ${kind}`;
+
+      ersatzText.value = text;
+      ersatz.hidden = false;
+      window.location.href = `mailto:${form.dataset.an}?subject=${encodeURIComponent(betreff)}&body=${encodeURIComponent(text)}`;
+    });
+
+    document.querySelector('[data-kopieren]')?.addEventListener('click', async (e) => {
+      const knopf = e.currentTarget as HTMLButtonElement;
+      try {
+        await navigator.clipboard.writeText(ersatzText.value);
+      } catch {
+        ersatzText.select();
+        document.execCommand('copy');
+      }
+      knopf.textContent = 'Kopiert ✓';
+    });
+  }
+</script>

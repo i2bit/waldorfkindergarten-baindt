@@ -17,7 +17,7 @@ const formulare = dateien.filter((d) => /gebühr|buchung/i.test(d.titel));
 
 const schritte = [
   { farbe: 'var(--honig)', fg: 'var(--text)', titel: 'Vormerken bei der Gemeinde', text: 'Alle Kindergartenplätze in Baindt laufen über das zentrale Vormerkeverfahren der Gemeinde. Dort gelten auch die Vergabekriterien.', link: { href: 'https://www.baindt.de/leben-wohnen/kindertageseinrichtungen/vormerkung-und-vergabekriterien-kindertageseinrichtungen', label: 'Zur Vormerkung der Gemeinde →' } },
-  { farbe: 'var(--kuerbis)', fg: 'var(--text)', titel: 'Unseren Aufnahmeantrag schicken', text: 'So können wir früh mit Ihnen in Kontakt treten und Sie schon zu Veranstaltungen einladen.', link: { href: dateien.find((d) => /aufnahmeantrag$/i.test(d.titel))?.href ?? '#downloads', label: 'Zum Aufnahmeantrag →' } },
+  { farbe: 'var(--kuerbis)', fg: 'var(--text)', titel: 'Unseren Aufnahmeantrag schicken', text: 'Das geht direkt hier auf der Website. So können wir früh mit Ihnen in Kontakt treten und Sie schon zu Veranstaltungen einladen.', link: { href: '/anmeldung', label: 'Aufnahmeantrag online ausfüllen →' } },
   { farbe: 'var(--blatt)', fg: 'var(--text)', titel: 'Kennenlernen vor Ort', text: 'Nach Terminabsprache zeigen wir Ihnen den Kindergarten und beantworten Ihre Fragen. Auf Wunsch gibt es unsere Kiga-Mappe mit allen Infos und Formularen.', link: { href: '/kontakt', label: 'Termin vereinbaren →' } },
   { farbe: 'var(--rosa)', fg: 'var(--text)', titel: 'Platzzusage & Aufnahmegespräch', text: 'Nach der Zusage folgen Vertrag, organisatorische Absprachen und ein pädagogisches Gespräch über Ihr Kind.' },
 ];

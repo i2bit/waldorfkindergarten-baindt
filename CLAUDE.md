@@ -38,7 +38,7 @@ direkt verwendbar (eigenes Vorlagenformat mit `<x-dc>`-Wrapper).
 1. Gemeinsames Layout (`src/layouts/Base.astro`) mit Kopf, Navigation, Fußbereich
 2. Seiten nach Vorlage: `/`, `/ueber-uns`, `/gruppen`, `/fuer-eltern`,
    `/aktuelles`, `/aktuelles/[slug]`, `/stellen`, `/kontakt`, `/impressum`,
-   `/datenschutz`
+   `/datenschutz`, `/anmeldung` (Aufnahmeantrag: öffnet das Mailprogramm der Eltern, nichts wird gespeichert)
 3. Jahreskreis als kleine Insel (React oder Vanilla-Script), Rest ohne JS
 4. Mobil zuerst prüfen (375 px), Barrierefreiheit: Kontraste, Fokus, Alt-Texte
 5. Weiterleitungen alter WordPress-URLs in `public/_redirects`

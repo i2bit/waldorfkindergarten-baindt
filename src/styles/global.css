@@ -44,6 +44,9 @@ body {
 
 img { display: block; max-width: 100%; }
 
+/* hidden gilt immer, auch wenn eine Klasse display setzt */
+[hidden] { display: none !important; }
+
 a { color: var(--akzent); }
 a:hover { color: var(--rosa); }
 
