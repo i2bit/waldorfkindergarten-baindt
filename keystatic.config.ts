@@ -2,10 +2,9 @@ import { config, fields, collection, singleton } from '@keystatic/core';
 
 // Lokal (npm run dev) speichert Keystatic direkt in die Dateien.
 // Live wird über Keystatic Cloud gespeichert: Login per E-Mail, kein GitHub-Konto nötig.
-// TODO: Team- und Projektnamen aus app.keystatic.cloud eintragen.
 export default config({
   storage: import.meta.env.PROD ? { kind: 'cloud' } : { kind: 'local' },
-  cloud: { project: 'TEAM/waldorfkindergarten-baindt' },
+  cloud: { project: 'i2bit/waldorfkindergar' },
   ui: {
     brand: { name: 'Waldorfkindergarten Baindt' },
     navigation: {
