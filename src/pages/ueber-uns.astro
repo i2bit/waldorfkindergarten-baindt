@@ -8,14 +8,14 @@ import { reader, bild } from '../lib/content';
 const verein = await reader.singletons.verein.readOrThrow();
 
 const geschichte = [
-  { jahr: '1979', bg: 'var(--ocker)', fg: 'var(--text)', text: 'Eltern aus dem Schussental gründen gemeinsam mit weiteren Interessierten den Arbeitskreis Waldorfpädagogik.' },
-  { jahr: '1982', bg: 'var(--orange)', fg: 'var(--text)', text: 'Aus dem Arbeitskreis geht der Förderverein Waldorfpädagogik e.V. hervor.' },
+  { jahr: '1979', bg: 'var(--honig)', fg: 'var(--text)', text: 'Eltern aus dem Schussental gründen gemeinsam mit weiteren Interessierten den Arbeitskreis Waldorfpädagogik.' },
+  { jahr: '1982', bg: 'var(--kuerbis)', fg: 'var(--text)', text: 'Aus dem Arbeitskreis geht der Förderverein Waldorfpädagogik e.V. hervor.' },
   { jahr: '1984', bg: 'var(--flieder)', fg: 'var(--text)', text: 'Eine Waldorf-Spielgruppe startet in Privaträumen. Der Verein erwirbt ein Grundstück mit einer ehemaligen Arbeiterbaracke und baut sie in Eigenleistung um.' },
-  { jahr: '1985', bg: 'var(--krapp)', fg: '#fff', text: 'Gründungsjahr des Waldorfkindergartens Baindt – seitdem ein Ort, an dem das Kind im Mittelpunkt steht.' },
+  { jahr: '1985', bg: 'var(--roetel)', fg: '#fff', text: 'Gründungsjahr des Waldorfkindergartens Baindt – seitdem ein Ort, an dem das Kind im Mittelpunkt steht.' },
 ];
 ---
 <Base title="Über uns" description="Geschichte, Pädagogik, Team, Elternarbeit und Trägerverein des Waldorfkindergartens Baindt." aktiv="/ueber-uns">
-  <Seitenkopf slot="kopf" titel="Über uns" farbe="var(--ocker)" lead="Seit 1985 ein Ort, an dem das Kind im Mittelpunkt steht – getragen von Eltern, gestaltet von einem engagierten Team." />
+  <Seitenkopf slot="kopf" titel="Über uns" farbe="var(--honig)" lead="Seit 1985 ein Ort, an dem das Kind im Mittelpunkt steht – getragen von Eltern, gestaltet von einem engagierten Team." />
 
   <Subnav links={[
     { href: '#geschichte', label: 'Geschichte' },
@@ -41,7 +41,7 @@ const geschichte = [
     </ol>
   </section>
 
-  <section id="paedagogik" class="bg-grau">
+  <section id="paedagogik" class="bg-leinen">
     <div class="wrap section">
       <div class="split">
         <div class="stack">
@@ -53,15 +53,15 @@ const geschichte = [
         <Image src={bild('raum.jpg')} alt="Gruppenraum mit Holzmöbeln und bunten Tüchern" class="foto" widths={[600, 1200]} sizes="(min-width: 1000px) 600px, 92vw" />
       </div>
       <div class="grid">
-        <div class="karte" style="background:var(--hell-krapp)">
+        <div class="karte" style="background:var(--hell-roetel)">
           <h3 class="h3">Rhythmus &amp; Wiederholung</h3>
           <p class="p">Tages-, Wochen- und Jahresläufe geben Sicherheit und Orientierung.</p>
         </div>
-        <div class="karte" style="background:var(--hell-ocker)">
+        <div class="karte" style="background:var(--hell-honig)">
           <h3 class="h3">Vorbild &amp; Nachahmung</h3>
           <p class="p">Kinder lernen an Erwachsenen, die mit Hingabe und Sinn tätig sind.</p>
         </div>
-        <div class="karte" style="background:var(--hell-waid)">
+        <div class="karte" style="background:var(--hell-blatt)">
           <h3 class="h3">Sinnhaftigkeit &amp; Handhabbarkeit</h3>
           <p class="p">Was die Kinder erleben, ist für sie durchschaubar und greifbar.</p>
         </div>
@@ -75,7 +75,7 @@ const geschichte = [
         <h2 class="h2">Team</h2>
         <p class="p">Bei uns arbeiten Fachkräfte mit unterschiedlichen Ausbildungen: Waldorferzieher:innen, staatlich anerkannte Erzieher:innen, Kinderpfleger:innen, Heilerziehungspfleger:innen mit pädagogischer Zusatzausbildung und Elementarpädagog:innen. Unterstützt werden sie von Auszubildenden, FSJler:innen und Praktikant:innen.</p>
       </div>
-      <ul class="punkte" style="--punkt:var(--waid)">
+      <ul class="punkte" style="--punkt:var(--blatt)">
         <li>Vormittags arbeiten in jeder Gruppe konstante Teams von meist drei Mitarbeitenden – für sichere, stabile Beziehungen.</li>
         <li>Im Ganztagesangebot sind je nach Kinderzahl bis zu zwei Mitarbeitende in der Gruppe.</li>
         <li>Wir achten auf eine Mischung aus Ausbildung, Berufserfahrung und Alter.</li>
@@ -84,14 +84,14 @@ const geschichte = [
     </div>
   </section>
 
-  <section id="elternarbeit" class="bg-ocker">
+  <section id="elternarbeit" class="bg-honig">
     <div class="wrap section">
       <div class="split">
         <Image src={bild('fest.jpg')} alt="Eltern und Kinder beim Fest im Garten" class="foto" widths={[600, 1200]} sizes="(min-width: 1000px) 600px, 92vw" />
         <div class="stack">
           <h2 class="h2">Unsere Eltern sind der Kindergarten.</h2>
           <p class="p">Wir verstehen die Zusammenarbeit mit den Eltern als Erziehungspartnerschaft zum Wohl des Kindes – mit Vertrauen, Austausch und dem Mut, auch mal unterschiedlicher Meinung zu sein.</p>
-          <ul class="punkte" style="--punkt:var(--orange)">
+          <ul class="punkte" style="--punkt:var(--kuerbis)">
             <li>Elternabende etwa fünf- bis sechsmal im Jahr</li>
             <li>Mindestens ein ausführliches Entwicklungsgespräch pro Jahr, dazu kurze Gespräche beim Abholen</li>
             <li>Ein jährlich gewählter Elternbeirat als Bindeglied zwischen Eltern, Team und Vorstand</li>
@@ -110,7 +110,7 @@ const geschichte = [
         <p class="p">Kindergartenleitung, pädagogisches Team und Vorstand teilen sich in Selbstverwaltung alle Aufgaben, die über die Betreuung hinaus anfallen.</p>
         <a href="/fuer-eltern#downloads" class="btn">Mitglied werden</a>
       </div>
-      <div class="karte" style="background:var(--hell-flieder)">
+      <div class="karte" style="background:var(--sand)">
         <h3 class="h3">Der Vorstand</h3>
         <p class="p">Drei bis sieben Personen, gewählt von der Mitgliederversammlung für zwei Jahre.</p>
         <ul class="punkte" style="--punkt:var(--flieder)">

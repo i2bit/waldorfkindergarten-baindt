@@ -21,8 +21,11 @@ Sprache der Website: Deutsch, Ansprache durchgehend „Sie“.
 `design/*.dc.html` ist der freigegebene Entwurf (eine Datei pro Seite).
 Diese Dateien sind nur Referenz für Layout, Farben, Typo und Texte, nicht
 direkt verwendbar (eigenes Vorlagenformat mit `<x-dc>`-Wrapper).
-- Farben: Indigo #26337A, Krapprot #C7384A, Ocker #F3C33C, Waidgrün #2F7A55,
-  Flieder #B8A6E0, Orange #E8793A, Text #1E1F3B
+- Farben (Naturtöne, ersetzen die bunteren Entwurfsfarben nach Feedback):
+  Moos #3F6B45 (Kopf, Knöpfe), Rötel #A4553F (Fuß), Honig #E0B04A,
+  Blattgrün #557535, Flieder #B7A3C9, Kürbis #D68A50, Text #3A3226,
+  Hintergrund Leinen #FAF5EA. Definiert als CSS-Variablen in `src/styles/global.css`,
+  Jahreszeiten-Farben in `src/lib/content.ts`.
 - Schriften: Bricolage Grotesque (Überschriften), Instrument Sans (Text),
   lokal einbinden (z. B. @fontsource), NICHT über Google Fonts
 - Besonderheiten: Navigation als Pill-Leiste (mobil wischbar), Wachsmalblöcke,

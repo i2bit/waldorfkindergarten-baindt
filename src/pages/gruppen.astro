@@ -9,18 +9,18 @@ const daten = await reader.singletons.gruppen.readOrThrow();
 
 // Gestaltung pro Gruppe (Reihenfolge wie in Keystatic)
 const stile = [
-  { farbe: 'var(--krapp)', fg: '#fff', foto: 'sand.jpg', alt: 'Zwei Kinder spielen im Sandkasten', hintergrund: '' },
-  { farbe: 'var(--indigo)', fg: '#fff', foto: 'bauen.jpg', alt: 'Drei Kinder bauen einen hohen Turm aus Holzplättchen', hintergrund: 'bg-flieder' },
+  { farbe: 'var(--roetel)', fg: '#fff', foto: 'sand.jpg', alt: 'Zwei Kinder spielen im Sandkasten', hintergrund: '' },
+  { farbe: 'var(--moos)', fg: '#fff', foto: 'bauen.jpg', alt: 'Drei Kinder bauen einen hohen Turm aus Holzplättchen', hintergrund: 'bg-sand' },
 ];
 const anker = (name: string) => name.toLowerCase().replace(/ß/g, 'ss').replace(/[äöü]/g, (c) => ({ ä: 'ae', ö: 'oe', ü: 'ue' })[c]!).replace(/[^a-z]/g, '');
 const gruppen = daten.gruppen.map((g, i) => ({ ...g, id: anker(g.name), stil: stile[i % stile.length], bildRechts: i % 2 === 1 }));
 
 const vorschule = [
   { wann: 'Sept./Okt.', bg: 'var(--flieder)', fg: 'var(--text)', titel: 'Vorschul-Elternabend', text: 'Für alle Eltern schulpflichtig werdender Kinder – gemeinsam mit der Grundschule Baindt und der Waldorfschule Ravensburg.' },
-  { wann: 'Dezember', bg: 'var(--orange)', fg: 'var(--text)', titel: 'Elterngespräche', text: 'Wir besprechen den Entwicklungsstand in den Bereichen emotional, sozial, motorisch und kognitiv und geben eine Empfehlung zur Einschulung oder Rückstellung.' },
-  { wann: 'Jan. – Juli', bg: 'var(--ocker)', fg: 'var(--text)', titel: 'Vorschulnachmittage', text: 'Einmal im Monat arbeiten die Vorschüler nachmittags an eigenen Aufgaben mit wachsenden Anforderungen.' },
-  { wann: 'übers Jahr', bg: 'var(--waid)', fg: '#fff', titel: 'Grundschule & Sprach-Fit', text: 'Eine Lehrkraft der Grundschule besucht die „Großen“ zweimal im Jahr, dazu gibt es eine Schnupperstunde. Bei Sprachförderbedarf: vier Stunden „Sprach-Fit“ pro Woche.' },
-  { wann: 'Juli', bg: 'var(--krapp)', fg: '#fff', titel: 'Märchenspiel', text: 'In den letzten zwei Wochen üben die Vorschüler ein Märchenspiel ein und führen es den Kleinen der Rosenrot-Gruppe vor.' },
+  { wann: 'Dezember', bg: 'var(--kuerbis)', fg: 'var(--text)', titel: 'Elterngespräche', text: 'Wir besprechen den Entwicklungsstand in den Bereichen emotional, sozial, motorisch und kognitiv und geben eine Empfehlung zur Einschulung oder Rückstellung.' },
+  { wann: 'Jan. – Juli', bg: 'var(--honig)', fg: 'var(--text)', titel: 'Vorschulnachmittage', text: 'Einmal im Monat arbeiten die Vorschüler nachmittags an eigenen Aufgaben mit wachsenden Anforderungen.' },
+  { wann: 'übers Jahr', bg: 'var(--blatt)', fg: '#fff', titel: 'Grundschule & Sprach-Fit', text: 'Eine Lehrkraft der Grundschule besucht die „Großen“ zweimal im Jahr, dazu gibt es eine Schnupperstunde. Bei Sprachförderbedarf: vier Stunden „Sprach-Fit“ pro Woche.' },
+  { wann: 'Juli', bg: 'var(--roetel)', fg: '#fff', titel: 'Märchenspiel', text: 'In den letzten zwei Wochen üben die Vorschüler ein Märchenspiel ein und führen es den Kleinen der Rosenrot-Gruppe vor.' },
 ];
 
 const kooperationen = [
@@ -34,7 +34,7 @@ const kooperationen = [
 ];
 ---
 <Base title="Gruppen & Angebote" description={daten.einleitung} aktiv="/gruppen">
-  <Seitenkopf slot="kopf" titel="Gruppen & Angebote" farbe="var(--krapp)" lead={daten.einleitung} />
+  <Seitenkopf slot="kopf" titel="Gruppen & Angebote" farbe="var(--roetel)" lead={daten.einleitung} />
 
   <Subnav links={[
     ...gruppen.map((g) => ({ href: `#${g.id}`, label: g.name })),
@@ -81,23 +81,23 @@ const kooperationen = [
     </div>
   </section>
 
-  <section id="ganztag" class="bg-ocker">
+  <section id="ganztag" class="bg-honig">
     <div class="wrap section">
       <h2 class="h2">Ganztag im Zwergenstübchen</h2>
       <p class="p-gross">Für Kinder ab drei Jahren lässt sich die Grundbetreuung von 30 Stunden pro Woche über eine Modulbuchung erweitern.</p>
       <div class="grid" style="--min:320px">
-        <div class="karte" style="background:var(--ocker)">
+        <div class="karte" style="background:var(--honig)">
           <h3 class="h3">Verlängerte Öffnungszeit</h3>
           <span class="gross-zeit">bis 14.15 Uhr</span>
           <p class="p">Mo – Fr (Modul 1B) bzw. Mo – Do (Modul 3B) · mit Mittagessen · bis zu 20 Plätze</p>
         </div>
-        <div class="karte" style="background:var(--waid);color:#fff">
+        <div class="karte" style="background:var(--blatt);color:#fff">
           <h3 class="h3">Ganztagesbetreuung</h3>
           <span class="gross-zeit">bis 16.15 Uhr</span>
           <p class="p">Dienstag und Donnerstag (Modul 3A) bzw. an einem der beiden Tage (Modul 3B) · mit Mittagessen · bis zu 10 Plätze</p>
         </div>
       </div>
-      <ul class="punkte" style="--punkt:var(--krapp)">
+      <ul class="punkte" style="--punkt:var(--roetel)">
         <li>Vor dem Übergang zum Nachmittag tauschen sich die Erzieher:innen aus, damit jedes Kind bewusst wahrgenommen wird.</li>
         <li>Das Mittagessen kommt von einem externen, bio-zertifizierten Anbieter, der täglich frisch und möglichst regional kocht.</li>
         <li>Eine Mittagsruhe hilft vor allem den Jüngeren, nach dem Vormittag neue Kraft zu schöpfen.</li>
@@ -120,7 +120,7 @@ const kooperationen = [
     </ol>
   </section>
 
-  <section id="kooperationen" class="bg-flieder">
+  <section id="kooperationen" class="bg-sand">
     <div class="wrap section">
       <h2 class="h2">Kooperationen</h2>
       <p class="p-gross">Wir arbeiten mit vielen Einrichtungen, Diensten und Schulen zusammen:</p>
@@ -134,7 +134,7 @@ const kooperationen = [
 <style>
   .gross-zeit { font-family: var(--font-titel); font-weight: 800; font-size: 40px; }
   .vorschule { margin: 0; padding: 0; list-style: none; }
-  .vorschule li { background: #fff; border: 3px solid var(--text); border-radius: 26px; padding: 26px; display: flex; flex-direction: column; gap: 10px; }
+  .vorschule li { background: #fffdf6; border: 2px solid var(--rahmen); border-radius: 26px; padding: 26px; display: flex; flex-direction: column; gap: 10px; }
   /* Bei breitem Bildschirm steht das Foto der zweiten Gruppe rechts */
   @media (min-width: 900px) {
     .bild-rechts > :first-child { order: 2; }
