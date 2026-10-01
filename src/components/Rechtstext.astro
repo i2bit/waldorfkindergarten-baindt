@@ -1,0 +1,17 @@
+---
+// Gemeinsamer Rahmen für Impressum und Datenschutz.
+---
+<section class="wrap section rechtstext" style="padding-top:72px;padding-bottom:100px">
+  <div class="rechtstext-innen"><slot /></div>
+</section>
+
+<style is:global>
+  .rechtstext-innen { max-width: 860px; display: flex; flex-direction: column; gap: 36px; }
+  .rechtstext-innen .block { display: flex; flex-direction: column; gap: 6px; }
+  .rechtstext-innen .h3 { font-size: 24px; }
+  .rechtstext-innen dl { margin: 0; }
+  .rechtstext-innen .zeile { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 4px 24px; padding: 16px 0; border-top: 1px solid var(--linie); font-size: 17px; line-height: 1.55; }
+  .rechtstext-innen dt { font-weight: 700; }
+  .rechtstext-innen dd { margin: 0; }
+  .platzhalter { background: var(--hell-ocker); border: 2px dashed #b98a55; border-radius: 8px; padding: 1px 8px; }
+</style>

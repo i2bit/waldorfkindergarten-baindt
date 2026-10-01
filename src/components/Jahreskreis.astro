@@ -1,0 +1,122 @@
+---
+// Interaktiver Jahreskreis: vier Viertelkreis-Buttons, darunter die Feste
+// der gewählten Jahreszeit. Kleines Vanilla-Script, sonst kein JS.
+import { reader, jahreszeiten, type Jahreszeit } from '../lib/content';
+
+const daten = await reader.singletons.jahreskreis.readOrThrow();
+
+// Anordnung im Kreis: oben links, oben rechts, unten links, unten rechts
+const viertel: { key: Jahreszeit; radius: string; pad: string; y: string; x: string }[] = [
+  { key: 'fruehling', radius: '100% 0 0 0', pad: '0 0 18% 18%', y: 'flex-end', x: 'flex-start' },
+  { key: 'sommer', radius: '0 100% 0 0', pad: '0 18% 18% 0', y: 'flex-end', x: 'flex-end' },
+  { key: 'winter', radius: '0 0 0 100%', pad: '18% 0 0 18%', y: 'flex-start', x: 'flex-start' },
+  { key: 'herbst', radius: '0 0 100% 0', pad: '18% 18% 0 0', y: 'flex-start', x: 'flex-end' },
+];
+
+function jahreszeitVon(datum: Date): Jahreszeit {
+  const m = datum.getMonth() + 1;
+  if (m >= 3 && m <= 5) return 'fruehling';
+  if (m >= 6 && m <= 8) return 'sommer';
+  if (m >= 9 && m <= 11) return 'herbst';
+  return 'winter';
+}
+const start = jahreszeitVon(new Date());
+---
+<div class="jk" data-jahreskreis data-start={start}>
+  <div class="jk-kreis" role="group" aria-label="Jahreszeit wählen">
+    {viertel.map((v) => {
+      const js = jahreszeiten[v.key];
+      return (
+        <button
+          type="button"
+          class="jk-viertel"
+          data-zeit={v.key}
+          aria-pressed={v.key === start ? 'true' : 'false'}
+          aria-controls={`jk-${v.key}`}
+          style={`background:${js.bg};color:${js.fg};border-radius:${v.radius};padding:${v.pad};align-items:${v.y};justify-content:${v.x}`}
+        >{js.name}</button>
+      );
+    })}
+    <span class="jk-mitte" aria-hidden="true">Jahreszeit antippen</span>
+  </div>
+  <div class="jk-text">
+    <h2 class="h2">Unser Jahreskreis</h2>
+    {viertel.map((v) => {
+      const js = jahreszeiten[v.key];
+      const feste = daten[v.key];
+      return (
+        <div id={`jk-${v.key}`} class="jk-feste" hidden={v.key !== start}>
+          <p class="p-gross">Zahlreiche Feste begleiten uns durch das Jahr. Im <strong style={`color:${js.text}`}>{js.name}</strong> feiern wir:</p>
+          <ul class="jk-liste">
+            {feste.map((f) => <li style={`background:${js.bg};color:${js.fg}`}>{f}</li>)}
+          </ul>
+        </div>
+      );
+    })}
+    <slot />
+  </div>
+</div>
+
+<style>
+  .jk { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 56px; align-items: center; }
+  .jk-kreis {
+    position: relative;
+    justify-self: center;
+    width: min(100%, 380px);
+    aspect-ratio: 1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .jk-viertel {
+    border: none;
+    cursor: pointer;
+    display: flex;
+    font-family: var(--font-titel);
+    font-weight: 800;
+    font-size: 22px;
+    opacity: 0.55;
+    transition: transform 0.25s, opacity 0.25s;
+  }
+  .jk-viertel[aria-pressed='true'] { opacity: 1; transform: scale(1.04); }
+  .jk-viertel:hover { opacity: 0.85; }
+  .jk-viertel[aria-pressed='true']:hover { opacity: 1; }
+  .jk-mitte {
+    position: absolute;
+    left: 50%; top: 50%;
+    width: 30%; height: 30%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 700;
+    font-size: 14px;
+    pointer-events: none;
+  }
+  .jk-text { display: flex; flex-direction: column; gap: 20px; }
+  .jk-feste { display: flex; flex-direction: column; gap: 20px; }
+  .jk-feste[hidden] { display: none; }
+  .jk-liste { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 12px; }
+  .jk-liste li { font-weight: 700; font-size: 19px; padding: 14px 22px; border-radius: 999px; }
+</style>
+
+<script>
+  for (const el of document.querySelectorAll<HTMLElement>('[data-jahreskreis]')) {
+    const buttons = [...el.querySelectorAll<HTMLButtonElement>('button[data-zeit]')];
+    const waehle = (zeit: string) => {
+      for (const b of buttons) {
+        const an = b.dataset.zeit === zeit;
+        b.setAttribute('aria-pressed', String(an));
+        const panel = el.querySelector<HTMLElement>(`#jk-${b.dataset.zeit}`);
+        if (panel) panel.hidden = !an;
+      }
+    };
+    // Beim Aufruf die aktuelle Jahreszeit zeigen (die Seite ist ggf. älter gebaut).
+    const m = new Date().getMonth() + 1;
+    waehle(m >= 3 && m <= 5 ? 'fruehling' : m <= 8 && m >= 6 ? 'sommer' : m >= 9 && m <= 11 ? 'herbst' : 'winter');
+    for (const b of buttons) b.addEventListener('click', () => waehle(b.dataset.zeit!));
+  }
+</script>

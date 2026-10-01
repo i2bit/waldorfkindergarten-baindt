@@ -1,0 +1,57 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import Seitenkopf from '../../components/Seitenkopf.astro';
+import { reader, getAktuelles, bild, renderMarkdoc, jahreszeiten, datumLang } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const slugs = await reader.collections.aktuelles.list();
+  return slugs.map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const post = await reader.collections.aktuelles.readOrThrow(slug!);
+const { node } = await post.inhalt();
+const html = renderMarkdoc(node);
+const js = jahreszeiten[post.jahreszeit];
+const arten = { presse: 'Pressebericht', termin: 'Termin', alltag: 'Aus dem Alltag' } as const;
+
+// Nachbarn für „älter / neuer“
+const alle = await getAktuelles();
+const pos = alle.findIndex((p) => p.slug === slug);
+const neuer = alle[pos - 1];
+const aelter = alle[pos + 1];
+---
+<Base title={post.titel} description={post.teaser} aktiv="/aktuelles">
+  <Seitenkopf slot="kopf" titel={post.titel} farbe={js.bg} lead={post.teaser}>
+    <p class="meta">
+      <span class="badge" style={`background:${js.bg};color:${js.fg}`}>{js.name}</span>
+      <time datetime={post.datum ?? undefined}>{datumLang(post.datum)}</time>
+      <span aria-hidden="true">·</span>
+      <span>{arten[post.kategorie]}</span>
+    </p>
+  </Seitenkopf>
+
+  <article class="wrap section" style="padding-top:72px">
+    {post.bild && (
+      <Image src={bild(post.bild)} alt={`Foto zum Bericht „${post.titel}“`} class="foto" style="--h:clamp(220px, 40vw, 480px);max-width:960px" widths={[640, 960, 1600]} sizes="(min-width: 1000px) 960px, 92vw" />
+    )}
+    <div class="prosa" set:html={html} />
+    {post.pdf && (
+      <a href={post.pdf} class="btn btn-hell" target="_blank">Zeitungsartikel als PDF öffnen<span class="visually-hidden"> (öffnet in neuem Tab)</span></a>
+    )}
+  </article>
+
+  <nav class="wrap section blaettern" style="padding-top:0" aria-label="Weitere Berichte">
+    <a href="/aktuelles" class="btn">← Zur Pinnwand</a>
+    <div class="pills">
+      {neuer && <a href={`/aktuelles/${neuer.slug}`} class="btn btn-rahmen">Neuer: {neuer.entry.titel}</a>}
+      {aelter && <a href={`/aktuelles/${aelter.slug}`} class="btn btn-rahmen">Älter: {aelter.entry.titel}</a>}
+    </div>
+  </nav>
+</Base>
+
+<style>
+  .meta { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; font-size: 18px; font-weight: 600; color: #dde1f5; }
+  .blaettern { flex-direction: row; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
+</style>

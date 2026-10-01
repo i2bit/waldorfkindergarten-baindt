@@ -1,0 +1,10 @@
+---
+// Sprungmarken innerhalb einer Seite (mobil wischbar).
+interface Props {
+  links: { href: string; label: string }[];
+}
+const { links } = Astro.props;
+---
+<nav class="wrap subnav" aria-label="Auf dieser Seite">
+  {links.map((l) => <a href={l.href}>{l.label}</a>)}
+</nav>

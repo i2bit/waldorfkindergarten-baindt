@@ -1,0 +1,22 @@
+---
+import Base from '../../layouts/Base.astro';
+import Seitenkopf from '../../components/Seitenkopf.astro';
+import Zettel from '../../components/Zettel.astro';
+import { getAktuelles } from '../../lib/content';
+
+const posts = await getAktuelles();
+---
+<Base title="Aktuelles & Presse" description="Berichte und Presseartikel über Feste und den Alltag im Waldorfkindergarten Baindt." aktiv="/aktuelles">
+  <Seitenkopf slot="kopf" titel="Aktuelles & Presse" farbe="var(--orange)" lead="Viele kleine und große, leise und laute Feste begleiten uns durch das Jahr. Hier erzählen wir davon." />
+
+  <section id="pinnwand" class="bg-flieder">
+    <div class="wrap section" style="padding-top:72px;padding-bottom:100px">
+      <h2 class="visually-hidden">Alle Berichte</h2>
+      <div class="pinnwand">
+        {posts.map((p, i) => (
+          <Zettel slug={p.slug} titel={p.entry.titel} datum={p.entry.datum} jahreszeit={p.entry.jahreszeit} teaser={p.entry.teaser} index={i} />
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

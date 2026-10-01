@@ -1,0 +1,139 @@
+---
+import Base from '../layouts/Base.astro';
+import Seitenkopf from '../components/Seitenkopf.astro';
+import Subnav from '../components/Subnav.astro';
+import DownloadLink from '../components/DownloadLink.astro';
+import { reader } from '../lib/content';
+
+const module = await reader.singletons.module.readOrThrow();
+const zeiten = await reader.singletons.zeiten.readOrThrow();
+const downloads = await reader.singletons.downloads.readOrThrow();
+
+const dateien = downloads.dateien
+  .map((d) => ({ titel: d.titel, beschreibung: d.beschreibung, href: d.datei || d.link }))
+  .filter((d) => d.href);
+// Im Kasten „Formulare“ stehen die PDFs zu Beiträgen und Modulbuchung.
+const formulare = dateien.filter((d) => /gebühr|buchung/i.test(d.titel));
+
+const schritte = [
+  { farbe: 'var(--ocker)', fg: 'var(--text)', titel: 'Vormerken bei der Gemeinde', text: 'Alle Kindergartenplätze in Baindt laufen über das zentrale Vormerkeverfahren der Gemeinde. Dort gelten auch die Vergabekriterien.', link: { href: 'https://www.baindt.de/leben-wohnen/kindertageseinrichtungen/vormerkung-und-vergabekriterien-kindertageseinrichtungen', label: 'Zur Vormerkung der Gemeinde →' } },
+  { farbe: 'var(--orange)', fg: 'var(--text)', titel: 'Unseren Aufnahmeantrag schicken', text: 'So können wir früh mit Ihnen in Kontakt treten und Sie schon zu Veranstaltungen einladen.', link: { href: dateien.find((d) => /aufnahmeantrag$/i.test(d.titel))?.href ?? '#downloads', label: 'Zum Aufnahmeantrag →' } },
+  { farbe: 'var(--waid)', fg: '#fff', titel: 'Kennenlernen vor Ort', text: 'Nach Terminabsprache zeigen wir Ihnen den Kindergarten und beantworten Ihre Fragen. Auf Wunsch gibt es unsere Kiga-Mappe mit allen Infos und Formularen.', link: { href: '/kontakt', label: 'Termin vereinbaren →' } },
+  { farbe: 'var(--krapp)', fg: '#fff', titel: 'Platzzusage & Aufnahmegespräch', text: 'Nach der Zusage folgen Vertrag, organisatorische Absprachen und ein pädagogisches Gespräch über Ihr Kind.' },
+];
+const extern = (href: string) => /^https?:/.test(href);
+---
+<Base title="Für Eltern" description="Öffnungszeiten, Module und Beiträge, Anmeldung und Formulare des Waldorfkindergartens Baindt." aktiv="/fuer-eltern">
+  <Seitenkopf slot="kopf" titel="Für Eltern" farbe="var(--flieder)" lead="Öffnungszeiten, Beiträge, Anmeldung und alle Formulare an einem Ort." />
+
+  <Subnav links={[
+    { href: '#zeiten', label: 'Öffnungszeiten' },
+    { href: '#beitraege', label: 'Beiträge' },
+    { href: '#anmeldung', label: 'Anmeldung' },
+    { href: '#downloads', label: 'Downloads' },
+  ]} />
+
+  <section id="zeiten" class="wrap section">
+    <h2 class="h2">Module, Zeiten &amp; Beiträge</h2>
+    <p class="p-gross">Monatlicher Beitrag für ein Kind ab {module.gueltigAb}, gestaffelt nach Anzahl der Kinder in der Familie. Berechnet auf Grundlage der {module.grundlage}.</p>
+    <div class="tabelle" role="region" aria-label="Tabelle der Module und Beiträge" tabindex="0">
+      <table>
+        <caption class="visually-hidden">Module, Betreuungszeiten und monatliche Beiträge ab {module.gueltigAb}</caption>
+        <thead>
+          <tr>
+            <th scope="col">Modul</th><th scope="col">Alter</th><th scope="col">Zeiten</th><th scope="col">Std./Woche</th><th scope="col">Essen</th>
+            <th scope="col">1 Kind</th><th scope="col">2 Kinder</th><th scope="col">3 Kinder</th><th scope="col">4 Kinder</th>
+          </tr>
+        </thead>
+        <tbody>
+          {module.module.map((m) => (
+            <tr>
+              <th scope="row">{m.modul}</th>
+              <td>{m.alter}</td>
+              <td>{m.zeiten.split('\n').map((z, i) => <>{i > 0 && <br />}{z}</>)}</td>
+              <td>{m.stunden}</td>
+              <td>{m.mittagessen ? 'ja' : 'nein'}</td>
+              <td>{m.preis1}</td><td>{m.preis2}</td><td>{m.preis3}</td><td>{m.preis4}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    {module.fussnoten.length > 0 && <p class="p-leise">{module.fussnoten.join(' ')}</p>}
+    <div class="grid" style="--min:300px">
+      <div class="karte" style="background:var(--hell-flieder)">
+        <h3 class="h3" style="font-size:22px">Bringzeit</h3>
+        <span class="gross-zeit">{zeiten.bringzeit}</span>
+      </div>
+      <div class="karte" style="background:var(--hell-flieder)">
+        <h3 class="h3" style="font-size:22px">Abholzeiten</h3>
+        <ul class="punkte" style="--punkt:var(--flieder)">
+          {zeiten.abholzeiten.map((a) => <li>{a.label}: {a.zeit}</li>)}
+        </ul>
+      </div>
+    </div>
+    <ul class="punkte" style="--punkt:var(--flieder)">
+      {zeiten.hinweise.map((h) => <li>{h}</li>)}
+    </ul>
+  </section>
+
+  <section id="beitraege" class="bg-grau">
+    <div class="wrap section">
+      <div class="split">
+        <div class="stack">
+          <h2 class="h2">Gut zu wissen</h2>
+          <ul class="punkte" style="--punkt:var(--orange)">
+            {module.hinweise.map((h) => <li>{h}</li>)}
+            {module.mittagessenPreis && <li>Ein Mittagessen kostet aktuell {module.mittagessenPreis}.</li>}
+          </ul>
+        </div>
+        {formulare.length > 0 && (
+          <div class="karte" style="background:var(--hell-ocker)">
+            <h3 class="h3">Formulare</h3>
+            {formulare.map((d) => <DownloadLink href={d.href!} titel={d.titel} beschreibung={d.beschreibung} />)}
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <section id="anmeldung" class="bg-flieder">
+    <div class="wrap section">
+      <h2 class="h2">So klappt die Anmeldung</h2>
+      <ol class="grid schritte" style="--min:260px">
+        {schritte.map((s, i) => (
+          <li>
+            <span class="nummer" style={`background:${s.farbe};color:${s.fg}`} aria-hidden="true">{i + 1}</span>
+            <h3 class="h3" style="font-size:23px">{s.titel}</h3>
+            <p class="p-klein">{s.text}</p>
+            {s.link && (
+              <a href={s.link.href} class="linkpfeil" target={extern(s.link.href) ? '_blank' : undefined} rel={extern(s.link.href) ? 'noopener' : undefined}>{s.link.label}</a>
+            )}
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section id="downloads" class="wrap section">
+    <h2 class="h2">Downloads</h2>
+    <div class="grid" style="--min:320px;gap:14px">
+      {dateien.map((d) => <DownloadLink href={d.href!} titel={d.titel} beschreibung={d.beschreibung} />)}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .tabelle { overflow-x: auto; border-radius: 24px; border: 3px solid var(--text); }
+  table { width: 100%; min-width: 900px; border-collapse: collapse; background: #fff; }
+  thead tr { background: var(--text); color: #fff; }
+  th, td { padding: 14px 16px; text-align: left; vertical-align: top; }
+  thead th { font-size: 15px; white-space: nowrap; }
+  tbody th { font-family: var(--font-titel); font-size: 20px; white-space: nowrap; }
+  td { font-size: 16px; }
+  tbody th, tbody td { border-top: 1px solid var(--linie); }
+  .gross-zeit { font-family: var(--font-titel); font-weight: 800; font-size: 30px; }
+  .schritte { margin: 0; padding: 0; list-style: none; }
+  .schritte li { background: #fff; border-radius: 26px; padding: 28px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 10px 24px rgba(38, 51, 122, 0.08); }
+  .nummer { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-titel); font-weight: 800; font-size: 26px; }
+</style>

@@ -49,5 +49,4 @@ Die KV-Bindung `SESSION` legt Astro automatisch an; der kostenlose Plan reicht.
 - PDFs von der alten Seite nach `public/downloads/` übernehmen und die Links
   in „Downloads“ durch Datei-Uploads ersetzen.
 - Daten der Presseberichte prüfen (teils geschätzt).
-- Seiten aus dem Design-Entwurf übertragen (`src/pages/`), aktuell gibt es
-  nur eine Testseite.
+- Datenschutzerklärung: Hosting-Abschnitt (Cloudflare) ergänzen und prüfen lassen.

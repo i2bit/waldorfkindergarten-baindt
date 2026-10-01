@@ -1,0 +1,92 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Seitenkopf from '../components/Seitenkopf.astro';
+import { reader, getKontakt, bild, renderMarkdoc } from '../lib/content';
+
+const kontakt = await getKontakt();
+const stellen = await Promise.all(
+  (await reader.collections.stellen.all())
+    .filter((s) => s.entry.aktiv)
+    .map(async (s) => ({ ...s, html: renderMarkdoc((await s.entry.beschreibung()).node) })),
+);
+const arten = { fachkraft: 'Fachkraft', fsj: 'FSJ', praktikum: 'Praktikum', ausbildung: 'Ausbildung / Studium' } as const;
+const fotos = [
+  { datei: 'fest.jpg', alt: 'Kinder und Erwachsene beim Fest im Garten' },
+  { datei: 'raum.jpg', alt: 'Gruppenraum mit Holzmöbeln und bunten Tüchern' },
+];
+
+const schritte = [
+  { farbe: 'var(--ocker)', fg: 'var(--text)', titel: 'Bewerbung per Mail', text: `Am liebsten an ${kontakt.email}.` },
+  { farbe: 'var(--orange)', fg: 'var(--text)', titel: 'Kennenlerngespräch', text: 'Wir melden uns zeitnah und laden Sie ein.' },
+  { farbe: 'var(--waid)', fg: '#fff', titel: 'Hospitation', text: 'Ein Tag bei uns im Alltag – damit Sie gut entscheiden können.' },
+];
+---
+<Base title="Stellen & Mitarbeit" description="Stellen, FSJ, Praktikum und Ausbildung im Waldorfkindergarten Baindt." aktiv="/stellen">
+  <Seitenkopf slot="kopf" titel="Stellen & Mitarbeit" farbe="var(--waid)" lead="Unser Kindergarten bietet viele Möglichkeiten zum Kennenlernen und Mitarbeiten: Praktika, einen FSJ-Platz pro Kindergartenjahr und Praxisanleitung für Auszubildende und Studierende." />
+
+  <section id="bewerben" class="wrap section">
+    <div class="split">
+      <p class="gesucht"><strong>Gesucht!</strong><span>Menschen mit Herz für Kinder</span></p>
+      <div class="stack">
+        <h2 class="h2">So bewerben Sie sich</h2>
+        <ol class="schritte">
+          {schritte.map((s, i) => (
+            <li>
+              <span class="nummer" style={`background:${s.farbe};color:${s.fg}`} aria-hidden="true">{i + 1}</span>
+              <span class="stack" style="gap:4px"><strong>{s.titel}</strong><span>{s.text}</span></span>
+            </li>
+          ))}
+        </ol>
+        <a href={kontakt.mailHref} class="btn">Jetzt per Mail bewerben</a>
+      </div>
+    </div>
+  </section>
+
+  {stellen.map((s, i) => {
+    const foto = fotos[i % fotos.length];
+    const infos = [s.entry.umfang, s.entry.start].filter(Boolean).join(' · ');
+    return (
+      <section id={s.slug} class={i % 2 === 0 ? 'bg-ocker' : 'bg-flieder'}>
+        <div class="wrap section">
+          <div class="split">
+            <Image src={bild(foto.datei)} alt={foto.alt} class="foto" style="--h:400px" widths={[600, 1200]} sizes="(min-width: 1000px) 600px, 92vw" />
+            <div class="stack">
+              <span class="badge" style="background:var(--ocker)">{arten[s.entry.art]}{infos && ` · ${infos}`}</span>
+              <h2 class="h2">{s.entry.titel}</h2>
+              <div class="prosa" set:html={s.html} />
+              <div class="pills" style="gap:12px">
+                {s.entry.art === 'fsj' && (
+                  <a href="https://freiwillig-ja.de/stellenangebote/642483/waldorfkindergarten-baindt" target="_blank" rel="noopener" class="btn btn-gruen">FSJ-Platz ansehen<span class="visually-hidden"> (öffnet in neuem Tab)</span></a>
+                )}
+                <a href={`${kontakt.mailHref}?subject=${encodeURIComponent(`Bewerbung: ${s.entry.titel}`)}`} class="btn btn-hell">Direkt bei uns melden</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  })}
+
+  <section id="praktikum" class="wrap section">
+    <h2 class="h2">Praktikum &amp; Ausbildung</h2>
+    <div class="grid" style="--min:320px">
+      <div class="karte" style="background:var(--hell-flieder)">
+        <h3 class="h3">Praktika</h3>
+        <p class="p">Ob Schulpraktikum oder Orientierung – wir begleiten unterschiedliche Praktika.</p>
+      </div>
+      <div class="karte" style="background:var(--hell-krapp)">
+        <h3 class="h3">Ausbildung &amp; Studium</h3>
+        <p class="p">Auszubildenden und Studierenden stehen wir als kompetente Praxisanleitung zur Seite.</p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .gesucht { margin: 0; }
+  .schritte { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .schritte li { display: flex; gap: 16px; align-items: flex-start; border: 3px solid var(--text); border-radius: 22px; padding: 20px 22px; font-size: 16px; line-height: 1.5; }
+  .schritte strong { font-size: 19px; }
+  .nummer { flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; }
+</style>

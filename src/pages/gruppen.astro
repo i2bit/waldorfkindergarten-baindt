@@ -1,0 +1,142 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Seitenkopf from '../components/Seitenkopf.astro';
+import Subnav from '../components/Subnav.astro';
+import { reader, bild } from '../lib/content';
+
+const daten = await reader.singletons.gruppen.readOrThrow();
+
+// Gestaltung pro Gruppe (Reihenfolge wie in Keystatic)
+const stile = [
+  { farbe: 'var(--krapp)', fg: '#fff', foto: 'sand.jpg', alt: 'Zwei Kinder spielen im Sandkasten', hintergrund: '' },
+  { farbe: 'var(--indigo)', fg: '#fff', foto: 'bauen.jpg', alt: 'Drei Kinder bauen einen hohen Turm aus Holzplättchen', hintergrund: 'bg-flieder' },
+];
+const anker = (name: string) => name.toLowerCase().replace(/ß/g, 'ss').replace(/[äöü]/g, (c) => ({ ä: 'ae', ö: 'oe', ü: 'ue' })[c]!).replace(/[^a-z]/g, '');
+const gruppen = daten.gruppen.map((g, i) => ({ ...g, id: anker(g.name), stil: stile[i % stile.length], bildRechts: i % 2 === 1 }));
+
+const vorschule = [
+  { wann: 'Sept./Okt.', bg: 'var(--flieder)', fg: 'var(--text)', titel: 'Vorschul-Elternabend', text: 'Für alle Eltern schulpflichtig werdender Kinder – gemeinsam mit der Grundschule Baindt und der Waldorfschule Ravensburg.' },
+  { wann: 'Dezember', bg: 'var(--orange)', fg: 'var(--text)', titel: 'Elterngespräche', text: 'Wir besprechen den Entwicklungsstand in den Bereichen emotional, sozial, motorisch und kognitiv und geben eine Empfehlung zur Einschulung oder Rückstellung.' },
+  { wann: 'Jan. – Juli', bg: 'var(--ocker)', fg: 'var(--text)', titel: 'Vorschulnachmittage', text: 'Einmal im Monat arbeiten die Vorschüler nachmittags an eigenen Aufgaben mit wachsenden Anforderungen.' },
+  { wann: 'übers Jahr', bg: 'var(--waid)', fg: '#fff', titel: 'Grundschule & Sprach-Fit', text: 'Eine Lehrkraft der Grundschule besucht die „Großen“ zweimal im Jahr, dazu gibt es eine Schnupperstunde. Bei Sprachförderbedarf: vier Stunden „Sprach-Fit“ pro Woche.' },
+  { wann: 'Juli', bg: 'var(--krapp)', fg: '#fff', titel: 'Märchenspiel', text: 'In den letzten zwei Wochen üben die Vorschüler ein Märchenspiel ein und führen es den Kleinen der Rosenrot-Gruppe vor.' },
+];
+
+const kooperationen = [
+  'Waldorf-Kitas der Region Ravensburg und Bodensee-Oberschwaben',
+  'Fachberatung für Fortbildung und Hospitation',
+  'Heilpädagogischer Dienst der Gemeinde Baindt',
+  'Frühförderstelle Mobile',
+  'Grundschule Baindt mit dem Programm „Sprach-Fit“',
+  'Waldorfschule Ravensburg',
+  'Gemeinde Baindt',
+];
+---
+<Base title="Gruppen & Angebote" description={daten.einleitung} aktiv="/gruppen">
+  <Seitenkopf slot="kopf" titel="Gruppen & Angebote" farbe="var(--krapp)" lead={daten.einleitung} />
+
+  <Subnav links={[
+    ...gruppen.map((g) => ({ href: `#${g.id}`, label: g.name })),
+    { href: '#alltag', label: 'Alltag' },
+    { href: '#ganztag', label: 'Ganztag' },
+    { href: '#vorschule', label: 'Vorschule' },
+    { href: '#kooperationen', label: 'Kooperationen' },
+  ]} />
+
+  {gruppen.map((g) => {
+    const foto = (
+      <Image src={bild(g.bild, g.stil.foto)} alt={g.bild ? `Foto der Gruppe ${g.name}` : g.stil.alt} class="foto" style="--h:440px;border-radius:32px" widths={[600, 1200]} sizes="(min-width: 1000px) 600px, 92vw" />
+    );
+    return (
+      <section id={g.id} class={g.stil.hintergrund}>
+        <div class="wrap section">
+          <div class="split gruppe" class:list={{ 'bild-rechts': g.bildRechts }}>
+            {foto}
+            <div class="stack">
+              {g.alter && <span class="badge" style={`background:${g.stil.farbe};color:${g.stil.fg}`}>{g.alter}</span>}
+              <h2 class="h2" style={`color:${g.stil.farbe}`}>{g.name}</h2>
+              <p class="p">{g.text}</p>
+              {g.punkte.length > 0 && (
+                <ul class="punkte" style={`--punkt:${g.stil.farbe}`}>
+                  {g.punkte.map((p) => <li>{p}</li>)}
+                </ul>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  })}
+
+  <section id="alltag" class="wrap section">
+    <div class="split">
+      <div class="stack">
+        <h2 class="h2">Ein Tag bei uns</h2>
+        <p class="p">Unser Alltag ist geprägt von wiederkehrenden Tages-, Wochen- und Jahresläufen, viel freiem Spiel drinnen und draußen, sinnvollen Tätigkeiten der Erwachsenen, einem engen Bezug zur Natur und vielen Jahresfesten.</p>
+        {daten.alltag && <p class="p">{daten.alltag}</p>}
+        <p class="p">Wir arbeiten in festen Gruppen mit klaren Räumen und Bezugspersonen. Im Garten begegnen sich beide Gruppen täglich beim Freispiel.</p>
+      </div>
+      <Image src={bild('feuer.jpg')} alt="Kinder backen Stockbrot an der Feuerschale" class="foto" widths={[600, 1200]} sizes="(min-width: 1000px) 600px, 92vw" />
+    </div>
+  </section>
+
+  <section id="ganztag" class="bg-ocker">
+    <div class="wrap section">
+      <h2 class="h2">Ganztag im Zwergenstübchen</h2>
+      <p class="p-gross">Für Kinder ab drei Jahren lässt sich die Grundbetreuung von 30 Stunden pro Woche über eine Modulbuchung erweitern.</p>
+      <div class="grid" style="--min:320px">
+        <div class="karte" style="background:var(--ocker)">
+          <h3 class="h3">Verlängerte Öffnungszeit</h3>
+          <span class="gross-zeit">bis 14.15 Uhr</span>
+          <p class="p">Mo – Fr (Modul 1B) bzw. Mo – Do (Modul 3B) · mit Mittagessen · bis zu 20 Plätze</p>
+        </div>
+        <div class="karte" style="background:var(--waid);color:#fff">
+          <h3 class="h3">Ganztagesbetreuung</h3>
+          <span class="gross-zeit">bis 16.15 Uhr</span>
+          <p class="p">Dienstag und Donnerstag (Modul 3A) bzw. an einem der beiden Tage (Modul 3B) · mit Mittagessen · bis zu 10 Plätze</p>
+        </div>
+      </div>
+      <ul class="punkte" style="--punkt:var(--krapp)">
+        <li>Vor dem Übergang zum Nachmittag tauschen sich die Erzieher:innen aus, damit jedes Kind bewusst wahrgenommen wird.</li>
+        <li>Das Mittagessen kommt von einem externen, bio-zertifizierten Anbieter, der täglich frisch und möglichst regional kocht.</li>
+        <li>Eine Mittagsruhe hilft vor allem den Jüngeren, nach dem Vormittag neue Kraft zu schöpfen.</li>
+        <li>Am Nachmittag haben Ruhe und Geborgenheit genauso Platz wie Spiel und Bewegung.</li>
+      </ul>
+      <a href="/fuer-eltern#zeiten" class="btn">Zeiten &amp; Beiträge ansehen</a>
+    </div>
+  </section>
+
+  <section id="vorschule" class="wrap section">
+    <h2 class="h2">Das Vorschuljahr</h2>
+    <ol class="grid vorschule" style="--min:240px">
+      {vorschule.map((v) => (
+        <li>
+          <span class="badge" style={`background:${v.bg};color:${v.fg};padding:6px 14px`}>{v.wann}</span>
+          <h3 class="h3" style="font-size:24px">{v.titel}</h3>
+          <p class="p-klein">{v.text}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section id="kooperationen" class="bg-flieder">
+    <div class="wrap section">
+      <h2 class="h2">Kooperationen</h2>
+      <p class="p-gross">Wir arbeiten mit vielen Einrichtungen, Diensten und Schulen zusammen:</p>
+      <ul class="pills" style="margin:0;padding:0;list-style:none">
+        {kooperationen.map((k) => <li class="pill">{k}</li>)}
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .gross-zeit { font-family: var(--font-titel); font-weight: 800; font-size: 40px; }
+  .vorschule { margin: 0; padding: 0; list-style: none; }
+  .vorschule li { background: #fff; border: 3px solid var(--text); border-radius: 26px; padding: 26px; display: flex; flex-direction: column; gap: 10px; }
+  /* Bei breitem Bildschirm steht das Foto der zweiten Gruppe rechts */
+  @media (min-width: 900px) {
+    .bild-rechts > :first-child { order: 2; }
+  }
+</style>

@@ -1,0 +1,15 @@
+---
+// Seitenkopf der Unterseiten: Farbpunkt, große Überschrift, Einleitung.
+interface Props {
+  titel: string;
+  farbe: string;
+  lead?: string;
+}
+const { titel, farbe, lead } = Astro.props;
+---
+<div class="wrap seitenkopf">
+  <span class="dot" style={`background:${farbe}`} aria-hidden="true"></span>
+  <h1 class="h1">{titel}</h1>
+  {lead && <p class="lead">{lead}</p>}
+  <slot />
+</div>

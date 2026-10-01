@@ -1,0 +1,28 @@
+---
+// Ein Zettel an der Pinnwand. Farbe und Beschriftung kommen aus der Jahreszeit.
+import { jahreszeiten, monatJahr, type Jahreszeit } from '../lib/content';
+
+interface Props {
+  slug: string;
+  titel: string;
+  datum: string | null;
+  jahreszeit: Jahreszeit;
+  teaser: string;
+  index: number;
+}
+const { slug, titel, datum, jahreszeit, teaser, index } = Astro.props;
+const js = jahreszeiten[jahreszeit];
+const drehungen = ['-1.5deg', '1deg', '-0.6deg', '1.2deg', '-1deg', '0.6deg', '-1.2deg', '1.4deg', '-0.4deg'];
+const nadeln = ['var(--ocker)', 'var(--waid)', 'var(--krapp)', 'var(--indigo)', 'var(--flieder)', 'var(--orange)'];
+const style = [
+  `--zettel:${js.zettel}`,
+  `--dreh:${drehungen[index % drehungen.length]}`,
+  `--nadel:${nadeln[index % nadeln.length]}`,
+].join(';');
+---
+<a class="zettel" href={`/aktuelles/${slug}`} style={style}>
+  <span class="zettel-meta" style={`color:${js.text}`}>{js.name} · {monatJahr(datum)}</span>
+  <h3 class="zettel-titel">{titel}</h3>
+  <span class="zettel-text">{teaser}</span>
+  <span class="zettel-mehr" aria-hidden="true">Bericht lesen →</span>
+</a>
