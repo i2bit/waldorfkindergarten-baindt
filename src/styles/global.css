@@ -202,6 +202,53 @@ a:hover { color: var(--rosa); }
 }
 .anrufen:hover { color: #fff; background: #8f3540; }
 
+/* Menü fürs Handy (unter 760 px statt der Textnavigation) */
+.kopf-leiste { position: relative; }
+.menue { display: none; }
+.menue summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 16px;
+  border-radius: 999px;
+  border: 2px solid var(--text);
+  background: #fff;
+  color: var(--text);
+  font-weight: 700;
+  font-size: 17px;
+}
+.menue summary::-webkit-details-marker { display: none; }
+.menue .kreuz { display: none; }
+.menue[open] .kreuz { display: inline; }
+.menue[open] .striche { display: none; }
+.menue-panel {
+  position: absolute;
+  z-index: 20;
+  left: 16px;
+  right: 16px;
+  top: calc(100% + 10px);
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 16px 40px rgba(80, 50, 40, 0.18);
+  padding: 8px;
+}
+.menue-panel { overflow: hidden; padding: 0; }
+.menue-panel a {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 20px;
+  font-weight: 600;
+  padding: 16px 22px;
+}
+.menue-panel a + a { border-top: 1px solid var(--linie); }
+.menue-panel a:hover, .menue-panel a[aria-current='page'] { background: var(--pfirsich); color: var(--akzent); }
+.menue-panel .menue-anrufen { color: var(--akzent); }
+
+
 /* Schlichte Textnavigation, mobil wischbar */
 .nav-pills {
   padding-top: 14px;
@@ -343,3 +390,19 @@ a:hover { color: var(--rosa); }
 .prosa > :first-child { margin-top: 0; }
 .prosa h2, .prosa h3 { font-family: var(--font-titel); letter-spacing: 0.01em; line-height: 1.15; }
 .prosa img { border-radius: 20px; height: auto; }
+
+/* Handy: Menü-Knopf statt Textnavigation, Anrufen steht im Menü.
+   Steht am Ende, damit es die allgemeinen Regeln oben überschreibt. */
+@media (max-width: 759px) {
+  .menue { display: block; }
+  .nav-pills { display: none; }
+  .kopf-leiste { padding-bottom: 8px; }
+  .kopf-leiste .anrufen { display: none; }
+  .logo { font-size: 21px; gap: 10px; }
+  .logo img { height: 52px; }
+}
+@media (max-width: 359px) {
+  .logo { font-size: 18px; gap: 8px; }
+  .logo img { height: 44px; }
+  .menue summary { padding: 10px 12px; font-size: 16px; }
+}

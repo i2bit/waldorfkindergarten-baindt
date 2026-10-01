@@ -30,7 +30,7 @@ direkt verwendbar (eigenes Vorlagenformat mit `<x-dc>`-Wrapper).
   `src/assets/fonts/`, Lizenz noch klären), Text in Instrument Sans (@fontsource).
   Keine Google Fonts.
 - Logo: gemaltes Logo der bisherigen Website (`src/assets/logo.png`)
-- Besonderheiten: schlichte Textnavigation (mobil wischbar), Wachsmalblöcke,
+- Besonderheiten: schlichte Textnavigation (Handy unter 760 px: Menü-Knopf „Menü“ mit <details>, ohne JS), Wachsmalblöcke,
   Märchen-Gruppenkarten, interaktiver Jahreskreis (4 Viertelkreis-Buttons),
   Pinnwand mit schrägen Zetteln, „Gesucht!“-Schild
 
