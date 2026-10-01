@@ -24,8 +24,9 @@ Sprache der Website: Deutsch, Ansprache durchgehend „Sie“.
   und optional ein eingebauter Baustein (Modultabelle, Zeiten, Downloads, Stellen,
   Kontakt, Aufnahmeantrag). Darstellung: `src/components/Abschnitte.astro`.
 - Texte stammen von der bisherigen Website (wörtlich übernommen), Fotos der Abschnitte
-  in `src/assets/seiten/`. Presseberichte (135) mit PDF in `public/downloads/presse/`,
-  alte Slugs beibehalten (für Weiterleitungen in Aufgabe 5).
+  in `src/assets/seiten/`. Presseberichte (135): voller Text aus den alten
+  Zeitungs-PDFs übernommen, PDFs selbst entfernt (enthielten Kinderfotos). Alte Slugs
+  beibehalten (für Weiterleitungen in Aufgabe 5).
 
 ## Design-Vorlage
 `design/*.dc.html` ist der freigegebene Entwurf (eine Datei pro Seite).
@@ -58,8 +59,7 @@ direkt verwendbar (eigenes Vorlagenformat mit `<x-dc>`-Wrapper).
 5. Weiterleitungen alter WordPress-URLs in `public/_redirects`
    (z. B. /ueber-uns/paedagogik/ → /ueber-uns#paedagogik,
    /organisation/oeffnungszeiten/ → /fuer-eltern, /category/presseberichte/ → /aktuelles)
-6. ~~PDFs von der alten Seite nach `public/downloads/` holen~~ (erledigt; große PDFs
-   mit Ghostscript verkleinert, Cloudflare erlaubt max. 25 MB pro Datei)
+6. ~~PDFs von der alten Seite nach `public/downloads/` holen~~ (erledigt)
 
 ## Offene Punkte (nicht raten, nachfragen)
 - Datenschutzerklärung: Hoster ist Cloudflare, Text vor Livegang prüfen lassen
