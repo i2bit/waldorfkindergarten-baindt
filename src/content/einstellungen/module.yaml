@@ -1,58 +1,56 @@
 gueltigAb: 01.09.2026
 grundlage: Empfehlung des Gemeindetages 05/26
 module:
-  - modul: "1A"
-    alter: 2 bis 3 J.
-    zeiten: "Mo – Fr 07.15 – 13.15"
-    stunden: 30
-    mittagessen: false
-    preis1: 362 €
-    preis2: 282 €
-    preis3: 192 €
-    preis4: 64 €
-  - modul: "1A"
-    alter: ab 3 J.
-    zeiten: "Mo – Fr 07.15 – 13.15"
-    stunden: 30
-    mittagessen: false
-    preis1: 181 €
-    preis2: 141 €
-    preis3: 96 €
-    preis4: 32 €
-  - modul: "1B*"
-    alter: ab 3 J.
-    zeiten: "Mo – Fr 07.15 – 14.15"
-    stunden: 35
-    mittagessen: true
-    preis1: 232 €
-    preis2: 181 €
-    preis3: 123 €
-    preis4: 41 €
-  - modul: "3A*"
-    alter: ab 3 J.
-    zeiten: "Mo – Fr 07.15 – 13.15\nDi + Do bis 16.15"
-    stunden: 36
-    mittagessen: true
-    preis1: 250 €
-    preis2: 195 €
-    preis3: 132 €
-    preis4: 44 €
-  - modul: "3B*"
-    alter: ab 3 J.
-    zeiten: "Mo – Do 07.15 – 14.15\nDi oder Do** bis 16.15\nFr 07.15 – 13.15"
-    stunden: 36
-    mittagessen: true
-    preis1: 250 €
-    preis2: 195 €
-    preis3: 132 €
-    preis4: 44 €
+- modul: 1A
+  alter: 2 bis 3 J.
+  zeiten: Mo – Fr 07.15 – 13.15
+  stunden: 30
+  mittagessen: false
+  preis1: 362 €
+  preis2: 282 €
+  preis3: 192 €
+  preis4: 64 €
+- modul: 1A
+  alter: ab 3 J.
+  zeiten: Mo – Fr 07.15 – 13.15
+  stunden: 30
+  mittagessen: false
+  preis1: 181 €
+  preis2: 141 €
+  preis3: 96 €
+  preis4: 32 €
+- modul: 1B*
+  alter: ab 3 J.
+  zeiten: Mo – Fr 07.15 – 14.15
+  stunden: 35
+  mittagessen: true
+  preis1: 232 €
+  preis2: 181 €
+  preis3: 123 €
+  preis4: 41 €
+- modul: 3A*
+  alter: ab 3 J.
+  zeiten: |-
+    Mo – Fr 07.15 – 13.15
+    Di + Do bis 16.15
+  stunden: 36
+  mittagessen: true
+  preis1: 250 €
+  preis2: 195 €
+  preis3: 132 €
+  preis4: 44 €
+- modul: 3B*
+  alter: ab 3 J.
+  zeiten: |-
+    Mo – Do 07.15 – 14.15
+    Di oder Do** bis 16.15
+    Fr 07.15 – 13.15
+  stunden: 36
+  mittagessen: true
+  preis1: 250 €
+  preis2: 195 €
+  preis3: 132 €
+  preis4: 44 €
 fussnoten:
-  - "* Welche Module über das Grundmodul hinaus angeboten werden, hängt von der Mindestzahl an Buchungen und der Personalsituation ab."
-  - "** Den Ganztag-Tag (Di oder Do) legt der Träger je nach freien Plätzen fest; Buchungen von Modul 3A haben Vorrang."
-hinweise:
-  - Der Beitrag wird elfmal im Jahr zu Monatsbeginn per SEPA-Lastschrift eingezogen, der August ist beitragsfrei.
-  - Modul 1A mit 30 Stunden pro Woche erfüllt den Rechtsanspruch und steht allen Familien offen.
-  - Module lassen sich zum September, Januar und März umbuchen, sonst nur aus besonders wichtigem Grund.
-  - Die Module 1B, 3A und 3B sind ab dem 3. Geburtstag buchbar und starten ab fünf Anmeldungen.
-  - Ab Modul 1B ist Mittagessen Pflicht. Rechtzeitig abbestellte Essen werden vierteljährlich erstattet.
-mittagessenPreis: 5,80 €
+- '* Welche Module über das Grundmodul hinaus angeboten werden, hängt von der Mindestzahl an Buchungen und der Personalsituation ab.'
+- '** Den Ganztag-Tag (Di oder Do) legt der Träger je nach freien Plätzen fest; Buchungen von Modul 3A haben Vorrang.'

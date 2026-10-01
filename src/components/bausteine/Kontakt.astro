@@ -1,0 +1,33 @@
+---
+import { getKontakt, osmHref } from '../../lib/content';
+const k = await getKontakt();
+const adresse = `${k.strasse}, ${k.ort}`;
+---
+<div class="baustein stack">
+  <div class="grid" style="--min:260px">
+    <a href={k.telHref} class="weg" style="background:var(--hell-honig)"><span class="weg-label">Telefon</span><span class="weg-wert">{k.telefon}</span></a>
+    <a href={k.mailHref} class="weg" style="background:var(--hell-rosa)"><span class="weg-label">E-Mail</span><span class="weg-wert">{k.email}</span></a>
+    <a href={osmHref(adresse)} target="_blank" rel="noopener" class="weg" style="background:var(--hell-blatt)"><span class="weg-label">Adresse · Route</span><span class="weg-wert">{adresse}</span><span class="visually-hidden"> (OpenStreetMap, öffnet in neuem Tab)</span></a>
+  </div>
+  {k.sprechzeiten.length > 0 && (
+    <div class="karte sprech">
+      <h3 class="h3">Sprechzeiten der Kindergartenleitung {k.leitung}</h3>
+      <dl class="zeiten">
+        {k.sprechzeiten.map((s) => <div><dt>{s.tag}</dt><dd>{s.zeit}</dd></div>)}
+        <div><dd>oder jederzeit per E-Mail</dd></div>
+      </dl>
+    </div>
+  )}
+</div>
+
+<style>
+  .weg { text-decoration: none; color: var(--text); border-radius: 24px; padding: 26px; display: flex; flex-direction: column; gap: 8px; }
+  .weg:hover { color: var(--akzent); text-decoration: underline; }
+  .weg-label { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+  .weg-wert { font-family: var(--font-titel); font-size: clamp(22px, 2.6vw, 28px); overflow-wrap: anywhere; }
+  .sprech { background: #fff; border: 1px solid var(--linie); max-width: 640px; }
+  .zeiten { margin: 0; display: flex; flex-direction: column; gap: 8px; }
+  .zeiten div { display: flex; justify-content: space-between; gap: 12px; background: var(--grund); border-radius: 14px; padding: 14px 18px; font-size: 18px; }
+  .zeiten dt { font-weight: 700; }
+  .zeiten dd { margin: 0; }
+</style>

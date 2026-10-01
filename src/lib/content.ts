@@ -76,3 +76,19 @@ export function bild(pfad: string | null | undefined, ersatz?: string): ImageMet
   }
   throw new Error(`Bild nicht gefunden: ${kandidaten.join(', ')}`);
 }
+
+export type Abschnitt = Awaited<ReturnType<typeof reader.singletons.ueberUns.readOrThrow>>['abschnitte'][number];
+
+/** Sprungmarke eines Abschnitts: eingetragene Marke oder aus der Überschrift gebildet */
+export function ankerVon(a: { anker?: string | null; titel?: string | null }) {
+  const quelle = (a.anker || a.titel || '').toLowerCase();
+  return quelle
+    .replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+/** Reiner Text aus Markdoc, z. B. für Beschreibungen */
+export function nurText(node: Node) {
+  return renderMarkdoc(node).replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+}

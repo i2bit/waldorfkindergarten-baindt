@@ -1,0 +1,33 @@
+---
+import { reader, getKontakt, renderMarkdoc } from '../../lib/content';
+const kontakt = await getKontakt();
+const stellen = await Promise.all(
+  (await reader.collections.stellen.all())
+    .filter((s) => s.entry.aktiv)
+    .map(async (s) => ({ ...s, html: renderMarkdoc((await s.entry.beschreibung()).node) })),
+);
+const arten = { fachkraft: 'Fachkraft', fsj: 'FSJ', praktikum: 'Praktikum', ausbildung: 'Ausbildung / Studium' } as const;
+---
+{stellen.length === 0 ? (
+  <p class="p baustein">Zurzeit sind keine Stellen ausgeschrieben. Initiativbewerbungen sind trotzdem herzlich willkommen: <a href={kontakt.mailHref}>{kontakt.email}</a></p>
+) : (
+  <div class="grid baustein stellen" style="--min:320px">
+    {stellen.map((s) => {
+      const infos = [s.entry.umfang, s.entry.start].filter(Boolean).join(' · ');
+      return (
+        <article id={s.slug} class="karte stelle">
+          <span class="badge" style="background:var(--hell-honig)">{arten[s.entry.art]}</span>
+          <h3 class="h3">{s.entry.titel}</h3>
+          {infos && <p class="p-leise">{infos}</p>}
+          <div class="prosa" set:html={s.html} />
+          <a href={`${kontakt.mailHref}?subject=${encodeURIComponent(`Bewerbung: ${s.entry.titel}`)}`} class="btn">Per E-Mail bewerben</a>
+        </article>
+      );
+    })}
+  </div>
+)}
+
+<style>
+  .stelle { background: #fff; border: 1px solid var(--linie); }
+  .stelle .prosa { font-size: 17px; }
+</style>

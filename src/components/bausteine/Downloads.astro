@@ -1,0 +1,11 @@
+---
+import DownloadLink from '../DownloadLink.astro';
+import { reader } from '../../lib/content';
+const downloads = await reader.singletons.downloads.readOrThrow();
+const dateien = downloads.dateien
+  .map((d) => ({ titel: d.titel, beschreibung: d.beschreibung, href: d.datei || d.link }))
+  .filter((d): d is typeof d & { href: string } => !!d.href);
+---
+<div class="grid baustein" style="--min:300px;gap:14px">
+  {dateien.map((d) => <DownloadLink href={d.href} titel={d.titel} beschreibung={d.beschreibung} />)}
+</div>

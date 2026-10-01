@@ -1,22 +1,22 @@
 dateien:
-  - titel: Gebührentabelle 2026/27
-    beschreibung: PDF
-    link: https://waldorfkindergarten-baindt.de/wp-content/uploads/2026/09/Gebuehrenberechnung-der-Module-26-27-Waldorf-Kindergarten.pdf
-  - titel: Buchungs- und Umbuchungsantrag
-    beschreibung: PDF · Modulwahl
-    link: https://waldorfkindergarten-baindt.de/wp-content/uploads/2026/09/Buchungsantrag-Umbuchen-Module-ab-2026.pdf
-  - titel: Aufnahmeantrag
-    beschreibung: Anmeldung
-    link: https://waldorfkindergarten-baindt.de/organisation/anmeldung/
-  - titel: Jahresplan
-    beschreibung: Alle Termine im Kindergartenjahr
-    link: https://waldorfkindergarten-baindt.de/organisation/jahresplan/
-  - titel: Eltern-ABC
-    beschreibung: PDF · von A wie Abholen bis Z
-    link: https://waldorfkindergarten-baindt.de/wp-content/uploads/2016/07/Das-ABC-f%C3%BCr-Eltern.pdf
-  - titel: Kindergartenordnung
-    beschreibung: Regeln & Vereinbarungen
-    link: https://waldorfkindergarten-baindt.de/organisation/kindergartenordnung/
-  - titel: Mitgliedsantrag Förderverein
-    beschreibung: Aufnahmeantrag Verein
-    link: https://waldorfkindergarten-baindt.de/organisation/vereinsmitgliedschaft/
+- titel: Aufnahmeantrag Kindergarten
+  beschreibung: PDF · zum Ausdrucken
+  datei: /downloads/aufnahmeantrag-kindergarten.pdf
+- titel: Gebührentabelle 2026/27
+  beschreibung: PDF
+  datei: /downloads/gebuehrentabelle-2026-27.pdf
+- titel: Buchungs- und Umbuchungsantrag
+  beschreibung: PDF · Modulwahl
+  datei: /downloads/buchungsantrag-module.pdf
+- titel: Jahresplan 2026/27
+  beschreibung: PDF · alle Termine im Kindergartenjahr
+  datei: /downloads/jahresplan-2026-27.pdf
+- titel: Eltern-ABC
+  beschreibung: PDF · ab 09/2026
+  datei: /downloads/eltern-abc.pdf
+- titel: Kindergartenordnung
+  beschreibung: PDF
+  datei: /downloads/kindergartenordnung.pdf
+- titel: Aufnahmeantrag Förderverein
+  beschreibung: PDF · Vereinsmitgliedschaft
+  datei: /downloads/aufnahmeantrag-foerderverein.pdf

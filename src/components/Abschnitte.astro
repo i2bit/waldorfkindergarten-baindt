@@ -1,0 +1,65 @@
+---
+// Zeigt die Abschnitte einer Inhaltsseite aus Keystatic: Überschrift, Text,
+// optional ein Foto (abwechselnd links/rechts) und einen eingebauten Baustein.
+import { Image } from 'astro:assets';
+import { bild, renderMarkdoc, ankerVon, type Abschnitt } from '../lib/content';
+import Module from './bausteine/Module.astro';
+import Zeiten from './bausteine/Zeiten.astro';
+import Downloads from './bausteine/Downloads.astro';
+import Stellen from './bausteine/Stellen.astro';
+import Kontakt from './bausteine/Kontakt.astro';
+import Anmeldung from './bausteine/Anmeldung.astro';
+
+interface Props {
+  abschnitte: readonly Abschnitt[];
+}
+const { abschnitte } = Astro.props;
+let bildNr = 0;
+const liste = abschnitte.map((a) => {
+  const html = renderMarkdoc(a.text.node);
+  // Lange Texte und Tabellen bekommen die volle Breite, das Foto steht dann darüber.
+  const lang = html.includes('<table') || html.replace(/<[^>]+>/g, '').length > 1800;
+  return {
+    ...a,
+    id: ankerVon(a),
+    html,
+    lang,
+    bildRechts: a.bild && !lang ? bildNr++ % 2 === 1 : false,
+  };
+});
+---
+{liste.map((a) => (
+  <section id={a.id || undefined} class:list={['abschnitt', `hg-${a.hintergrund}`]}>
+    <div class="wrap section">
+      <div class:list={[a.bild && !a.lang ? 'split' : 'einspaltig', { 'bild-rechts': a.bildRechts }]}>
+        {a.bild && (
+          <Image src={bild(a.bild)} alt={a.bildAlt ?? ''} class:list={['foto', { 'foto-oben': a.lang }]} widths={[600, 1200]} sizes={a.lang ? '(min-width: 900px) 860px, 92vw' : '(min-width: 1000px) 600px, 92vw'} />
+        )}
+        <div class="stack">
+          {a.titel && <h2 class="h2">{a.titel}</h2>}
+          {a.html.trim() && <div class="prosa" set:html={a.html} />}
+        </div>
+      </div>
+      {a.baustein === 'module' && <Module />}
+      {a.baustein === 'zeiten' && <Zeiten />}
+      {a.baustein === 'downloads' && <Downloads />}
+      {a.baustein === 'stellen' && <Stellen />}
+      {a.baustein === 'kontakt' && <Kontakt />}
+      {a.baustein === 'anmeldung' && <Anmeldung />}
+    </div>
+  </section>
+))}
+
+<style>
+  .hg-pfirsich { background: var(--pfirsich); }
+  .hg-honig { background: var(--hell-honig); }
+  .hg-rosa { background: var(--hell-rosa); }
+  .hg-blatt { background: var(--hell-blatt); }
+  .einspaltig { max-width: 860px; display: flex; flex-direction: column; gap: 32px; }
+  .foto-oben { --h: clamp(220px, 34vw, 400px); }
+  .split { align-items: start; }
+  .split .foto { position: sticky; top: 24px; }
+  @media (min-width: 900px) {
+    .bild-rechts > :first-child { order: 2; }
+  }
+</style>

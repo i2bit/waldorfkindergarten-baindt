@@ -23,7 +23,7 @@ const neuer = alle[pos - 1];
 const aelter = alle[pos + 1];
 ---
 <Base title={post.titel} description={post.teaser} aktiv="/aktuelles">
-  <Seitenkopf slot="kopf" titel={post.titel} farbe={js.bg} lead={post.teaser}>
+  <Seitenkopf slot="kopf" titel={post.titel} farbe={js.bg}>
     <p class="meta">
       <span class="badge" style={`background:${js.bg};color:${js.fg}`}>{js.name}</span>
       <time datetime={post.datum ?? undefined}>{datumLang(post.datum)}</time>
@@ -38,7 +38,7 @@ const aelter = alle[pos + 1];
     )}
     <div class="prosa" set:html={html} />
     {post.pdf && (
-      <a href={post.pdf} class="btn btn-hell" target="_blank">Zeitungsartikel als PDF öffnen<span class="visually-hidden"> (öffnet in neuem Tab)</span></a>
+      <a href={post.pdf} class="btn" target="_blank">Ganzen Bericht lesen (PDF)<span class="visually-hidden"> (öffnet in neuem Tab)</span></a>
     )}
   </article>
 
@@ -52,6 +52,6 @@ const aelter = alle[pos + 1];
 </Base>
 
 <style>
-  .meta { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; font-size: 18px; font-weight: 600; color: #e6edd8; }
+  .meta { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; font-size: 18px; font-weight: 600; color: var(--text-leise); }
   .blaettern { flex-direction: row; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
 </style>

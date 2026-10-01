@@ -2,30 +2,22 @@
 // Online-Aufnahmeantrag. Felder nach dem bisherigen PDF-Aufnahmeantrag des Kindergartens.
 // Es wird nichts an einen Server geschickt: Beim Absenden öffnet sich das Mailprogramm
 // der Eltern mit einer fertig ausgefüllten E-Mail an den Kindergarten.
-import Base from '../layouts/Base.astro';
-import Seitenkopf from '../components/Seitenkopf.astro';
+import Inhaltsseite from '../components/Inhaltsseite.astro';
 import { reader, getKontakt } from '../lib/content';
 
+const seite = await reader.singletons.anmeldung.readOrThrow();
 const kontakt = await getKontakt();
 const module = await reader.singletons.module.readOrThrow();
 // Module ohne Sternchen, doppelte (z. B. 1A für zwei Altersstufen) nur einmal
 const modulNamen = [...new Set(module.module.map((m) => m.modul.replace(/\*/g, '')))];
-const vormerkung = 'https://www.baindt.de/leben-wohnen/kindertageseinrichtungen/vormerkung-und-vergabekriterien-kindertageseinrichtungen';
 
 const personen = [
   { nr: 1, titel: 'Erziehungsberechtigte Person 1', pflicht: true },
   { nr: 2, titel: 'Erziehungsberechtigte Person 2', pflicht: false },
 ];
 ---
-<Base title="Anmeldung" description="Aufnahmeantrag für den Waldorfkindergarten Baindt online ausfüllen." aktiv="/anmeldung">
-  <Seitenkopf slot="kopf" titel="Anmeldung" farbe="var(--akzent)" lead="Hier können Sie unseren Aufnahmeantrag ausfüllen. So lernen wir Sie früh kennen und laden Sie zu Veranstaltungen ein." />
-
-  <section class="wrap section" style="padding-top:56px;padding-bottom:40px">
-    <div class="hinweis">
-      <h2 class="h3">Wichtig: zuerst bei der Gemeinde vormerken</h2>
-      <p class="p">Alle Kindergartenplätze in Baindt werden über das zentrale Vormerkeverfahren der Gemeinde vergeben. Unser Aufnahmeantrag ersetzt diese Vormerkung nicht, er kommt zusätzlich dazu.</p>
-      <a href={vormerkung} target="_blank" rel="noopener" class="linkpfeil">Zur Vormerkung der Gemeinde Baindt →<span class="visually-hidden"> (öffnet in neuem Tab)</span></a>
-    </div>
+<Inhaltsseite seite={seite} aktiv="/anmeldung" sprungmarken={false}>
+  <section class="wrap section" style="padding-bottom:24px">
     <p class="p">Felder mit dem Zusatz <strong>(Pflicht)</strong> müssen ausgefüllt werden. Alles andere ist freiwillig.</p>
   </section>
 
@@ -132,10 +124,10 @@ const personen = [
       <button type="button" class="btn btn-hell" data-kopieren>Text kopieren</button>
     </div>
   </section>
-</Base>
+</Inhaltsseite>
 
 <style>
-  .hinweis { background: var(--hell-honig); border-radius: 24px; padding: 26px 28px; display: flex; flex-direction: column; gap: 12px; }
+  .hinweis { background: var(--hell-honig); border-radius: 24px; padding: 26px 28px; }
   .formular { display: flex; flex-direction: column; gap: 28px; max-width: 900px; }
   fieldset { margin: 0; border: 1px solid var(--linie); background: #fff; border-radius: 24px; padding: 26px 24px 28px; display: flex; flex-direction: column; gap: 18px; min-width: 0; }
   legend { float: left; width: 100%; padding: 0; font-size: clamp(26px, 4vw, 34px); margin-bottom: 4px; }

@@ -5,24 +5,22 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Jahreskreis from '../components/Jahreskreis.astro';
 import Zettel from '../components/Zettel.astro';
-import { reader, getAktuelles, bild } from '../lib/content';
+import { reader, getAktuelles, bild, renderMarkdoc, nurText, ankerVon } from '../lib/content';
 import logo from '../assets/logo.png';
 
 const start = await reader.singletons.startseite.readOrThrow();
-const gruppen = await reader.singletons.gruppen.readOrThrow();
+const gruppenSeite = await reader.singletons.gruppen.readOrThrow();
+const gruppen = gruppenSeite.abschnitte.filter((a) => a.aufStartseite);
+const willkommen = renderMarkdoc(start.willkommen.node);
+const beschreibung = nurText(start.willkommen.node).slice(0, 160);
 const posts = (await getAktuelles()).slice(0, 3);
 
-const einleitungsBild = bild(start.heroBild, 'haus.jpg');
-const einleitungsAlt = start.heroBild ? 'Foto aus dem Kindergarten' : 'Das Kindergartengebäude mit blühendem Garten';
+const einleitungsBild = bild(start.heroBild, 'sand.jpg');
+const einleitungsAlt = start.heroBild ? 'Foto aus dem Kindergarten' : 'Zwei Kinder spielen im Sandkasten';
 const zitatZeilen = start.zitat.split('\n').map((z) => z.trim()).filter(Boolean);
 
-const gruppenFotos = [
-  { datei: 'sand.jpg', alt: 'Zwei Kinder spielen im Sandkasten' },
-  { datei: 'bauen.jpg', alt: 'Drei Kinder bauen einen hohen Turm aus Holzplättchen' },
-];
-const anker = (name: string) => name.toLowerCase().replace(/ß/g, 'ss').replace(/[^a-z]/g, '');
 ---
-<Base title="Startseite" description={start.heroText}>
+<Base title="Startseite" description={beschreibung}>
   <div slot="kopf" class="wrap hero">
     <h1 class="visually-hidden">Waldorfkindergarten Baindt</h1>
     <Image src={logo} alt="" class="hero-logo" width={86} height={150} densities={[1, 2]} loading="eager" />
@@ -39,9 +37,8 @@ const anker = (name: string) => name.toLowerCase().replace(/ß/g, 'ss').replace(
   <section class="wrap section" aria-labelledby="willkommen">
     <div class="split">
       <div class="stack">
-        <h2 class="h2" id="willkommen">Willkommen</h2>
-        <p class="p">{start.heroText}</p>
-        <p class="p">Bei uns steht das Kind im Mittelpunkt: mit Rhythmus im Tag, viel Zeit für freies Spiel, Natur vor der Tür und einer lebendigen Gemeinschaft von Eltern und Team.</p>
+        <h2 class="h2" id="willkommen">{start.willkommenTitel || 'Willkommen'}</h2>
+        <div class="prosa" set:html={willkommen} />
         <a href="/ueber-uns" class="linkpfeil">Mehr über uns und unsere Pädagogik →</a>
       </div>
       <Image src={einleitungsBild} alt={einleitungsAlt} class="foto" widths={[600, 1200]} sizes="(min-width: 1000px) 600px, 92vw" loading="eager" />
@@ -51,27 +48,23 @@ const anker = (name: string) => name.toLowerCase().replace(/ß/g, 'ss').replace(
   <section class="bg-pfirsich welle-oben welle-unten" aria-labelledby="gruppen-titel">
     <div class="wrap section">
       <h2 class="h2" id="gruppen-titel">Unsere Gruppen</h2>
-      {gruppen.gruppen.map((g, i) => {
-        const foto = gruppenFotos[i % gruppenFotos.length];
-        return (
-          <div class="split gruppe" class:list={{ 'bild-rechts': i % 2 === 1 }}>
-            <Image src={bild(g.bild, foto.datei)} alt={g.bild ? `Foto der Gruppe ${g.name}` : foto.alt} class="foto" style="--h:340px" widths={[600, 1200]} sizes="(min-width: 1000px) 600px, 92vw" />
-            <div class="stack">
-              <h3 class="h3">{g.name}</h3>
-              {g.alter && <p class="p-leise gruppe-alter">{g.alter}</p>}
-              <p class="p">{g.text}</p>
-              <a href={`/gruppen#${anker(g.name)}`} class="linkpfeil">Mehr über {g.name} →</a>
-            </div>
+      {gruppen.map((g, i) => (
+        <div class="split gruppe" class:list={{ 'bild-rechts': i % 2 === 1 }}>
+          {g.bild && <Image src={bild(g.bild)} alt={g.bildAlt ?? ''} class="foto" style="--h:340px" widths={[600, 1200]} sizes="(min-width: 1000px) 600px, 92vw" />}
+          <div class="stack">
+            <h3 class="h3">{g.titel}</h3>
+            {g.kurz && <p class="p">{g.kurz}</p>}
+            <a href={`/gruppen#${ankerVon(g)}`} class="linkpfeil">Mehr über {g.titel} →</a>
           </div>
-        );
-      })}
+        </div>
+      ))}
       <p class="p">Außerdem: <a href="/gruppen#ganztag">Ganztag im Zwergenstübchen</a> · <a href="/gruppen#vorschule">Vorschuljahr</a> · <a href="/fuer-eltern#zeiten">Öffnungszeiten und Beiträge</a></p>
     </div>
   </section>
 
   <section class="wrap section" id="jahreskreis">
     <Jahreskreis>
-      <a href="/fuer-eltern#downloads" class="linkpfeil">Zum Jahresplan mit allen Terminen →</a>
+      <a href="/fuer-eltern#jahresplan" class="linkpfeil">Zum Jahresplan mit allen Terminen →</a>
     </Jahreskreis>
   </section>
 
@@ -88,8 +81,8 @@ const anker = (name: string) => name.toLowerCase().replace(/ß/g, 'ss').replace(
   </section>
 
   <section class="wrap section platz" aria-labelledby="platz-titel">
-    <h2 class="h2" id="platz-titel">Interesse an einem Platz?</h2>
-    <p class="p">Wir zeigen Ihnen gern den Kindergarten. Rufen Sie uns an oder schicken Sie uns direkt den Aufnahmeantrag.</p>
+    <h2 class="h2" id="platz-titel">{start.platzTitel}</h2>
+    <p class="p">{start.platzText}</p>
     <div class="knoepfe">
       <a href="/anmeldung" class="btn">Zum Aufnahmeantrag</a>
       <a href="/kontakt" class="btn btn-rahmen">Besuch vereinbaren</a>

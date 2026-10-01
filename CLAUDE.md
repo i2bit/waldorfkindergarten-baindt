@@ -16,6 +16,14 @@ Sprache der Website: Deutsch, Ansprache durchgehend „Sie“.
   `keystatic.config.ts` definiert. Inhalte immer per
   `createReader` aus `@keystatic/core/reader` lesen, nie hart codieren.
 - Fotos: `src/assets/fotos/` (über `astro:assets` einbinden).
+- Inhaltsseiten (Über uns, Gruppen, Für Eltern, Stellen, Kontakt, Anmeldung, Impressum,
+  Datenschutz) bestehen aus „Abschnitten“ (`src/content/seiten/*.yaml`, Typ in
+  `keystatic.config.ts` → `abschnitte`): Überschrift, Text (Markdoc), Foto, Hintergrund
+  und optional ein eingebauter Baustein (Modultabelle, Zeiten, Downloads, Stellen,
+  Kontakt, Aufnahmeantrag). Darstellung: `src/components/Abschnitte.astro`.
+- Texte stammen von der bisherigen Website (wörtlich übernommen), Fotos der Abschnitte
+  in `src/assets/seiten/`. Presseberichte (135) mit PDF in `public/downloads/presse/`,
+  alte Slugs beibehalten (für Weiterleitungen in Aufgabe 5).
 
 ## Design-Vorlage
 `design/*.dc.html` ist der freigegebene Entwurf (eine Datei pro Seite).
@@ -48,10 +56,9 @@ direkt verwendbar (eigenes Vorlagenformat mit `<x-dc>`-Wrapper).
 5. Weiterleitungen alter WordPress-URLs in `public/_redirects`
    (z. B. /ueber-uns/paedagogik/ → /ueber-uns#paedagogik,
    /organisation/oeffnungszeiten/ → /fuer-eltern, /category/presseberichte/ → /aktuelles)
-6. PDFs von der alten Seite nach `public/downloads/` holen und die Links in
-   `src/content/einstellungen/downloads.yaml` darauf umstellen
+6. ~~PDFs von der alten Seite nach `public/downloads/` holen~~ (erledigt; große PDFs
+   mit Ghostscript verkleinert, Cloudflare erlaubt max. 25 MB pro Datei)
 
 ## Offene Punkte (nicht raten, nachfragen)
-- Keystatic-Cloud-Projektname (`keystatic.config.ts` → `cloud.project`)
 - Datenschutzerklärung: Hoster ist Cloudflare, Text vor Livegang prüfen lassen
 - Gruppengrößen stammen aus dem Eltern-ABC 2016, vor Ort bestätigen

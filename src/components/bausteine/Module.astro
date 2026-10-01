@@ -1,0 +1,42 @@
+---
+import { reader } from '../../lib/content';
+const module = await reader.singletons.module.readOrThrow();
+---
+<div class="baustein">
+  <p class="p">Monatlicher Beitrag für ein Kind ab {module.gueltigAb}, gestaffelt nach Anzahl der Kinder in der Familie. Berechnet auf Grundlage der {module.grundlage}.</p>
+  <div class="tabelle" role="region" aria-label="Tabelle der Module und Beiträge" tabindex="0">
+    <table>
+      <caption class="visually-hidden">Module, Betreuungszeiten und monatliche Beiträge ab {module.gueltigAb}</caption>
+      <thead>
+        <tr>
+          <th scope="col">Modul</th><th scope="col">Alter</th><th scope="col">Zeiten</th><th scope="col">Std./Woche</th><th scope="col">Essen</th>
+          <th scope="col">1 Kind</th><th scope="col">2 Kinder</th><th scope="col">3 Kinder</th><th scope="col">4 Kinder</th>
+        </tr>
+      </thead>
+      <tbody>
+        {module.module.map((m) => (
+          <tr>
+            <th scope="row">{m.modul}</th>
+            <td>{m.alter}</td>
+            <td>{m.zeiten.split('\n').map((z, i) => <>{i > 0 && <br />}{z}</>)}</td>
+            <td>{m.stunden}</td>
+            <td>{m.mittagessen ? 'ja' : 'nein'}</td>
+            <td>{m.preis1}</td><td>{m.preis2}</td><td>{m.preis3}</td><td>{m.preis4}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  {module.fussnoten.length > 0 && <p class="p-leise">{module.fussnoten.join(' ')}</p>}
+</div>
+
+<style>
+  .tabelle { overflow-x: auto; border-radius: 20px; border: 1px solid var(--rahmen); }
+  table { width: 100%; min-width: 860px; border-collapse: collapse; background: #fff; }
+  thead tr { background: var(--text); color: #fff; }
+  th, td { padding: 14px 16px; text-align: left; vertical-align: top; }
+  thead th { font-size: 15px; white-space: nowrap; }
+  tbody th { font-family: var(--font-titel); font-size: 20px; white-space: nowrap; }
+  td { font-size: 16px; }
+  tbody th, tbody td { border-top: 1px solid var(--linie); }
+</style>

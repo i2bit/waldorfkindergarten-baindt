@@ -1,0 +1,26 @@
+---
+// Gemeinsamer Aufbau aller Inhaltsseiten: Seitenkopf, Sprungmarken, Abschnitte.
+import Base from '../layouts/Base.astro';
+import Seitenkopf from './Seitenkopf.astro';
+import Subnav from './Subnav.astro';
+import Abschnitte from './Abschnitte.astro';
+import { ankerVon, type Abschnitt } from '../lib/content';
+
+interface Props {
+  seite: { titel: string; einleitung: string; abschnitte: readonly Abschnitt[] };
+  aktiv?: string;
+  /** Sprungmarken anzeigen (bei langen Seiten) */
+  sprungmarken?: boolean;
+}
+const { seite, aktiv, sprungmarken = true } = Astro.props;
+const links = seite.abschnitte
+  .map((a) => ({ href: `#${ankerVon(a)}`, label: a.titel }))
+  .filter((l) => l.label && l.href !== '#');
+---
+<Base title={seite.titel} description={seite.einleitung} aktiv={aktiv}>
+  <Seitenkopf slot="kopf" titel={seite.titel} farbe="var(--akzent)" lead={seite.einleitung} />
+  {sprungmarken && links.length > 2 && <Subnav links={links} />}
+  <slot name="vorher" />
+  <Abschnitte abschnitte={seite.abschnitte} />
+  <slot />
+</Base>

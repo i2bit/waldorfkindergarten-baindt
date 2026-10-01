@@ -1,22 +1,57 @@
 ---
+// Pinnwand mit den neuesten Berichten, darunter alle älteren nach Jahren.
 import Base from '../../layouts/Base.astro';
 import Seitenkopf from '../../components/Seitenkopf.astro';
 import Zettel from '../../components/Zettel.astro';
-import { getAktuelles } from '../../lib/content';
+import { getAktuelles, datumLang } from '../../lib/content';
 
 const posts = await getAktuelles();
+const neu = posts.slice(0, 9);
+const aelter = posts.slice(9);
+const jahre = [...new Set(aelter.map((p) => (p.entry.datum ?? '').slice(0, 4)))];
 ---
-<Base title="Aktuelles & Presse" description="Berichte und Presseartikel über Feste und den Alltag im Waldorfkindergarten Baindt." aktiv="/aktuelles">
-  <Seitenkopf slot="kopf" titel="Aktuelles & Presse" farbe="var(--kuerbis)" lead="Viele kleine und große, leise und laute Feste begleiten uns durch das Jahr. Hier erzählen wir davon." />
+<Base title="Aktuelles & Presse" description="Berichte über Feste und den Alltag im Waldorfkindergarten Baindt." aktiv="/aktuelles">
+  <Seitenkopf slot="kopf" titel="Aktuelles & Presse" farbe="var(--akzent)" lead="Viele kleine und große, leise und laute Feste begleiten uns durch das Jahr. Hier erzählen wir davon." />
 
-  <section id="pinnwand" class="bg-pfirsich">
-    <div class="wrap section" style="padding-top:72px;padding-bottom:100px">
-      <h2 class="visually-hidden">Alle Berichte</h2>
+  <section class="bg-hell-honig">
+    <div class="wrap section">
+      <h2 class="h2">Neu an der Pinnwand</h2>
       <div class="pinnwand">
-        {posts.map((p, i) => (
+        {neu.map((p, i) => (
           <Zettel slug={p.slug} titel={p.entry.titel} datum={p.entry.datum} jahreszeit={p.entry.jahreszeit} teaser={p.entry.teaser} index={i} />
         ))}
       </div>
     </div>
   </section>
+
+  {aelter.length > 0 && (
+    <section class="wrap section" aria-labelledby="archiv">
+      <h2 class="h2" id="archiv">Ältere Berichte</h2>
+      <nav class="jahre" aria-label="Jahre">
+        {jahre.map((j) => <a href={`#jahr-${j}`}>{j}</a>)}
+      </nav>
+      {jahre.map((j) => (
+        <div class="jahr" id={`jahr-${j}`}>
+          <h3 class="h3">{j}</h3>
+          <ul class="archiv">
+            {aelter.filter((p) => (p.entry.datum ?? '').startsWith(j)).map((p) => (
+              <li><a href={`/aktuelles/${p.slug}`}>{p.entry.titel}</a> <span class="p-leise">{datumLang(p.entry.datum)}</span></li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </section>
+  )}
 </Base>
+
+<style>
+  .bg-hell-honig { background: var(--hell-honig); }
+  .jahre { display: flex; flex-wrap: wrap; gap: 8px; }
+  .jahre a { text-decoration: none; color: var(--text); background: #fff; border: 1px solid var(--linie); border-radius: 999px; padding: 8px 16px; font-weight: 600; }
+  .jahre a:hover { background: var(--pfirsich); }
+  .jahr { display: flex; flex-direction: column; gap: 10px; scroll-margin-top: 16px; }
+  .archiv { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 4px 32px; }
+  .archiv li { padding: 10px 0; border-bottom: 1px solid var(--linie); font-size: 18px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; }
+  .archiv a { font-weight: 600; }
+  .archiv .p-leise { font-size: 15px; }
+</style>

@@ -39,6 +39,8 @@ Die KV-Bindung `SESSION` legt Astro automatisch an; der kostenlose Plan reicht.
 
 ## Was im Admin pflegbar ist
 
+- Alle Seiten mit ihren Abschnitten (Text, Foto, Hintergrundfarbe)
+- Startseite: Spruch, Willkommenstext, Foto
 - Aktuelles & Presse (mit Foto und PDF)
 - Stellen (ein-/ausblendbar)
 - Module & Beiträge, Bring-/Abholzeiten, Downloads, Jahreskreis
@@ -46,7 +48,5 @@ Die KV-Bindung `SESSION` legt Astro automatisch an; der kostenlose Plan reicht.
 
 ## Vor dem Livegang
 
-- PDFs von der alten Seite nach `public/downloads/` übernehmen und die Links
-  in „Downloads“ durch Datei-Uploads ersetzen.
 - Daten der Presseberichte prüfen (teils geschätzt).
 - Datenschutzerklärung: Hosting-Abschnitt (Cloudflare) ergänzen und prüfen lassen.

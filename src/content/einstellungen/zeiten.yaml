@@ -1,12 +1,8 @@
 bringzeit: 07.15 – 08.30 Uhr
 abholzeiten:
-  - label: Grundmodul
-    zeit: 12.30 – 13.15 Uhr
-  - label: Verlängert
-    zeit: 14.00 – 14.15 Uhr
-  - label: Ganztag
-    zeit: 16.00 – 16.15 Uhr
-hinweise:
-  - Während der Eingewöhnung vereinbaren wir Bring- und Abholzeiten individuell.
-  - Abweichende Zeiten sind aus triftigen Gründen nach Absprache möglich, zum Beispiel für Arzttermine.
-  - Bei Krankheit, Urlaub oder Pausentagen bitte kurz Bescheid geben.
+- label: Grundmodul
+  zeit: 12.30 – 13.15 Uhr
+- label: Verlängert
+  zeit: 14.00 – 14.15 Uhr
+- label: Ganztag
+  zeit: 16.00 – 16.15 Uhr

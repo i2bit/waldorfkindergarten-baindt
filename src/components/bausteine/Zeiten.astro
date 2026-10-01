@@ -1,0 +1,21 @@
+---
+import { reader } from '../../lib/content';
+const zeiten = await reader.singletons.zeiten.readOrThrow();
+---
+<div class="grid baustein" style="--min:280px">
+  <div class="karte" style="background:#fff">
+    <h3 class="h3">Bringzeit</h3>
+    <p class="gross-zeit">{zeiten.bringzeit}</p>
+  </div>
+  <div class="karte" style="background:#fff">
+    <h3 class="h3">Abholzeiten</h3>
+    <ul class="punkte" style="--punkt:var(--rosa)">
+      {zeiten.abholzeiten.map((a) => <li><span><strong>{a.label}:</strong> {a.zeit}</span></li>)}
+    </ul>
+  </div>
+</div>
+
+<style>
+  .gross-zeit { margin: 0; font-family: var(--font-titel); font-size: 32px; }
+  .karte { border: 1px solid var(--linie); }
+</style>

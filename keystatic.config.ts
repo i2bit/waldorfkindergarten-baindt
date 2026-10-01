@@ -2,15 +2,65 @@ import { config, fields, collection, singleton } from '@keystatic/core';
 
 // Lokal (npm run dev) speichert Keystatic direkt in die Dateien.
 // Live wird über Keystatic Cloud gespeichert: Login per E-Mail, kein GitHub-Konto nötig.
+// Baustein „Abschnitte“: Jede Inhaltsseite besteht aus Abschnitten mit Überschrift,
+// Text, optionalem Foto und Hintergrundfarbe. So ist jeder Text im Admin änderbar.
+const abschnitte = fields.array(
+  fields.object({
+    titel: fields.text({ label: 'Überschrift' }),
+    anker: fields.text({ label: 'Sprungmarke', description: 'Kurzer Name für Links und das Menü „Auf dieser Seite“, z. B. paedagogik. Leer lassen, wenn nicht nötig.' }),
+    text: fields.markdoc.inline({ label: 'Text' }),
+    bild: fields.image({ label: 'Foto (optional)', directory: 'src/assets/seiten', publicPath: '../../assets/seiten/' }),
+    bildAlt: fields.text({ label: 'Was ist auf dem Foto zu sehen?', description: 'Kurze Beschreibung für Menschen, die das Foto nicht sehen können' }),
+    hintergrund: fields.select({
+      label: 'Hintergrundfarbe',
+      options: [
+        { label: 'Hell (Standard)', value: 'hell' },
+        { label: 'Pfirsich', value: 'pfirsich' },
+        { label: 'Honig', value: 'honig' },
+        { label: 'Rosé', value: 'rosa' },
+        { label: 'Grün', value: 'blatt' },
+      ],
+      defaultValue: 'hell',
+    }),
+    baustein: fields.select({
+      label: 'Darunter zusätzlich anzeigen',
+      options: [
+        { label: 'Nichts', value: 'nichts' },
+        { label: 'Tabelle der Module & Beiträge', value: 'module' },
+        { label: 'Bring- & Abholzeiten', value: 'zeiten' },
+        { label: 'Downloads', value: 'downloads' },
+        { label: 'Offene Stellen', value: 'stellen' },
+        { label: 'Kontaktdaten & Sprechzeiten', value: 'kontakt' },
+        { label: 'Knopf zum Aufnahmeantrag', value: 'anmeldung' },
+      ],
+      defaultValue: 'nichts',
+    }),
+    aufStartseite: fields.checkbox({ label: 'Auch auf der Startseite zeigen', description: 'Nur auf der Seite „Gruppen“ wirksam' }),
+    kurz: fields.text({ label: 'Kurztext für die Startseite', multiline: true }),
+  }),
+  { label: 'Abschnitte', itemLabel: (p) => p.fields.titel.value || '(ohne Überschrift)' }
+);
+
+const seite = (label: string, name: string) =>
+  singleton({
+    label,
+    path: `src/content/seiten/${name}`,
+    schema: {
+      titel: fields.text({ label: 'Seitentitel' }),
+      einleitung: fields.text({ label: 'Einleitung oben', multiline: true }),
+      abschnitte,
+    },
+  });
+
 export default config({
   storage: import.meta.env.PROD ? { kind: 'cloud' } : { kind: 'local' },
   cloud: { project: 'i2bit/waldorfkindergar' },
   ui: {
     brand: { name: 'Waldorfkindergarten Baindt' },
     navigation: {
+      'Seiten': ['startseite', 'ueberUns', 'gruppen', 'fuerEltern', 'stellenSeite', 'kontaktSeite', 'anmeldung', 'impressum', 'datenschutz'],
       'Neuigkeiten': ['aktuelles', 'stellen'],
-      'Für Eltern': ['module', 'zeiten', 'downloads', 'jahreskreis'],
-      'Kindergarten': ['startseite', 'gruppen', 'kontakt', 'verein'],
+      'Daten': ['module', 'zeiten', 'downloads', 'jahreskreis', 'kontakt', 'verein'],
     },
   },
 
@@ -85,29 +135,22 @@ export default config({
       schema: {
         zitat: fields.text({ label: 'Spruch oben', description: 'Eine Zeile pro Zeile des Spruchs', multiline: true }),
         zitatQuelle: fields.text({ label: 'Quelle des Spruchs', description: 'Optional, z. B. der Name der Autorin' }),
-        heroText: fields.text({ label: 'Einleitung', multiline: true }),
-        heroBild: fields.image({ label: 'Foto neben der Einleitung', description: 'Ohne Upload wird das Foto vom Haus verwendet.', directory: 'src/assets/startseite', publicPath: '../../assets/startseite/' }),
+        willkommenTitel: fields.text({ label: 'Überschrift Willkommen' }),
+        willkommen: fields.markdoc.inline({ label: 'Willkommenstext' }),
+        heroBild: fields.image({ label: 'Foto neben dem Willkommenstext', description: 'Ohne Upload wird das Sandkasten-Foto verwendet.', directory: 'src/assets/startseite', publicPath: '../../assets/startseite/' }),
+        platzTitel: fields.text({ label: 'Überschrift unten (Platz-Anfrage)' }),
+        platzText: fields.text({ label: 'Text unten', multiline: true }),
       },
     }),
 
-    gruppen: singleton({
-      label: 'Gruppen',
-      path: 'src/content/einstellungen/gruppen',
-      schema: {
-        einleitung: fields.text({ label: 'Einleitung', multiline: true }),
-        gruppen: fields.array(
-          fields.object({
-            name: fields.text({ label: 'Name' }),
-            alter: fields.text({ label: 'Alter', description: 'z. B. ab dem 2. Lebensjahr' }),
-            text: fields.text({ label: 'Beschreibung', multiline: true }),
-            punkte: fields.array(fields.text({ label: 'Stichpunkt' }), { label: 'Stichpunkte', itemLabel: (p) => p.value }),
-            bild: fields.image({ label: 'Foto', directory: 'src/assets/gruppen', publicPath: '../../assets/gruppen/' }),
-          }),
-          { label: 'Gruppen', itemLabel: (p) => p.fields.name.value }
-        ),
-        alltag: fields.text({ label: 'Ein Tag bei uns', multiline: true }),
-      },
-    }),
+    ueberUns: seite('Seite: Über uns', 'ueber-uns'),
+    gruppen: seite('Seite: Gruppen & Angebote', 'gruppen'),
+    fuerEltern: seite('Seite: Für Eltern', 'fuer-eltern'),
+    stellenSeite: seite('Seite: Stellen', 'stellen'),
+    kontaktSeite: seite('Seite: Kontakt', 'kontakt'),
+    anmeldung: seite('Seite: Anmeldung', 'anmeldung'),
+    impressum: seite('Seite: Impressum', 'impressum'),
+    datenschutz: seite('Seite: Datenschutz', 'datenschutz'),
 
     module: singleton({
       label: 'Module & Beiträge',
@@ -130,8 +173,6 @@ export default config({
           { label: 'Module', itemLabel: (p) => `${p.fields.modul.value} · ${p.fields.alter.value}` }
         ),
         fussnoten: fields.array(fields.text({ label: 'Fußnote', multiline: true }), { label: 'Fußnoten', itemLabel: (p) => p.value.slice(0, 60) }),
-        hinweise: fields.array(fields.text({ label: 'Hinweis', multiline: true }), { label: 'Gut zu wissen', itemLabel: (p) => p.value.slice(0, 60) }),
-        mittagessenPreis: fields.text({ label: 'Preis Mittagessen', description: 'z. B. 5,80 €' }),
       },
     }),
 
@@ -144,7 +185,6 @@ export default config({
           fields.object({ label: fields.text({ label: 'Für' }), zeit: fields.text({ label: 'Zeit' }) }),
           { label: 'Abholzeiten', itemLabel: (p) => `${p.fields.label.value}: ${p.fields.zeit.value}` }
         ),
-        hinweise: fields.array(fields.text({ label: 'Hinweis', multiline: true }), { label: 'Hinweise', itemLabel: (p) => p.value.slice(0, 60) }),
       },
     }),
 
