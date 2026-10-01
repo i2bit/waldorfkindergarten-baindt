@@ -1,0 +1,24 @@
+---
+// Platzhalter-Startseite: zeigt, dass die Inhalte aus Keystatic gelesen werden.
+// Die eigentlichen Seiten werden aus dem Design-Entwurf übertragen.
+import { createReader } from '@keystatic/core/reader';
+import keystaticConfig from '../../keystatic.config';
+
+const reader = createReader(process.cwd(), keystaticConfig);
+const start = await reader.singletons.startseite.read();
+const module = await reader.singletons.module.read();
+const posts = (await reader.collections.aktuelles.all())
+  .sort((a, b) => (b.entry.datum ?? '').localeCompare(a.entry.datum ?? ''));
+---
+<html lang="de">
+  <head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Waldorfkindergarten Baindt</title></head>
+  <body>
+    <h1>{start?.heroTitel}</h1>
+    <p>{start?.heroText}</p>
+    <h2>Module ab {module?.gueltigAb}</h2>
+    <ul>{module?.module.map((m) => <li>{m.modul} ({m.alter}): {m.preis1}</li>)}</ul>
+    <h2>Aktuelles</h2>
+    <ul>{posts.map((p) => <li>{p.entry.datum} – {p.entry.titel}</li>)}</ul>
+    <p><a href="/keystatic">Zum Admin</a></p>
+  </body>
+</html>
