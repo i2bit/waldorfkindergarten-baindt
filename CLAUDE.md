@@ -26,9 +26,9 @@ direkt verwendbar (eigenes Vorlagenformat mit `<x-dc>`-Wrapper).
   gemalten Logo, Akzent Krapprosa #A8424D), gestaltet als Mischung mit
   waldorfkindergarten-wurzelwerk.de (ruhig, Pastell, Wellenkanten). Farben als CSS-Variablen in `src/styles/global.css`,
   Jahreszeiten-Farben in `src/lib/content.ts`.
-- Schriften: Überschriften in „Waldorf2“ (Schrift der bisherigen Website,
-  `src/assets/fonts/`, Lizenz noch klären), Text in Instrument Sans (@fontsource).
-  Keine Google Fonts.
+- Schriften: Überschriften in Overlock fett (@fontsource/overlock, OFL), Text in
+  Instrument Sans (@fontsource). Keine Google Fonts. „Antropos“ (wie bei Wurzelwerk)
+  ist nur privat frei und darum nicht verwendet.
 - Logo: gemaltes Logo der bisherigen Website (`src/assets/logo.png`)
 - Besonderheiten: schlichte Textnavigation (Handy unter 760 px: Menü-Knopf „Menü“ mit <details>, ohne JS), Wachsmalblöcke,
   Märchen-Gruppenkarten, interaktiver Jahreskreis (4 Viertelkreis-Buttons),
